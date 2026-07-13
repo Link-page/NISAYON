@@ -55,24 +55,37 @@
       animation: dreamyBackground 11s ease-in-out infinite alternate;
       min-height: 100vh;
       margin: 0;
-      /* כאן התיקון שמאפשר גלילה למטה */
       overflow-x: hidden;
       overflow-y: auto;
       color: white;
     }
 
+    /* רקע המשושים האינסופי (Option 2) */
     body::before {
       content: "";
       position: fixed;
-      inset: -60px;
-      background:
-        linear-gradient(rgba(255, 140, 0, 0.2) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 140, 0, 0.2) 1px, transparent 1px);
-      background-size: 54px 54px;
-      mask-image: radial-gradient(circle at center, black, transparent 78%);
-      pointer-events: none;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background-image:
+        linear-gradient(30deg, transparent 40%, rgba(255, 140, 0, 0.12) 40%, rgba(255, 140, 0, 0.12) 60%, transparent 60%),
+        linear-gradient(330deg, transparent 40%, rgba(255, 140, 0, 0.12) 40%, rgba(255, 140, 0, 0.12) 60%, transparent 60%),
+        linear-gradient(90deg, transparent 45%, rgba(255, 140, 0, 0.12) 45%, rgba(255, 140, 0, 0.12) 55%, transparent 55%);
+      background-size: 60px 104px;
+      background-position: 0 0, 0 0, 0 0;
       z-index: 0;
-      animation: gridFloat 15s linear infinite;
+      /* לופ התנועה החלק באלכסון */
+      animation: hexScroll 25s linear infinite;
+      mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
+      pointer-events: none;
+    }
+
+    /* אנימציה זורמת שלא עוצרת או חוזרת אחורה */
+    @keyframes hexScroll {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(60px, 104px); }
     }
 
     body::after {
@@ -88,7 +101,7 @@
     #watermark-bg {
       position: fixed;
       inset: 0;
-      background-image: url('BG.png');
+      background-image: url('BG.PNG');
       background-position: center;
       background-repeat: no-repeat;
       background-size: 85%;
@@ -100,11 +113,6 @@
     @keyframes dreamyBackground {
       0% { background-position: 0% 30%; }
       100% { background-position: 100% 70%; }
-    }
-
-    @keyframes gridFloat {
-      from { transform: translate3d(-68px, -68px, 0); }
-      to { transform: translate3d(68px, 68px, 0); }
     }
 
     #spotlight {
@@ -533,6 +541,7 @@
 </head>
 
 <body>
+  <!-- הווטרמארק כאן -->
   <div id="watermark-bg"></div>
   <div id="spotlight"></div>
 
