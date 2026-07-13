@@ -642,10 +642,11 @@
   </div>
 
   <script>
-    const spotlight = document.getElementById('spotlight');
+  const spotlight = document.getElementById('spotlight');
     const mainContent = document.getElementById('main-page-content');
     const splash = document.getElementById('splash-screen');
     const kickStatus = document.getElementById('kick-live-status');
+    const video = document.getElementById('splash-video');
 
     document.addEventListener('mousemove', (e) => {
       if (spotlight) {
@@ -670,7 +671,6 @@
 
     function animateItems() {
       const items = document.querySelectorAll('.animated-item');
-
       items.forEach((item, index) => {
         item.classList.remove('item-animate');
         item.style.animationDelay = `${index * 90}ms`;
@@ -680,24 +680,45 @@
     }
 
     function activateSite() {
+      // 1. מורידים שקיפות לסרטון
       if (splash) splash.style.opacity = '0';
 
+      // 2. מציגים את התוכן והאנימציות *מיד* באותו רגע, בלי לחכות
+      if (mainContent) mainContent.classList.add('visible');
+      if (spotlight) spotlight.style.display = 'block';
+      animateItems();
+
+      // 3. מסירים את דיב הסרטון לגמרי רק אחרי שהפייד-אאוט סיים, כדי שלא יחסום לחיצות על האתר
       setTimeout(() => {
         if (splash) splash.style.display = 'none';
-        if (mainContent) mainContent.classList.add('visible');
-        if (spotlight) spotlight.style.display = 'block';
-        animateItems();
-      }, 400);
+      }, 600); // האנימציה ב-CSS מוגדרת ל-0.55 שניות
     }
 
-    // מגדיר מתי סרטון הפתיחה נעלם והאתר מוצג - כרגע מכוון ל-1.85 שניות
-    setTimeout(activateSite, 1850);
+    // חישוב אוטומטי של אורך הסרטון והפעלת המעבר 0.6 שניות לפני הסוף
+    function setupVideoTransition() {
+      // אם הסרטון קצר מדי מאיזושהי סיבה, נוודא שלא נרד למינוס
+      const transitionStartTime = Math.max(0, (video.duration - 0.6)) * 1000;
+      setTimeout(activateSite, transitionStartTime);
+    }
+
+    if (video) {
+      // בודקים אם המידע על הסרטון כבר נטען
+      if (video.readyState >= 1) {
+        setupVideoTransition();
+      } else {
+        // אם לא נטען עדיין, מחכים לאירוע הטעינה
+        video.addEventListener('loadedmetadata', setupVideoTransition);
+      }
+      
+      // גיבוי: אם הסרטון נחסם על ידי הדפדפן או נכשל, נטען את האתר מיד
+      video.addEventListener('error', activateSite);
+    } else {
+      setTimeout(activateSite, 1850);
+    }
 
     function setKickStatus(isLive) {
       if (!kickStatus) return;
-
       const text = kickStatus.querySelector('.status-text');
-
       kickStatus.classList.remove('status-live', 'status-offline');
 
       if (isLive) {
@@ -735,7 +756,6 @@
           console.log('Fetch JSON failed:', currentUrl, error);
         }
       }
-
       throw new Error('Could not fetch JSON');
     }
 
