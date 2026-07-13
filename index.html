@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RonenGG | Official Links</title>
 
-  <!-- הפניות לתמונת הפרופיל המקומית (חייבת להיות באותה תיקייה בגיטהאב בשם profile.webp) -->
   <link rel="icon" type="image/webp" href="profile.webp">
   <link rel="apple-touch-icon" href="profile.webp">
 
@@ -45,7 +44,6 @@
       content: "";
       position: fixed;
       inset: -60px;
-      /* גריד כתום */
       background:
         linear-gradient(rgba(255, 140, 0, 0.2) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 140, 0, 0.2) 1px, transparent 1px);
@@ -185,7 +183,6 @@
       }
     }
 
-    /* עיצוב המסגרות החדש */
     .card {
       position: relative;
       z-index: 2;
@@ -198,7 +195,6 @@
       background:
         linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02)),
         linear-gradient(145deg, rgba(255, 140, 0, 0.10), rgba(0,0,0,0.4));
-      /* מסגרת כתומה עדינה עם פס שמאלי עבה */
       border: 1px solid rgba(255, 140, 0, 0.15);
       border-left: 4px solid rgba(255, 140, 0, 0.4);
       box-shadow:
@@ -246,21 +242,21 @@
     .card-inner {
       position: relative;
       z-index: 3;
-      min-height: 90px;
+      min-height: 80px;
       border-radius: 12px;
       background: linear-gradient(145deg, rgba(11, 8, 4, 0.78), rgba(28, 16, 6, 0.68));
       display: flex;
       align-items: center;
       justify-content: flex-start;
       gap: 14px;
-      padding: 20px 22px;
+      padding: 16px 22px;
       overflow: hidden;
     }
 
     .card-right {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
 
     .icon-box {
@@ -277,16 +273,9 @@
     }
 
     .card-title {
-      font-size: 1.23rem;
+      font-size: 1.35rem;
       line-height: 1;
       font-weight: 900;
-    }
-
-    .card-sub {
-      margin-top: 6px;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.56);
-      font-weight: 800;
     }
 
     .platform-icon {
@@ -322,18 +311,9 @@
     }
 
     @keyframes livePulse {
-      0% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      50% {
-        transform: scale(1.45);
-        opacity: 0.6;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.45); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     .neon {
@@ -402,8 +382,6 @@
     }
 
     #home-section .card-inner {
-      min-height: 78px;
-      padding: 16px 20px;
       background:
         radial-gradient(circle at 0% 0%, rgba(255,255,255,0.07), transparent 36%),
         linear-gradient(145deg, rgba(8, 19, 27, 0.78), rgba(29, 22, 49, 0.70));
@@ -432,7 +410,6 @@
       margin-top: 0.95rem !important;
     }
 
-    /* אינטראקציית Hover אישית לכל כרטיס (צבעי פלטפורמות) */
     #home-section .card:hover {
       transform: translateY(-6px) scale(1.028);
     }
@@ -445,26 +422,6 @@
     .card-kick .icon-box {
       background: rgba(83, 252, 24, 0.12);
       border-color: rgba(83, 252, 24, 0.28);
-    }
-
-    #home-section .card-youtube:hover {
-      border-color: rgba(255, 35, 35, 0.4);
-      border-left-color: #ff0000;
-      box-shadow: 0 0 34px rgba(255, 35, 35, 0.25), 0 22px 56px rgba(0,0,0,0.56);
-    }
-    .card-youtube .icon-box {
-      background: rgba(255, 0, 0, 0.14);
-      border-color: rgba(255, 0, 0, 0.30);
-    }
-
-    #home-section .card-discord:hover {
-      border-color: rgba(88, 101, 242, 0.4);
-      border-left-color: #5865F2;
-      box-shadow: 0 0 34px rgba(88, 101, 242, 0.25), 0 22px 56px rgba(0,0,0,0.56);
-    }
-    .card-discord .icon-box {
-      background: rgba(88, 101, 242, 0.15);
-      border-color: rgba(88, 101, 242, 0.30);
     }
 
     #home-section .card-tiktok:hover {
@@ -483,26 +440,53 @@
       border-color: rgba(221, 42, 123, 0.32);
     }
 
+    #home-section .card-discord:hover {
+      border-color: rgba(88, 101, 242, 0.4);
+      border-left-color: #5865F2;
+      box-shadow: 0 0 34px rgba(88, 101, 242, 0.25), 0 22px 56px rgba(0,0,0,0.56);
+    }
+    .card-discord .icon-box {
+      background: rgba(88, 101, 242, 0.15);
+      border-color: rgba(88, 101, 242, 0.30);
+    }
+
+    #home-section .card-youtube:hover {
+      border-color: rgba(255, 35, 35, 0.4);
+      border-left-color: #ff0000;
+      box-shadow: 0 0 34px rgba(255, 35, 35, 0.25), 0 22px 56px rgba(0,0,0,0.56);
+    }
+    .card-youtube .icon-box {
+      background: rgba(255, 0, 0, 0.14);
+      border-color: rgba(255, 0, 0, 0.30);
+    }
+
+    /* הסטייל החדש לכפתור GameChangers */
+    #home-section .card-gchangers:hover {
+      border-color: rgba(255, 140, 0, 0.4);
+      border-left-color: #ff8c00;
+      box-shadow: 0 0 34px rgba(255, 140, 0, 0.25), 0 22px 56px rgba(0,0,0,0.56);
+    }
+    .card-gchangers .icon-box {
+      background: rgba(255, 140, 0, 0.12);
+      border-color: rgba(255, 140, 0, 0.28);
+    }
+
     @media (max-width: 520px) {
       #main-page-content {
         padding-top: 40px !important;
       }
-
       .card-inner {
-        min-height: 82px;
-        padding: 17px 17px;
+        min-height: 72px;
+        padding: 14px 17px;
       }
-
       .icon-box {
         width: 44px;
         height: 44px;
         border-radius: 12px;
       }
-
       .card-title {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
       }
-
       #profile-image-container {
         width: 124px;
         height: 124px;
@@ -523,30 +507,28 @@
       <div class="relative inline-block">
         <a href="https://kick.com/ronengg" target="_blank" rel="noopener noreferrer" aria-label="מעבר לערוץ Kick של RonenGG">
           <div class="rounded-full bg-zinc-800 flex items-center justify-center mx-auto mb-5 shadow-2xl cursor-pointer" id="profile-image-container">
-            <!-- קריאה לתמונה המקומית profile.webp -->
             <img src="profile.webp" alt="RonenGG Logo" class="w-full h-full object-cover">
           </div>
         </a>
       </div>
 
       <h1 class="text-4xl font-black text-white neon tracking-tight">RonenGG</h1>
-      <!-- שינוי הטקסט כאן -->
       <div class="top-badge">כל הקישורים</div>
     </div>
 
     <section id="home-section" class="w-full max-w-md mx-auto relative z-10">
       <div class="space-y-4">
 
+        <!-- כפתור קיק (עם הסטטוס) -->
         <a href="https://kick.com/ronengg" target="_blank" rel="noopener noreferrer" class="card card-kick animated-item" aria-label="כניסה לערוץ Kick של RonenGG">
           <div class="card-inner">
-            <div class="card-right">
+            <div class="card-right w-full">
               <div class="icon-box">
                 <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/kick-streaming-platform-logo-icon.svg" class="platform-icon" alt="Kick Logo">
               </div>
-
-              <div>
+              <div class="flex-1">
                 <div class="card-title text-[#53fc18]">Kick</div>
-                <div id="kick-live-status" class="mt-2 text-sm font-black flex items-center gap-2 status-offline" aria-live="polite">
+                <div id="kick-live-status" class="mt-1 text-xs font-black flex items-center gap-2 status-offline" aria-live="polite">
                   <span class="status-dot"></span>
                   <span class="status-text">בודק...</span>
                 </div>
@@ -555,26 +537,41 @@
           </div>
         </a>
 
-        <a href="https://www.tiktok.com/@ronenml" target="_blank" rel="noopener noreferrer" class="card card-tiktok animated-item" aria-label="כניסה לעמוד TikTok של RonenGG">
+        <!-- כפתור GameChangers החדש -->
+        <a href="https://gchangers.co.il/" target="_blank" rel="noopener noreferrer" class="card card-gchangers animated-item" aria-label="מעבר לאתר GameChangers">
           <div class="card-inner">
-            <div class="card-right">
+            <div class="card-right w-full">
               <div class="icon-box">
-                <svg class="platform-icon text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.39-2.84.12-.94.42-1.62 1.34-1.84 2.34-.11.53-.1 1.08.01 1.62.22 1.11 1.14 2.01 2.23 2.19.82.16 1.72.01 2.45-.42.89-.5 1.42-1.48 1.47-2.49.03-2.61.01-5.22.01-7.84z"/>
-                </svg>
+                <!-- כאן הכנסתי את שם הקובץ שאתה צריך להעלות -->
+                <img src="gchangers.webp" class="platform-icon" alt="GameChangers Logo">
               </div>
-
-              <div>
-                <div class="card-title text-white">TikTok</div>
-                <div class="card-sub">לערוץ הטיקטוק שלי</div>
+              <div class="flex-1">
+                <div class="card-title text-[#ff8c00]">GameChangers</div>
               </div>
             </div>
           </div>
         </a>
 
+        <!-- טיקטוק -->
+        <a href="https://www.tiktok.com/@ronenml" target="_blank" rel="noopener noreferrer" class="card card-tiktok animated-item" aria-label="כניסה לעמוד TikTok של RonenGG">
+          <div class="card-inner">
+            <div class="card-right w-full">
+              <div class="icon-box">
+                <svg class="platform-icon text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.39-2.84.12-.94.42-1.62 1.34-1.84 2.34-.11.53-.1 1.08.01 1.62.22 1.11 1.14 2.01 2.23 2.19.82.16 1.72.01 2.45-.42.89-.5 1.42-1.48 1.47-2.49.03-2.61.01-5.22.01-7.84z"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <div class="card-title text-white">TikTok</div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- אינסטגרם -->
         <a href="https://www.instagram.com/ronenml" target="_blank" rel="noopener noreferrer" class="card card-instagram animated-item" aria-label="כניסה לעמוד האינסטגרם של RonenGG">
           <div class="card-inner">
-            <div class="card-right">
+            <div class="card-right w-full">
               <div class="icon-box">
                 <svg class="platform-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <defs>
@@ -590,44 +587,40 @@
                   <circle cx="17.2" cy="6.8" r="1.15" fill="url(#igGradient)"/>
                 </svg>
               </div>
-
-              <div>
+              <div class="flex-1">
                 <div class="card-title" style="background:linear-gradient(90deg,#f58529,#dd2a7b,#8134af,#515bd4);-webkit-background-clip:text;background-clip:text;color:transparent;">Instagram</div>
-                <div class="card-sub">לעמוד האינסטגרם שלי</div>
               </div>
             </div>
           </div>
         </a>
 
+        <!-- דיסקורד -->
         <a href="https://discord.com/invite/VBzA8GNvHJ" target="_blank" rel="noopener noreferrer" class="card card-discord animated-item" aria-label="כניסה לשרת Discord של RonenGG">
           <div class="card-inner">
-            <div class="card-right">
+            <div class="card-right w-full">
               <div class="icon-box">
                 <svg class="platform-icon text-[#5865F2]" viewBox="0 0 127.14 96.36" fill="currentColor" aria-hidden="true">
                   <path d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0 105.89 105.89 0 0 0 19.39 8.09C2.79 32.65-1.71 56.6.54 80.21A105.73 105.73 0 0 0 32.71 96.36a77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2.04a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2.04a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.88 65.69c-6.27 0-11.45-5.76-11.45-12.84S36.5 40 42.88 40s11.56 5.81 11.45 12.85-5.07 12.84-11.45 12.84Zm41.38 0c-6.27 0-11.45-5.76-11.45-12.84S77.88 40 84.26 40s11.56 5.81 11.45 12.85-5.07 12.84-11.45 12.84Z"/>
                 </svg>
               </div>
-
-              <div>
+              <div class="flex-1">
                 <div class="card-title text-[#5865F2]">Discord</div>
-                <div class="card-sub">כנסו לשרת הדיסקורד שלי לעדכונים על לייבים</div>
               </div>
             </div>
           </div>
         </a>
 
+        <!-- יוטיוב -->
         <a href="https://www.youtube.com/@RonenGG" target="_blank" rel="noopener noreferrer" class="card card-youtube animated-item" aria-label="כניסה לערוץ YouTube הרשמי של RonenGG">
           <div class="card-inner">
-            <div class="card-right">
+            <div class="card-right w-full">
               <div class="icon-box">
                 <svg class="platform-icon text-red-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M23.5 6.2s-.2-1.7-.9-2.4c-.9-.9-1.9-.9-2.4-1C16.8 2.5 12 2.5 12 2.5s-4.8 0-8.2.3c-.5.1-1.5.1-2.4 1C.7 4.5.5 6.2.5 6.2S.2 8.2.2 10.2v1.9c0 2 .3 4 .3 4s.2 1.7.9 2.4c.9.9 2.1.9 2.6 1 1.9.2 8 .3 8 .3s4.8 0 8.2-.3c.5-.1 1.5-.1 2.4-1 .7-.7.9-2.4.9-2.4s.3-2 .3-4v-1.9c0-2-.3-4-.3-4ZM9.7 14.6V7.8l6.2 3.4-6.2 3.4Z"/>
                 </svg>
               </div>
-
-              <div>
+              <div class="flex-1">
                 <div class="card-title text-red-500">YouTube</div>
-                <div class="card-sub">לערוץ היוטיוב הרשמי שלי</div>
               </div>
             </div>
           </div>
@@ -642,7 +635,7 @@
   </div>
 
   <script>
-  const spotlight = document.getElementById('spotlight');
+    const spotlight = document.getElementById('spotlight');
     const mainContent = document.getElementById('main-page-content');
     const splash = document.getElementById('splash-screen');
     const kickStatus = document.getElementById('kick-live-status');
@@ -680,37 +673,29 @@
     }
 
     function activateSite() {
-      // 1. מורידים שקיפות לסרטון
       if (splash) splash.style.opacity = '0';
 
-      // 2. מציגים את התוכן והאנימציות *מיד* באותו רגע, בלי לחכות
       if (mainContent) mainContent.classList.add('visible');
       if (spotlight) spotlight.style.display = 'block';
       animateItems();
 
-      // 3. מסירים את דיב הסרטון לגמרי רק אחרי שהפייד-אאוט סיים, כדי שלא יחסום לחיצות על האתר
       setTimeout(() => {
         if (splash) splash.style.display = 'none';
-      }, 600); // האנימציה ב-CSS מוגדרת ל-0.55 שניות
+      }, 600); 
     }
 
-    // חישוב אוטומטי של אורך הסרטון והפעלת המעבר 0.6 שניות לפני הסוף
     function setupVideoTransition() {
-      // אם הסרטון קצר מדי מאיזושהי סיבה, נוודא שלא נרד למינוס
+      // כאן ה-0.1 שביקשת
       const transitionStartTime = Math.max(0, (video.duration - 0.1)) * 1000;
       setTimeout(activateSite, transitionStartTime);
     }
 
     if (video) {
-      // בודקים אם המידע על הסרטון כבר נטען
       if (video.readyState >= 1) {
         setupVideoTransition();
       } else {
-        // אם לא נטען עדיין, מחכים לאירוע הטעינה
         video.addEventListener('loadedmetadata', setupVideoTransition);
       }
-      
-      // גיבוי: אם הסרטון נחסם על ידי הדפדפן או נכשל, נטען את האתר מיד
       video.addEventListener('error', activateSite);
     } else {
       setTimeout(activateSite, 1850);
