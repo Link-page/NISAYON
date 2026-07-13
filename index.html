@@ -697,7 +697,7 @@
     // חישוב אוטומטי של אורך הסרטון והפעלת המעבר 0.6 שניות לפני הסוף
     function setupVideoTransition() {
       // אם הסרטון קצר מדי מאיזושהי סיבה, נוודא שלא נרד למינוס
-      const transitionStartTime = Math.max(0, (video.duration - 0.2)) * 1000;
+      const transitionStartTime = Math.max(0, (video.duration - 0.0)) * 1000;
       setTimeout(activateSite, transitionStartTime);
     }
 
