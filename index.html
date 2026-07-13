@@ -460,7 +460,6 @@
       border-color: rgba(255, 0, 0, 0.30);
     }
 
-    /* הסטייל החדש לכפתור GameChangers */
     #home-section .card-gchangers:hover {
       border-color: rgba(255, 140, 0, 0.4);
       border-left-color: #ff8c00;
@@ -499,6 +498,7 @@
   <div id="spotlight"></div>
 
   <div id="splash-screen">
+    <!-- שינינו כאן ל-intro.webm -->
     <video id="splash-video" src="intro.webm" autoplay muted playsinline preload="auto"></video>
   </div>
 
@@ -519,7 +519,6 @@
     <section id="home-section" class="w-full max-w-md mx-auto relative z-10">
       <div class="space-y-4">
 
-        <!-- כפתור קיק (עם הסטטוס) -->
         <a href="https://kick.com/ronengg" target="_blank" rel="noopener noreferrer" class="card card-kick animated-item" aria-label="כניסה לערוץ Kick של RonenGG">
           <div class="card-inner">
             <div class="card-right w-full">
@@ -537,12 +536,10 @@
           </div>
         </a>
 
-        <!-- כפתור GameChangers החדש -->
         <a href="https://gchangers.co.il/" target="_blank" rel="noopener noreferrer" class="card card-gchangers animated-item" aria-label="מעבר לאתר GameChangers">
           <div class="card-inner">
             <div class="card-right w-full">
               <div class="icon-box">
-                <!-- כאן הכנסתי את שם הקובץ שאתה צריך להעלות -->
                 <img src="gchangers.webp" class="platform-icon" alt="GameChangers Logo">
               </div>
               <div class="flex-1">
@@ -552,7 +549,6 @@
           </div>
         </a>
 
-        <!-- טיקטוק -->
         <a href="https://www.tiktok.com/@ronenml" target="_blank" rel="noopener noreferrer" class="card card-tiktok animated-item" aria-label="כניסה לעמוד TikTok של RonenGG">
           <div class="card-inner">
             <div class="card-right w-full">
@@ -568,7 +564,6 @@
           </div>
         </a>
 
-        <!-- אינסטגרם -->
         <a href="https://www.instagram.com/ronenml" target="_blank" rel="noopener noreferrer" class="card card-instagram animated-item" aria-label="כניסה לעמוד האינסטגרם של RonenGG">
           <div class="card-inner">
             <div class="card-right w-full">
@@ -594,7 +589,6 @@
           </div>
         </a>
 
-        <!-- דיסקורד -->
         <a href="https://discord.com/invite/VBzA8GNvHJ" target="_blank" rel="noopener noreferrer" class="card card-discord animated-item" aria-label="כניסה לשרת Discord של RonenGG">
           <div class="card-inner">
             <div class="card-right w-full">
@@ -610,7 +604,6 @@
           </div>
         </a>
 
-        <!-- יוטיוב -->
         <a href="https://www.youtube.com/@RonenGG" target="_blank" rel="noopener noreferrer" class="card card-youtube animated-item" aria-label="כניסה לערוץ YouTube הרשמי של RonenGG">
           <div class="card-inner">
             <div class="card-right w-full">
@@ -684,18 +677,23 @@
       }, 600); 
     }
 
-    function setupVideoTransition() {
-      // כאן ה-0.1 שביקשת
-      const transitionStartTime = Math.max(0, (video.duration - 0.1)) * 1000;
-      setTimeout(activateSite, transitionStartTime);
+    let isTransitionStarted = false;
+
+    function checkVideoTime() {
+      if (isTransitionStarted || !video.duration) return;
+
+      if (video.currentTime >= video.duration - 0.35) {
+        isTransitionStarted = true;
+        activateSite();
+      } else {
+        requestAnimationFrame(checkVideoTime);
+      }
     }
 
     if (video) {
-      if (video.readyState >= 1) {
-        setupVideoTransition();
-      } else {
-        video.addEventListener('loadedmetadata', setupVideoTransition);
-      }
+      video.addEventListener('play', () => {
+        requestAnimationFrame(checkVideoTime);
+      });
       video.addEventListener('error', activateSite);
     } else {
       setTimeout(activateSite, 1850);
