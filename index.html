@@ -168,6 +168,7 @@
       width: 136px;
       height: 136px;
       isolation: isolate;
+      margin: 0 auto;
     }
 
     #profile-image-container::before {
@@ -199,35 +200,58 @@
       to { transform: rotate(360deg); }
     }
 
-    /* === הבאדג' עם הנקודות בשני הצדדים === */
-    .top-badge {
-      display: inline-flex;
+    /* === תפריט ניווט מסוג Pill (כמו בתמונה) === */
+    .pill-menu {
+      display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 7px 16px;
-      margin-top: 12px;
+      justify-content: center;
+      gap: 1.5rem;
+      background: rgba(31, 35, 48, 0.65); /* צבע כחלחל-כהה תואם לתמונה */
+      border: 1px solid rgba(255,255,255,0.06);
       border-radius: 999px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--accent);
-      font-size: 0.78rem;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.28);
-      backdrop-filter: blur(14px);
-      min-height: 32px;
+      padding: 10px 32px;
+      margin: 20px auto 32px auto;
+      backdrop-filter: blur(12px);
+      width: max-content;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
 
-    .top-badge::before,
-    .top-badge::after {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 14px var(--accent-glow);
-      display: inline-block;
+    .pill-btn {
+      color: rgba(255,255,255,0.4);
+      font-weight: 900;
+      font-size: 0.9rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 6px 12px;
+      outline: none;
+    }
+
+    .pill-btn.active {
+      color: #ffffff;
+      text-shadow: 0 0 15px rgba(255,255,255,0.4);
+    }
+
+    .pill-btn:hover:not(.active) {
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* === ניהול תצוגות (Views) === */
+    .view-section {
+      display: none;
+      animation: viewFadeIn 0.4s ease forwards;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes viewFadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .animated-item.item-animate {
@@ -513,7 +537,7 @@
       transition: opacity 0.42s ease-in, transform 0.42s ease;
       transform: translateY(18px) scale(0.985);
       min-height: 100vh;
-      justify-content: flex-start; /* שונה כדי למנוע קפיצות כשיש הרבה תוכן */
+      justify-content: flex-start; 
       padding-top: 58px !important;
       padding-bottom: 24px !important;
     }
@@ -524,16 +548,23 @@
       transform: translateY(0) scale(1);
     }
 
-    #home-section .space-y-4 {
+    .space-y-4 {
       display: grid;
       gap: 12px;
     }
 
-    #home-section {
+    #view-home {
       max-width: 430px;
+      margin: 0 auto;
+    }
+    
+    #view-leaderboard {
+      width: 100%;
+      max-width: 56rem; /* max-w-4xl */
+      margin: 0 auto;
     }
 
-    #home-section .card-inner {
+    .card-inner {
       background:
         radial-gradient(circle at 0% 0%, rgba(255,255,255,0.07), transparent 36%),
         linear-gradient(145deg, rgba(8, 19, 27, 0.78), rgba(29, 22, 49, 0.70));
@@ -549,17 +580,17 @@
       opacity: 0.55;
     }
 
-    .top-badge {
-      margin-top: 8px;
-    }
-
-    #home-section .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+    .space-y-4 > :not([hidden]) ~ :not([hidden]) {
       margin-top: 0.95rem !important;
     }
 
     @media (max-width: 768px) {
       .lb-card {
         padding: 16px;
+      }
+      .pill-menu {
+        gap: 1rem;
+        padding: 8px 24px;
       }
     }
 
@@ -605,7 +636,7 @@
   </div>
 
   <div id="main-page-content" class="main-shell flex flex-col items-center px-6 py-14">
-    <div class="text-center mb-5 relative z-10">
+    <div class="text-center relative z-10 w-full">
       <div class="relative inline-block">
         <a href="https://kick.com/ronengg" target="_blank" rel="noopener noreferrer" aria-label="מעבר לערוץ Kick של RonenGG">
           <div class="rounded-full bg-zinc-800 flex items-center justify-center mx-auto mb-5 shadow-2xl cursor-pointer" id="profile-image-container">
@@ -614,12 +645,17 @@
         </a>
       </div>
 
-      <h1 class="text-4xl font-black text-white neon tracking-tight">RonenGG</h1>
-      <div class="top-badge">כל הקישורים</div>
+      <h1 class="text-4xl font-black text-white neon tracking-tight mb-2">RonenGG</h1>
+      
+      <!-- תפריט הניווט (Tabs) -->
+      <nav class="pill-menu">
+        <button class="pill-btn active" onclick="switchView('home', this)">HOME</button>
+        <button class="pill-btn" onclick="switchView('leaderboard', this)">DONATORS</button>
+      </nav>
     </div>
 
-    <!-- אזור הקישורים המרכזיים -->
-    <section id="home-section" class="w-full max-w-md mx-auto relative z-10">
+    <!-- View 1: קישורים מרכזיים (Home) -->
+    <section id="view-home" class="view-section active w-full relative z-10">
       <div class="space-y-4">
 
         <a href="https://kick.com/ronengg" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="כניסה לערוץ Kick של RonenGG">
@@ -637,7 +673,6 @@
           </div>
         </a>
 
-        <!-- כפתור ה-PayPal החדש -->
         <a href="https://streamelements.com/ronengg-188c4/tip" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="תרומה דרך PayPal">
           <div class="card-inner">
             <div class="icon-box">
@@ -725,15 +760,11 @@
       </div>
     </section>
 
-    <!-- אזור טבלאות המובילים -->
-    <div class="w-full text-center mt-12 mb-6 relative z-10 animated-item">
-      <div class="top-badge">טבלת מובילים</div>
-    </div>
-
-    <section id="leaderboards-section" class="w-full max-w-4xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
+    <!-- View 2: טבלאות המובילים (Donators) דינמיות מ-JS -->
+    <section id="view-leaderboard" class="view-section relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
       
       <!-- All-Time Top Gifters -->
-      <div class="lb-card animated-item">
+      <div class="lb-card">
         <div class="lb-header">👑 All-Time Top Gifters 👑</div>
         <div class="lb-table-header">
           <span class="w-12 text-center text-white/50">#</span>
@@ -741,62 +772,14 @@
           <span class="w-20 text-center">כמות</span>
         </div>
         
-        <div class="lb-list">
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">1</span>
-            <span class="flex-1 text-center font-bold text-white/90">Krav0n</span>
-            <span class="w-20 text-center font-black text-[#ff8c00]">4215</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">2</span>
-            <span class="flex-1 text-center font-bold text-white/90">TheFl1k</span>
-            <span class="w-20 text-center font-black text-white/70">1061</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">3</span>
-            <span class="flex-1 text-center font-bold text-white/90">mrdavid465</span>
-            <span class="w-20 text-center font-black text-white/70">1015</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">4</span>
-            <span class="flex-1 text-center font-bold text-white/90">eylon1</span>
-            <span class="w-20 text-center font-black text-white/70">861</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">5</span>
-            <span class="flex-1 text-center font-bold text-white/90">natanelf</span>
-            <span class="w-20 text-center font-black text-white/70">656</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">6</span>
-            <span class="flex-1 text-center font-bold text-white/90">yohay32</span>
-            <span class="w-20 text-center font-black text-white/70">450</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">7</span>
-            <span class="flex-1 text-center font-bold text-white/90">Oliverremez</span>
-            <span class="w-20 text-center font-black text-white/70">360</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">8</span>
-            <span class="flex-1 text-center font-bold text-white/90">OfficialBenLavi</span>
-            <span class="w-20 text-center font-black text-white/70">327</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">9</span>
-            <span class="flex-1 text-center font-bold text-white/90">SchweppeS_9</span>
-            <span class="w-20 text-center font-black text-white/70">310</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">10</span>
-            <span class="flex-1 text-center font-bold text-white/90">thebigSheshMan</span>
-            <span class="w-20 text-center font-black text-white/70">308</span>
-          </div>
+        <!-- הקוד יזריק לפה את הנתונים דינמית -->
+        <div id="all-time-list" class="lb-list">
+          <div class="text-center py-4 text-white/50 text-sm">טוען נתונים...</div>
         </div>
       </div>
 
       <!-- Weekly Top Gifters -->
-      <div class="lb-card animated-item">
+      <div class="lb-card">
         <div class="lb-header">🏆 Weekly Top Gifters 🏆</div>
         <div class="lb-table-header">
           <span class="w-12 text-center text-white/50">#</span>
@@ -804,33 +787,15 @@
           <span class="w-20 text-center">כמות</span>
         </div>
         
-        <div class="lb-list">
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">1</span>
-            <span class="flex-1 text-center font-bold text-white/90">kgsx</span>
-            <span class="w-20 text-center font-black text-[#ff8c00]">10</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">2</span>
-            <span class="flex-1 text-center font-bold text-white/90">omri274</span>
-            <span class="w-20 text-center font-black text-white/70">1</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">3</span>
-            <span class="flex-1 text-center font-bold text-white/90">Ken0sV12</span>
-            <span class="w-20 text-center font-black text-white/70">1</span>
-          </div>
-          <div class="lb-row">
-            <span class="w-12 text-center font-black text-white/40">4</span>
-            <span class="flex-1 text-center font-bold text-white/90">berkoy4</span>
-            <span class="w-20 text-center font-black text-white/70">1</span>
-          </div>
+        <!-- הקוד יזריק לפה את הנתונים דינמית -->
+        <div id="weekly-list" class="lb-list">
+          <div class="text-center py-4 text-white/50 text-sm">טוען נתונים...</div>
         </div>
       </div>
 
     </section>
 
-    <footer class="site-footer">
+    <footer class="site-footer relative z-10 w-full mt-10">
       <div class="footer-copy">© 2026 RonenGG</div>
     </footer>
   </div>
@@ -845,7 +810,92 @@
 
     let isTransitionStarted = false;
 
-    // === פונקציית מעבר לאתר ===
+    // === מנגנון התפריטים (Tabs Navigation) ===
+    function switchView(viewId, btnElement) {
+      // 1. הסרת מצב פעיל מכל הכפתורים והסתרת כל המסכים
+      document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
+      
+      // 2. הפעלת הכפתור והמסך שנבחרו
+      btnElement.classList.add('active');
+      document.getElementById('view-' + viewId).classList.add('active');
+
+      // 3. אתחול אנימציות למסך הבית אם נבחר
+      if(viewId === 'home') {
+        animateItems();
+      }
+    }
+
+
+    // === מנגנון דינמי לטבלת המובילים (Leaderboards) ===
+    // כאן נמצאים הנתונים. כרגע זה מוגדר כטקסט קבוע, אבל ברגע שיש לך פיירבייס או API, 
+    // הפונקציה fetchLeaderboardData תעדכן את המערכים האלה אוטומטית.
+    
+    let allTimeGifters = [
+      { username: "Krav0n", amount: 4215 },
+      { username: "TheFl1k", amount: 1061 },
+      { username: "mrdavid465", amount: 1015 },
+      { username: "eylon1", amount: 861 },
+      { username: "natanelf", amount: 656 },
+      { username: "yohay32", amount: 450 },
+      { username: "Oliverremez", amount: 360 },
+      { username: "OfficialBenLavi", amount: 327 },
+      { username: "SchweppeS_9", amount: 310 },
+      { username: "thebigSheshMan", amount: 308 }
+    ];
+
+    let weeklyGifters = [
+      { username: "kgsx", amount: 10 },
+      { username: "omri274", amount: 1 },
+      { username: "Ken0sV12", amount: 1 },
+      { username: "berkoy4", amount: 1 }
+    ];
+
+    // פונקציה שמייצרת את ה-HTML מתוך הנתונים
+    function renderLeaderboard(dataArray, containerId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = ''; // מנקה את רשימת הטעינה
+
+      dataArray.forEach((user, index) => {
+        const rank = index + 1;
+        // מקום ראשון מקבל צבע כתום
+        const amountColorClass = rank === 1 ? 'text-[#ff8c00]' : 'text-white/70';
+        
+        const rowHTML = `
+          <div class="lb-row">
+            <span class="w-12 text-center font-black text-white/40">${rank}</span>
+            <span class="flex-1 text-center font-bold text-white/90">${user.username}</span>
+            <span class="w-20 text-center font-black ${amountColorClass}">${user.amount}</span>
+          </div>
+        `;
+        container.innerHTML += rowHTML;
+      });
+    }
+
+    // פונקציה למשיכת הנתונים ממקור חיצוני (API/Firebase)
+    async function fetchLeaderboardData() {
+      try {
+        /*
+          --- הדרכת חיבור API למפתח ---
+          כאן אתה מכניס את ה-Fetch לפיירבייס או ל-BotRix שלך. 
+          לדוגמה:
+          const response = await fetch('https://your-firebase-url.com/leaderboard.json');
+          const data = await response.json();
+          allTimeGifters = data.allTime;
+          weeklyGifters = data.weekly;
+        */
+        
+        // לאחר משיכת הנתונים (או שימוש בדיפולט), מרנדר את הטבלאות:
+        renderLeaderboard(allTimeGifters, 'all-time-list');
+        renderLeaderboard(weeklyGifters, 'weekly-list');
+
+      } catch (error) {
+        console.log("Failed to fetch leaderboard data", error);
+      }
+    }
+
+
+    // === פונקציית מעבר לאתר הראשי ===
     function activateSite() {
       if (isTransitionStarted) return; 
       isTransitionStarted = true;
@@ -853,12 +903,15 @@
       if (splash) splash.style.opacity = '0';
       if (mainContent) mainContent.classList.add('visible');
       if (spotlight) spotlight.style.display = 'block';
+      
       animateItems();
+      fetchLeaderboardData(); // טוען את נתוני הטבלה כשהאתר נפתח
 
       setTimeout(() => {
         if (splash) splash.style.display = 'none';
       }, 600); 
     }
+
 
     // === ניהול סרטונים חסין ===
     function forcePlayVideos() {
@@ -873,13 +926,12 @@
         
         if (playPromise !== undefined) {
           playPromise.catch(error => {
-            console.log("Splash autoplay blocked. Waiting for user tap to play.");
+            console.log("Splash autoplay blocked. Waiting for tap.");
           });
         }
       }
     }
 
-    // כשהטלפון חוסם, הנגיעה הראשונה במסך תשחרר ותנגן את הוידאו
     function handleFirstInteraction() {
       if (bgVideo) bgVideo.play().catch(e => {});
       if (video && !isTransitionStarted) {
@@ -930,10 +982,9 @@
     });
 
     function animateItems() {
-      const items = document.querySelectorAll('.animated-item');
+      const items = document.querySelectorAll('#view-home .animated-item');
       items.forEach((item, index) => {
         item.classList.remove('item-animate');
-        // נותן Delay קטן לכל פריט כדי שיפלו אחד אחרי השני, כולל הטבלאות
         item.style.animationDelay = `${index * 90}ms`;
         void item.offsetWidth;
         item.classList.add('item-animate');
