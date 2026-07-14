@@ -576,7 +576,6 @@
   <div id="spotlight"></div>
 
   <div id="splash-screen">
-    <!-- גם פה נוספו הפקודות המיוחדות לטלפונים -->
     <video id="splash-video" src="intro.webm" autoplay muted playsinline webkit-playsinline disablePictureInPicture preload="auto"></video>
   </div>
 
@@ -701,34 +700,31 @@
     const video = document.getElementById('splash-video');
     const bgVideo = document.getElementById('watermark-bg');
 
-    // === מנגנון עקיפת חסימות Autoplay בטלפונים ===
+    let isTransitionStarted = false;
+
+    // === מנגנון פתיחה חסין לטלפונים ומחשבים ===
     function forcePlayVideos() {
       if (bgVideo) {
         bgVideo.muted = true;
         bgVideo.play().catch(e => console.log("BG Video autoplay blocked"));
       }
-      if (video) {
+      if (video && !isTransitionStarted) {
         video.muted = true;
         let playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise.catch(error => {
-            console.log("Splash blocked by mobile power settings. Skipping to site.");
-            // אם הטלפון מסרב לנגן (חיסכון סוללה וכדומה), נדלג מיד כדי לא להיתקע
+            console.log("Splash blocked. Skipping to site.");
             activateSite();
           });
         }
       }
     }
 
-    // הפעלה ברגע שהאתר נטען
     document.addEventListener("DOMContentLoaded", forcePlayVideos);
-    
-    // רשת ביטחון: אם אפל עקשנים, הלחיצה/גלילה הראשונה של המשתמש תשחרר את הוידאו
     document.addEventListener('touchstart', forcePlayVideos, {once: true});
     document.addEventListener('click', forcePlayVideos, {once: true});
 
-
-    // === אפקטים ומעברים ===
+    // === אפקט פנס העכבר ===
     document.addEventListener('mousemove', (e) => {
       if (spotlight) {
         spotlight.style.left = e.clientX + 'px';
@@ -760,9 +756,12 @@
       });
     }
 
+    // === מעבר חלק לאתר ===
     function activateSite() {
-      if (splash) splash.style.opacity = '0';
+      if (isTransitionStarted) return; 
+      isTransitionStarted = true;
 
+      if (splash) splash.style.opacity = '0';
       if (mainContent) mainContent.classList.add('visible');
       if (spotlight) spotlight.style.display = 'block';
       animateItems();
@@ -772,29 +771,22 @@
       }, 600); 
     }
 
-    let isTransitionStarted = false;
-
-    function checkVideoTime() {
-      if (isTransitionStarted || !video || !video.duration) return;
-
-      if (video.currentTime >= video.duration - 0.35) {
-        isTransitionStarted = true;
-        activateSite();
-      } else {
-        requestAnimationFrame(checkVideoTime);
-      }
-    }
-
+    // ניהול הזמנים של סרטון הפתיחה (עובד בול על מחשב וטלפון)
     if (video) {
-      video.addEventListener('play', () => {
-        requestAnimationFrame(checkVideoTime);
+      video.addEventListener('timeupdate', () => {
+        if (isTransitionStarted || !video.duration) return;
+        if (video.currentTime >= video.duration - 0.35) {
+          activateSite();
+        }
       });
+
+      video.addEventListener('ended', activateSite);
       video.addEventListener('error', activateSite);
     } else {
       setTimeout(activateSite, 1850);
     }
 
-    // === בדיקת סטטוס פלטפורמות ===
+    // === בדיקת סטטוס ב-Kick ===
     function setKickStatus(isLive) {
       if (!kickStatus) return;
       const text = kickStatus.querySelector('.status-text');
