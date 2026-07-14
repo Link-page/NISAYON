@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -412,6 +412,7 @@
       box-shadow: 0 18px 48px rgba(0,0,0,0.50);
       backdrop-filter: blur(18px);
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%;
     }
 
     .lb-card:hover {
@@ -540,6 +541,7 @@
       justify-content: flex-start; 
       padding-top: 58px !important;
       padding-bottom: 24px !important;
+      width: 100%;
     }
 
     #main-page-content.visible {
@@ -560,7 +562,7 @@
     
     #view-leaderboard {
       width: 100%;
-      max-width: 56rem; 
+      max-width: 68rem; /* רחב יותר כדי להבטיח תצוגת צד לצד */
       margin: 0 auto;
     }
 
@@ -638,7 +640,7 @@
   <div id="main-page-content" class="main-shell flex flex-col items-center px-6 py-14">
     <div class="text-center relative z-10 w-full">
       <div class="relative inline-block">
-        <a href="https://kick.com/ronengg" target="_blank" rel="noopener noreferrer" aria-label="מעבר לערוץ Kick של RonenGG">
+        <a href="https://kick.com/ronengg" target="_blank" rel="noopener noreferrer" aria-label="RonenGG Kick Channel">
           <div class="rounded-full bg-zinc-800 flex items-center justify-center mx-auto mb-5 shadow-2xl cursor-pointer" id="profile-image-container">
             <img src="profile.webp" alt="RonenGG Logo" class="w-full h-full object-cover">
           </div>
@@ -658,7 +660,7 @@
     <section id="view-home" class="view-section active w-full relative z-10">
       <div class="space-y-4">
 
-        <a href="https://kick.com/ronengg" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="כניסה לערוץ Kick של RonenGG">
+        <a href="https://kick.com/ronengg" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="RonenGG Kick Channel">
           <div class="card-inner">
             <div class="icon-box">
               <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/kick-streaming-platform-logo-icon.svg" class="platform-icon" alt="Kick Logo">
@@ -667,13 +669,13 @@
               <div class="card-title text-[#53fc18]">Kick</div>
               <div id="kick-live-status" class="mt-1 text-xs font-black flex items-center justify-center gap-2 status-offline" aria-live="polite">
                 <span class="status-dot"></span>
-                <span class="status-text">בודק...</span>
+                <span class="status-text">Checking...</span>
               </div>
             </div>
           </div>
         </a>
 
-        <a href="https://streamelements.com/ronengg-188c4/tip" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="תרומה דרך PayPal">
+        <a href="https://streamelements.com/ronengg-188c4/tip" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="Donate via PayPal">
           <div class="card-inner">
             <div class="icon-box">
               <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/paypal-icon.svg" class="platform-icon" alt="PayPal Logo">
@@ -684,7 +686,7 @@
           </div>
         </a>
 
-        <a href="https://gchangers.co.il/" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="מעבר לאתר GameChangers">
+        <a href="https://gchangers.co.il/" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="GameChangers Website">
           <div class="card-inner">
             <div class="icon-box">
               <img src="gchangers.webp" class="platform-icon" alt="GameChangers Logo">
@@ -696,7 +698,7 @@
         </a>
 
         <!-- Discord -->
-        <a href="https://discord.com/invite/VBzA8GNvHJ" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="כניסה לשרת Discord של RonenGG">
+        <a href="https://discord.com/invite/VBzA8GNvHJ" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="RonenGG Discord Server">
           <div class="card-inner">
             <div class="icon-box">
               <svg class="platform-icon text-[#5865F2]" viewBox="0 0 127.14 96.36" fill="currentColor" aria-hidden="true">
@@ -710,7 +712,7 @@
         </a>
 
         <!-- YouTube -->
-        <a href="https://www.youtube.com/@RonenGG" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="כניסה לערוץ YouTube הרשמי של RonenGG">
+        <a href="https://www.youtube.com/@RonenGG" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="RonenGG YouTube Channel">
           <div class="card-inner">
             <div class="icon-box">
               <svg class="platform-icon text-red-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -724,7 +726,7 @@
         </a>
 
         <!-- Instagram -->
-        <a href="https://www.instagram.com/ronenml" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="כניסה לעמוד האינסטגרם של RonenGG">
+        <a href="https://www.instagram.com/ronenml" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="RonenGG Instagram">
           <div class="card-inner">
             <div class="icon-box">
               <svg class="platform-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -748,7 +750,7 @@
         </a>
 
         <!-- TikTok -->
-        <a href="https://www.tiktok.com/@ronenml" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="כניסה לעמוד TikTok של RonenGG">
+        <a href="https://www.tiktok.com/@ronenml" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="RonenGG TikTok">
           <div class="card-inner">
             <div class="icon-box">
               <svg class="platform-icon text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -764,37 +766,37 @@
       </div>
     </section>
 
-    <!-- View 2: טבלאות המובילים (Donators) מנוקה מנתונים -->
-    <section id="view-leaderboard" class="view-section relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
-      
-      <!-- All-Time Top Gifters -->
-      <div class="lb-card">
-        <div class="lb-header">👑 All-Time Top Gifters 👑</div>
-        <div class="lb-table-header">
-          <span class="w-12 text-center text-white/50">#</span>
-          <span class="flex-1 text-center">שם משתמש</span>
-          <span class="w-20 text-center">כמות</span>
+    <!-- View 2: טבלאות המובילים (Donators) מנוקה מנתונים מוגדר בתוך View-Leaderboard -->
+    <section id="view-leaderboard" class="view-section relative z-10 w-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 w-full">
+        <!-- All-Time Top Gifters -->
+        <div class="lb-card">
+          <div class="lb-header">👑 All-Time Top Gifters 👑</div>
+          <div class="lb-table-header">
+            <span class="w-12 text-center text-white/50">#</span>
+            <span class="flex-1 text-center">Username</span>
+            <span class="w-20 text-center">Amount</span>
+          </div>
+          
+          <div id="all-time-list" class="lb-list">
+            <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for data connection...</div>
+          </div>
         </div>
-        
-        <div id="all-time-list" class="lb-list">
-          <div class="text-center py-8 text-white/40 text-sm font-bold">ממתין לחיבור נתונים...</div>
+
+        <!-- Weekly Top Gifters -->
+        <div class="lb-card">
+          <div class="lb-header">🏆 Weekly Top Gifters 🏆</div>
+          <div class="lb-table-header">
+            <span class="w-12 text-center text-white/50">#</span>
+            <span class="flex-1 text-center">Username</span>
+            <span class="w-20 text-center">Amount</span>
+          </div>
+          
+          <div id="weekly-list" class="lb-list">
+            <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for data connection...</div>
+          </div>
         </div>
       </div>
-
-      <!-- Weekly Top Gifters -->
-      <div class="lb-card">
-        <div class="lb-header">🏆 Weekly Top Gifters 🏆</div>
-        <div class="lb-table-header">
-          <span class="w-12 text-center text-white/50">#</span>
-          <span class="flex-1 text-center">שם משתמש</span>
-          <span class="w-20 text-center">כמות</span>
-        </div>
-        
-        <div id="weekly-list" class="lb-list">
-          <div class="text-center py-8 text-white/40 text-sm font-bold">ממתין לחיבור נתונים...</div>
-        </div>
-      </div>
-
     </section>
 
     <footer class="site-footer relative z-10 w-full mt-10">
@@ -835,7 +837,7 @@
       container.innerHTML = ''; 
 
       if (dataArray.length === 0) {
-        container.innerHTML = '<div class="text-center py-8 text-white/40 text-sm font-bold">ממתין לחיבור נתונים...</div>';
+        container.innerHTML = '<div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for data connection...</div>';
         return;
       }
 
