@@ -134,7 +134,7 @@
       width: 85%;
       height: auto;
       opacity: 0.15;
-      mix-blend-mode: screen; /* שורף את הרקע השחור ומשאיר את האור */
+      mix-blend-mode: screen; 
       z-index: 0;
       pointer-events: none;
     }
@@ -564,8 +564,8 @@
 
 <body>
   
-  <!-- הווטרמארק וידאו + חלקיקי האנרגיה -->
-  <video id="watermark-bg" src="Comp_1_1.webm" autoplay loop muted playsinline></video>
+  <!-- הווטרמארק וידאו עם חסימת פתיחה במסך מלא לטלפונים -->
+  <video id="watermark-bg" src="Comp_1_1.webm" autoplay loop muted playsinline webkit-playsinline disablePictureInPicture></video>
   
   <div id="particles-container">
     <div class="particle-layer layer-1"></div>
@@ -576,7 +576,8 @@
   <div id="spotlight"></div>
 
   <div id="splash-screen">
-    <video id="splash-video" src="intro.webm" autoplay muted playsinline preload="auto"></video>
+    <!-- גם פה נוספו הפקודות המיוחדות לטלפונים -->
+    <video id="splash-video" src="intro.webm" autoplay muted playsinline webkit-playsinline disablePictureInPicture preload="auto"></video>
   </div>
 
   <div id="main-page-content" class="main-shell flex flex-col items-center px-6 py-14">
@@ -698,7 +699,36 @@
     const splash = document.getElementById('splash-screen');
     const kickStatus = document.getElementById('kick-live-status');
     const video = document.getElementById('splash-video');
+    const bgVideo = document.getElementById('watermark-bg');
 
+    // === מנגנון עקיפת חסימות Autoplay בטלפונים ===
+    function forcePlayVideos() {
+      if (bgVideo) {
+        bgVideo.muted = true;
+        bgVideo.play().catch(e => console.log("BG Video autoplay blocked"));
+      }
+      if (video) {
+        video.muted = true;
+        let playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.log("Splash blocked by mobile power settings. Skipping to site.");
+            // אם הטלפון מסרב לנגן (חיסכון סוללה וכדומה), נדלג מיד כדי לא להיתקע
+            activateSite();
+          });
+        }
+      }
+    }
+
+    // הפעלה ברגע שהאתר נטען
+    document.addEventListener("DOMContentLoaded", forcePlayVideos);
+    
+    // רשת ביטחון: אם אפל עקשנים, הלחיצה/גלילה הראשונה של המשתמש תשחרר את הוידאו
+    document.addEventListener('touchstart', forcePlayVideos, {once: true});
+    document.addEventListener('click', forcePlayVideos, {once: true});
+
+
+    // === אפקטים ומעברים ===
     document.addEventListener('mousemove', (e) => {
       if (spotlight) {
         spotlight.style.left = e.clientX + 'px';
@@ -745,7 +775,7 @@
     let isTransitionStarted = false;
 
     function checkVideoTime() {
-      if (isTransitionStarted || !video.duration) return;
+      if (isTransitionStarted || !video || !video.duration) return;
 
       if (video.currentTime >= video.duration - 0.35) {
         isTransitionStarted = true;
@@ -764,6 +794,7 @@
       setTimeout(activateSite, 1850);
     }
 
+    // === בדיקת סטטוס פלטפורמות ===
     function setKickStatus(isLive) {
       if (!kickStatus) return;
       const text = kickStatus.querySelector('.status-text');
