@@ -131,19 +131,20 @@
       z-index: 1; /* יושב מעל החלקיקים כדי למסגר את האתר בחושך */
     }
 
-   /* הווטרמארק של הלוגו (עכשיו כוידאו) */
+   /* הווטרמארק של הלוגו (עם טריק שמעלים רקע שחור) */
     #watermark-bg {
       position: fixed;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%); /* ממרכז את הוידאו בדיוק באמצע המסך */
-      width: 85%; /* זהה בדיוק ל- background-size: 85% שהיה קודם */
+      transform: translate(-50%, -50%);
+      width: 85%;
       height: auto;
-      opacity: 0.15; /* תשחק עם זה לפי כמה חזק אתה רוצה לראות אותו */
+      opacity: 0.15;
+      mix-blend-mode: screen; /* זה הקסם: מעלים את הרקע השחור ומשאיר רק את הלוגו */
       z-index: 0;
       pointer-events: none;
     }
-
+    
     #spotlight {
       position: fixed;
       top: 0;
