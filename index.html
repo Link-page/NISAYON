@@ -46,7 +46,6 @@
     body {
       font-family: 'Heebo', sans-serif;
       background-color: #000000;
-      /* רקע כהה נקי כדי לתת לחלקיקים לבלוט */
       background-image:
         radial-gradient(circle at 50% 50%, rgba(255, 140, 0, 0.05) 0%, transparent 60%),
         linear-gradient(135deg, #020202 0%, #0a0500 50%, #020202 100%);
@@ -57,13 +56,12 @@
       color: white;
     }
 
-    /* === אפקט חלקיקי האנרגיה (Option 1) === */
+    /* === אפקט חלקיקי האנרגיה === */
     #particles-container {
       position: fixed;
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      /* גורם לחלקיקים להיעלם בעדינות בקצוות המסך */
       mask-image: radial-gradient(circle at center, black 10%, transparent 85%);
       -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 85%);
     }
@@ -74,7 +72,6 @@
       background-repeat: repeat;
     }
 
-    /* שכבה 1 - חלקיקים קטנים ורחוקים (איטיים) */
     .layer-1 {
       background-image: 
         radial-gradient(circle at 10% 20%, rgba(255, 140, 0, 0.8) 1.5px, transparent 1.5px),
@@ -86,7 +83,6 @@
       filter: drop-shadow(0 0 3px rgba(255, 140, 0, 0.8));
     }
 
-    /* שכבה 2 - חלקיקים בינוניים (מהירות בינונית) */
     .layer-2 {
       background-image: 
         radial-gradient(circle at 20% 80%, rgba(255, 140, 0, 0.6) 2.5px, transparent 2.5px),
@@ -97,7 +93,6 @@
       filter: drop-shadow(0 0 5px rgba(255, 140, 0, 0.8)) blur(0.5px);
     }
 
-    /* שכבה 3 - חלקיקים גדולים וקרובים (מהירים ומטושטשים) */
     .layer-3 {
       background-image: 
         radial-gradient(circle at 30% 40%, rgba(255, 140, 0, 0.3) 4px, transparent 4px),
@@ -107,7 +102,6 @@
       filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.6)) blur(2px);
     }
 
-    /* התנועה האינסופית של החלקיקים באלכסונים מנוגדים */
     @keyframes driftUp1 {
       0% { background-position: 0px 0px; }
       100% { background-position: 150px -150px; }
@@ -128,10 +122,10 @@
       background:
         radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.1) 56%, rgba(0,0,0,0.85) 100%);
       pointer-events: none;
-      z-index: 1; /* יושב מעל החלקיקים כדי למסגר את האתר בחושך */
+      z-index: 1; 
     }
 
-   /* הווטרמארק של הלוגו (עם טריק שמעלים רקע שחור) */
+    /* === הווטרמארק של הלוגו כוידאו עם מעלים רקע שחור === */
     #watermark-bg {
       position: fixed;
       top: 50%;
@@ -140,11 +134,11 @@
       width: 85%;
       height: auto;
       opacity: 0.15;
-      mix-blend-mode: screen; /* זה הקסם: מעלים את הרקע השחור ומשאיר רק את הלוגו */
+      mix-blend-mode: screen; /* שורף את הרקע השחור ומשאיר את האור */
       z-index: 0;
       pointer-events: none;
     }
-    
+
     #spotlight {
       position: fixed;
       top: 0;
@@ -570,8 +564,9 @@
 
 <body>
   
-  <!-- ווטרמארק וחלקיקי אנרגיה -->
-  <div id="watermark-bg"></div>
+  <!-- הווטרמארק וידאו + חלקיקי האנרגיה -->
+  <video id="watermark-bg" src="Comp_1_1.webm" autoplay loop muted playsinline></video>
+  
   <div id="particles-container">
     <div class="particle-layer layer-1"></div>
     <div class="particle-layer layer-2"></div>
@@ -581,7 +576,7 @@
   <div id="spotlight"></div>
 
   <div id="splash-screen">
-    <video id="watermark-bg" src="Comp_1_1.webm" autoplay loop muted playsinline></video>
+    <video id="splash-video" src="intro.webm" autoplay muted playsinline preload="auto"></video>
   </div>
 
   <div id="main-page-content" class="main-shell flex flex-col items-center px-6 py-14">
