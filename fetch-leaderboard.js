@@ -1,36 +1,53 @@
 const fs = require('fs');
 
-async function fetchKickData() {
-  try {
-    // זו קריאה ל-API של קיק באמצעות המפתח שלך
-    const response = await fetch('https://api.kick.com/v1/channels/ronengg/leaderboard', {
-      headers: {
-        'Authorization': `Bearer ${process.env.KICK_API_KEY}`,
-        'Accept': 'application/json'
-      }
-    });
+const CLIENT_ID = process.env.KICK_CLIENT_ID;
+const CLIENT_SECRET = process.env.KICK_CLIENT_SECRET;
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+async function updateLeaderboard() {
+    try {
+        console.log("Step 1: Requesting Access Token...");
+        
+        const tokenRes = await fetch('https://id.kick.com/oauth/token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                grant_type: 'client_credentials',
+                client_id: CLIENT_ID,
+                client_secret: CLIENT_SECRET
+            })
+        });
+
+        if (!tokenRes.ok) {
+            const errText = await tokenRes.text();
+            throw new Error(`Token fetch failed: ${tokenRes.status} - ${errText}`);
+        }
+
+        const tokenData = await tokenRes.json();
+        const accessToken = tokenData.access_token;
+        console.log("Token received successfully!");
+
+        console.log("Step 2: Fetching Leaderboard Data...");
+        // משתמשים בנתיב המעודכן ל-API הפומבי
+        const apiRes = await fetch('https://api.kick.com/public/v1/channels/ronengg/leaderboards', {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!apiRes.ok) {
+             const errText = await apiRes.text();
+             throw new Error(`API fetch failed: ${apiRes.status} - ${errText}`);
+        }
+
+        const data = await apiRes.json();
+        fs.writeFileSync('leaderboard.json', JSON.stringify(data, null, 2));
+        console.log("Success: leaderboard.json saved successfully!");
+
+    } catch (error) {
+        console.error("Error:", error.message);
+        process.exit(1);
     }
-
-    const data = await response.json();
-    
-    // סידור הנתונים למבנה נקי שהאתר שלנו מכיר
-    // שים לב: המבנה תלוי באיך שקיק מחזירים את המידע, אבל זה הסטנדרט
-    const formattedData = {
-      allTime: data.all_time ? data.all_time.map(u => ({ username: u.username, amount: u.amount })) : [],
-      weekly: data.weekly ? data.weekly.map(u => ({ username: u.username, amount: u.amount })) : []
-    };
-
-    // שמירה לקובץ
-    fs.writeFileSync('leaderboard.json', JSON.stringify(formattedData, null, 2));
-    console.log('Leaderboard updated successfully!');
-    
-  } catch (error) {
-    console.error('Failed to fetch Kick data:', error);
-    // אם יש שגיאה, אנחנו לא דורסים את הקובץ הקיים כדי שהאתר לא יישאר ריק
-  }
 }
 
-fetchKickData();
+updateLeaderboard();
