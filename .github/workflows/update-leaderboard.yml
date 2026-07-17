@@ -20,11 +20,10 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Run fetch script
-      env:
-        KICK_CLIENT_ID: ${{ secrets.KICK_CLIENT_ID }}
-        KICK_CLIENT_SECRET: ${{ secrets.KICK_CLIENT_SECRET }}
-      run: node fetch-leaderboard.js
+    - name: Install dependencies and Run fetch script
+      run: |
+        npm install puppeteer puppeteer-extra puppeteer-extra-plugin-stealth
+        node fetch-leaderboard.js
 
     - name: Commit and push changes
       run: |
