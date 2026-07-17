@@ -858,11 +858,21 @@
 
     async function fetchLeaderboardData() {
       try {
-        // כשנחבר את ה-API, הקוד ייכנס לפה. בינתיים אנחנו מריצים רינדור ריק.
-        renderLeaderboard(allTimeGifters, 'all-time-list');
-        renderLeaderboard(weeklyGifters, 'weekly-list');
+        // הוספת timestamp כדי למנוע מהדפדפן לשמור גרסה ישנה בזיכרון המטמון
+        const response = await fetch('leaderboard.json?t=' + new Date().getTime());
+        
+        if (!response.ok) {
+          throw new Error('Leaderboard file not found yet');
+        }
+
+        const data = await response.json();
+        
+        renderLeaderboard(data.allTime || [], 'all-time-list');
+        renderLeaderboard(data.weekly || [], 'weekly-list');
+        
       } catch (error) {
-        console.log("Failed to fetch leaderboard data", error);
+        console.log("Waiting for first automatic fetch...", error);
+        // משאיר את טקסט ה"ממתין לחיבור" אם הקובץ עדיין לא נוצר
       }
     }
 
