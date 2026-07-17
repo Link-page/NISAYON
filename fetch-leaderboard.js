@@ -1,30 +1,40 @@
 const fs = require('fs');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+
+// מפעילים את מצב ההתגנבות כדי ש-Cloudflare לא יזהה אותנו כבוט
+puppeteer.use(StealthPlugin());
 
 async function updateLeaderboard() {
+    console.log("Starting stealth browser to bypass Cloudflare...");
+    const browser = await puppeteer.launch({
+        headless: 'new',
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+    
     try {
-        console.log("Fetching Leaderboard Data directly from Kick Web API...");
+        const page = await browser.newPage();
+        console.log("Navigating to Kick API...");
         
-        const apiRes = await fetch('https://web.kick.com/api/v1/kicks/4865495/leaderboard', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                // מתחפשים לדפדפן כדי לעקוף חסימות בוטים
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-            }
-        });
-
-        if (!apiRes.ok) {
-             const errText = await apiRes.text();
-             throw new Error(`API fetch failed: ${apiRes.status} - ${errText}`);
+        // טוענים את העמוד ומחכים שהרשת תהיה שקטה (כלומר שקלאודפלייר סיים לבדוק אותנו)
+        await page.goto('https://web.kick.com/api/v1/kicks/4865495/leaderboard', { waitUntil: 'networkidle2' });
+        
+        // מושכים את הטקסט הטהור מתוך הדפדפן
+        const jsonText = await page.evaluate(() => document.body.innerText);
+        const data = JSON.parse(jsonText);
+        
+        if (data.error) {
+             throw new Error("Blocked by Cloudflare even with stealth mode.");
         }
-
-        const data = await apiRes.json();
+        
         fs.writeFileSync('leaderboard.json', JSON.stringify(data, null, 2));
         console.log("Success: leaderboard.json saved successfully!");
-
+        
     } catch (error) {
         console.error("Error:", error.message);
         process.exit(1);
+    } finally {
+        await browser.close();
     }
 }
 
