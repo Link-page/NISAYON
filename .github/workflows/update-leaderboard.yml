@@ -20,12 +20,10 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Install node-fetch
-      run: npm install node-fetch
-
     - name: Run fetch script
       env:
-        KICK_API_KEY: ${{ secrets.KICK_API_KEY }}
+        KICK_CLIENT_ID: ${{ secrets.KICK_CLIENT_ID }}
+        KICK_CLIENT_SECRET: ${{ secrets.KICK_CLIENT_SECRET }}
       run: node fetch-leaderboard.js
 
     - name: Commit and push changes
