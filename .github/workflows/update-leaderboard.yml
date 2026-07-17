@@ -32,6 +32,11 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add leaderboard.json
-        git commit -m "Update leaderboard data" || echo "No changes to commit"
-        git push
+        if [ -f leaderboard.json ]; then
+          git add leaderboard.json
+          git commit -m "Update leaderboard data" || echo "No changes to commit"
+          git push
+        else
+          echo "Error: leaderboard.json is missing. The Node.js fetch script failed."
+          exit 1
+        fi
