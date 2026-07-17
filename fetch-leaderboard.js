@@ -1,37 +1,15 @@
 const fs = require('fs');
 
-const CLIENT_ID = process.env.KICK_CLIENT_ID;
-const CLIENT_SECRET = process.env.KICK_CLIENT_SECRET;
-
 async function updateLeaderboard() {
     try {
-        console.log("Step 1: Requesting Access Token...");
+        console.log("Fetching Leaderboard Data directly from Kick Web API...");
         
-        const tokenRes = await fetch('https://id.kick.com/oauth/token', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-                grant_type: 'client_credentials',
-                client_id: CLIENT_ID,
-                client_secret: CLIENT_SECRET
-            })
-        });
-
-        if (!tokenRes.ok) {
-            const errText = await tokenRes.text();
-            throw new Error(`Token fetch failed: ${tokenRes.status} - ${errText}`);
-        }
-
-        const tokenData = await tokenRes.json();
-        const accessToken = tokenData.access_token;
-        console.log("Token received successfully!");
-
-        console.log("Step 2: Fetching Leaderboard Data...");
-        // כאן הקסם קורה - אנחנו משתמשים ב-ID המספרי של הערוץ!
-        const apiRes = await fetch('https://api.kick.com/public/v1/channels/4865495/leaderboards', {
+        const apiRes = await fetch('https://web.kick.com/api/v1/kicks/4865495/leaderboard', {
+            method: 'GET',
             headers: {
-                'Authorization': `Bearer ${accessToken}`,
-                'Accept': 'application/json'
+                'Accept': 'application/json',
+                // מתחפשים לדפדפן כדי לעקוף חסימות בוטים
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
             }
         });
 
