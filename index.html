@@ -828,16 +828,13 @@
     }
 
 
-    // === מנגנון דינמי לטבלת המובילים - ריק לבינתיים ===
-    let allTimeGifters = [];
-    let weeklyGifters = [];
-
+    // === מנגנון דינמי לטבלת המובילים - קורא את נתוני Kick ===
     function renderLeaderboard(dataArray, containerId) {
       const container = document.getElementById(containerId);
       container.innerHTML = ''; 
 
-      if (dataArray.length === 0) {
-        container.innerHTML = '<div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for data connection...</div>';
+      if (!dataArray || dataArray.length === 0) {
+        container.innerHTML = '<div class="text-center py-8 text-white/40 text-sm font-bold">No data available at the moment.</div>';
         return;
       }
 
@@ -845,11 +842,15 @@
         const rank = index + 1;
         const amountColorClass = rank === 1 ? 'text-[#ff8c00]' : 'text-white/70';
         
+        // כאן אנחנו מתאימים את הקריאה למבנה הנתונים של קיק
+        const username = user.user ? user.user.username : 'Unknown';
+        const amount = user.amount || user.quantity || 0;
+        
         const rowHTML = `
           <div class="lb-row">
             <span class="w-12 text-center font-black text-white/40">${rank}</span>
-            <span class="flex-1 text-center font-bold text-white/90">${user.username}</span>
-            <span class="w-20 text-center font-black ${amountColorClass}">${user.amount}</span>
+            <span class="flex-1 text-center font-bold text-white/90">${username}</span>
+            <span class="w-20 text-center font-black ${amountColorClass}">${amount}</span>
           </div>
         `;
         container.innerHTML += rowHTML;
@@ -858,21 +859,28 @@
 
     async function fetchLeaderboardData() {
       try {
-        // הוספת timestamp כדי למנוע מהדפדפן לשמור גרסה ישנה בזיכרון המטמון
+        // משיכת הקובץ עם נטרול Cache
         const response = await fetch('leaderboard.json?t=' + new Date().getTime());
         
         if (!response.ok) {
-          throw new Error('Leaderboard file not found yet');
+          throw new Error('Leaderboard file not found');
         }
 
         const data = await response.json();
         
-        renderLeaderboard(data.allTime || [], 'all-time-list');
-        renderLeaderboard(data.weekly || [], 'weekly-list');
-        
+        // קיק שולחים את הנתונים תחת data.leaderboard. במערך הזה יש בדרך כלל את הנתונים
+        // במידה וקיק מחזירים מערך ישיר, אנחנו בודקים גם את זה.
+        const leaderboardItems = data.leaderboard ? data.leaderboard : (Array.isArray(data) ? data : []);
+
+        // כרגע ה-API של קיק מחזיר לרוב רק רשימה אחת (הכללית). 
+        // לכן נציג את אותה רשימה בשני המקומות כרגע, עד שנפצל אותם אם קיק יאפשרו בעתיד.
+        renderLeaderboard(leaderboardItems.slice(0, 10), 'all-time-list'); 
+        renderLeaderboard(leaderboardItems.slice(0, 10), 'weekly-list');
+
       } catch (error) {
-        console.log("Waiting for first automatic fetch...", error);
-        // משאיר את טקסט ה"ממתין לחיבור" אם הקובץ עדיין לא נוצר
+        console.log("Leaderboard Data Fetch Error:", error);
+        document.getElementById('all-time-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading data.</div>';
+        document.getElementById('weekly-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading data.</div>';
       }
     }
 
