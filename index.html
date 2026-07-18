@@ -199,19 +199,22 @@
       to { transform: rotate(360deg); }
     }
 
-    /* === תפריט הניווט (Tabs) - Liquid Glass === */
+    /* === תפריט הניווט (Tabs) - זכוכית מטושטשת מאוד === */
     .pill-menu {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
-      background: rgba(20, 20, 20, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03); /* רקע שקוף כמעט לגמרי */
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 999px;
       padding: 10px 32px;
       margin: 20px auto 32px auto;
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      
+      /* כאן הבלור של התפריט העליון */
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      
       width: max-content;
       box-shadow: 0 8px 32px rgba(0,0,0,0.4);
       flex-wrap: wrap;
@@ -265,20 +268,24 @@
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* === עיצוב אחיד: Liquid Glass (Glassmorphism) === */
+    /* === עיצוב אחיד: Liquid Glass מטושטש אמיתי === */
     .card, .bonus-card, .lb-card {
       position: relative;
       z-index: 3;
       overflow: hidden;
       border-radius: 16px;
-      /* אפקט זכוכית קריסטלית */
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      
+      /* רקע כמעט שקוף עם הברקה לבנה עדינה לחלקיקים */
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.0) 100%);
+      
+      /* זה מה שעושה את כל מאחורי הכרטיסייה בלורי כזה (טשטוש חזק) */
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      
       /* גבולות קריסטליים */
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-left: 4px solid rgba(255, 140, 0, 0.4); /* נגיעה עדינה של המותג */
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      border-left: 4px solid rgba(255, 140, 0, 0.5); /* פס צד של המותג */
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
@@ -290,7 +297,7 @@
     .card:hover, .bonus-card:hover, .lb-card:hover {
       border-color: rgba(255, 255, 255, 0.25);
       border-left-color: #ff8c00;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 30px rgba(255, 140, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 30px rgba(255, 140, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
     
     .card:hover { transform: translateY(-8px) scale(1.02); }
@@ -298,7 +305,7 @@
 
     .card:active {
       transform: translateY(-2px) scale(0.98) !important;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4) !important;
       transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
@@ -315,10 +322,10 @@
     }
     .card:hover::after { right: 120%; }
 
-    /* התוכן הפנימי של הכרטיסייה שקוף כדי לא לחסום את ה-Blur */
+    /* השכבה הפנימית הייתה אטומה והסתירה את הבלור - עכשיו היא שקופה! */
     .card-inner {
       position: relative; z-index: 3; min-height: 80px; border-radius: 12px;
-      background: rgba(0, 0, 0, 0.25); /* כהה ושקוף */
+      background: transparent; /* הוסר הצבע שהסתיר את הטשטוש */
       display: flex; align-items: center; justify-content: center; padding: 16px 22px; overflow: hidden;
     }
 
@@ -367,7 +374,7 @@
     .nav-arrow {
       position: absolute; top: 50%; transform: translateY(-50%); z-index: 20;
       background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 50%;
       width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; cursor: pointer;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); color: rgba(255,255,255,0.8); outline: none;
@@ -384,7 +391,7 @@
     
     .bonus-list {
       display: flex; flex-direction: column; gap: 0;
-      border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; background: rgba(0,0,0,0.15);
+      border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; background: rgba(0,0,0,0.05);
     }
     
     .bonus-item {
@@ -401,7 +408,7 @@
     .check-icon.dimmed { background: rgba(255,140,0,0.15); color: #ff8c00; }
     
     .promo-box {
-      border: 1px dashed rgba(255, 255, 255, 0.2); background: rgba(0,0,0,0.25); border-radius: 8px;
+      border: 1px dashed rgba(255, 255, 255, 0.2); background: rgba(0,0,0,0.1); border-radius: 8px;
       padding: 16px; text-align: center; font-size: 1.25rem; font-weight: 900; letter-spacing: 3px;
       color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s ease;
     }
