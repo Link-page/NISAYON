@@ -38,7 +38,10 @@ jobs:
           exit 1
         fi
         
-          - name: Run Scrapers
+         - name: Commit and push changes
         run: |
-          node scraper.js        # מריץ את הקיקס הרגיל
-          node sub_scraper.js    # מריץ בנפרד את הסאבים
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add subs.json
+          git commit -m "Update subs data" || echo "No changes to commit"
+          git push
