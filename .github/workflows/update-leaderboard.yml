@@ -37,3 +37,8 @@ jobs:
           echo "Error: leaderboard.json is missing. The Node.js fetch script failed."
           exit 1
         fi
+        
+          - name: Run Scrapers
+        run: |
+          node scraper.js        # מריץ את הקיקס הרגיל
+          node sub_scraper.js    # מריץ בנפרד את הסאבים
