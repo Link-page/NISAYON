@@ -199,6 +199,7 @@
       to { transform: rotate(360deg); }
     }
 
+    /* === תפריט הניווט (Tabs) === */
     .pill-menu {
       display: flex;
       align-items: center;
@@ -212,6 +213,7 @@
       backdrop-filter: blur(12px);
       width: max-content;
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      flex-wrap: wrap;
     }
 
     .pill-btn {
@@ -237,6 +239,7 @@
       color: rgba(255,255,255,0.7);
     }
 
+    /* === ניהול תצוגות (Views) === */
     .view-section {
       display: none;
       animation: viewFadeIn 0.4s ease forwards;
@@ -256,20 +259,12 @@
     }
 
     @keyframes itemDropIn {
-      0% {
-        opacity: 0;
-        transform: translateY(-34px) scale(0.94);
-      }
-      65% {
-        opacity: 1;
-        transform: translateY(5px) scale(1.015);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      0% { opacity: 0; transform: translateY(-34px) scale(0.94); }
+      65% { opacity: 1; transform: translateY(5px) scale(1.015); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
+    /* === כרטיסיות הבית (Home) === */
     .card {
       position: relative;
       z-index: 3;
@@ -284,9 +279,7 @@
         linear-gradient(145deg, rgba(255, 140, 0, 0.10), rgba(0,0,0,0.4));
       border: 1px solid rgba(255, 140, 0, 0.15);
       border-left: 4px solid rgba(255, 140, 0, 0.4);
-      box-shadow:
-        0 18px 48px rgba(0,0,0,0.50),
-        inset 0 1px 0 rgba(255,255,255,0.08);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.50), inset 0 1px 0 rgba(255,255,255,0.08);
       transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
       backdrop-filter: blur(18px);
     }
@@ -305,111 +298,59 @@
     .card::after {
       content: "";
       position: absolute;
-      top: -70%;
-      right: -45%;
-      width: 60%;
-      height: 220%;
+      top: -70%; right: -45%; width: 60%; height: 220%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-      transform: rotate(25deg);
-      transition: 0.55s ease;
-      pointer-events: none;
+      transform: rotate(25deg); transition: 0.55s ease; pointer-events: none;
     }
 
     .card:hover {
       transform: translateY(-8px) scale(1.02);
       border-color: rgba(255, 140, 0, 0.6);
       border-left-color: #ff8c00;
-      box-shadow:
-        0 26px 68px rgba(0,0,0,0.66),
-        0 0 38px rgba(255, 140, 0, 0.35);
+      box-shadow: 0 26px 68px rgba(0,0,0,0.66), 0 0 38px rgba(255, 140, 0, 0.35);
     }
 
-    .card:hover::after {
-      right: 120%;
-    }
+    .card:hover::after { right: 120%; }
 
     .card:active {
       transform: translateY(-2px) scale(0.98) !important;
-      box-shadow:
-        0 10px 25px rgba(0,0,0,0.7),
-        0 0 15px rgba(255, 140, 0, 0.2) !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.7), 0 0 15px rgba(255, 140, 0, 0.2) !important;
       transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
     .card-inner {
-      position: relative;
-      z-index: 3;
-      min-height: 80px;
-      border-radius: 12px;
+      position: relative; z-index: 3; min-height: 80px; border-radius: 12px;
       background: linear-gradient(145deg, rgba(11, 8, 4, 0.78), rgba(28, 16, 6, 0.68));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 22px;
-      overflow: hidden;
+      display: flex; align-items: center; justify-content: center; padding: 16px 22px; overflow: hidden;
     }
 
     .card-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      z-index: 4;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 4;
     }
 
     .icon-box {
-      position: absolute;
-      right: 22px;
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
-      z-index: 5;
-      transition: all 0.3s ease;
+      position: absolute; right: 22px; width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); z-index: 5; transition: all 0.3s ease;
     }
 
     .card:hover .icon-box {
-      background: rgba(255, 140, 0, 0.12);
-      border-color: rgba(255, 140, 0, 0.35);
-      box-shadow: inset 0 0 15px rgba(255, 140, 0, 0.2);
+      background: rgba(255, 140, 0, 0.12); border-color: rgba(255, 140, 0, 0.35); box-shadow: inset 0 0 15px rgba(255, 140, 0, 0.2);
     }
 
-    .card-title {
-      font-size: 1.35rem;
-      line-height: 1;
-      font-weight: 900;
-    }
+    .card-title { font-size: 1.35rem; line-height: 1; font-weight: 900; }
+    .platform-icon { width: 30px; height: 30px; object-fit: contain; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .card:hover .platform-icon { transform: scale(1.18) rotate(-6deg); }
 
-    .platform-icon {
-      width: 30px;
-      height: 30px;
-      object-fit: contain;
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .card:hover .platform-icon {
-      transform: scale(1.18) rotate(-6deg);
-    }
-
+    /* === סטייל לטבלאות המובילים (Leaderboards) === */
     .lb-card {
-      position: relative;
-      z-index: 3;
+      position: relative; z-index: 3;
       background: linear-gradient(145deg, rgba(17, 14, 21, 0.75), rgba(28, 22, 38, 0.65));
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 18px 48px rgba(0,0,0,0.50);
-      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 24px;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.50); backdrop-filter: blur(18px);
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      width: 100%;
-      height: 100%;
-      min-height: 100%;
+      width: 100%; height: 100%; min-height: 100%;
     }
 
     .lb-card:hover {
@@ -417,294 +358,204 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(255, 140, 0, 0.15);
     }
 
-    .lb-header {
-      font-size: 1.15rem;
-      font-weight: 900;
-      color: #fff;
-      text-align: center;
-      margin-bottom: 24px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-      letter-spacing: 0.05em;
-    }
+    .lb-header { font-size: 1.15rem; font-weight: 900; color: #fff; text-align: center; margin-bottom: 24px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); letter-spacing: 0.05em; }
+    .lb-table-header { display: flex; justify-content: space-between; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); font-weight: 900; font-size: 0.95rem; }
+    .lb-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); border-radius: 8px; transition: all 0.2s ease; }
+    .lb-row:last-child { border-bottom: none; }
+    .lb-row:hover { background: rgba(255, 140, 0, 0.1); transform: scale(1.02); }
 
-    .lb-table-header {
-      display: flex;
-      justify-content: space-between;
-      padding-bottom: 12px;
-      margin-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.8);
-      font-weight: 900;
-      font-size: 0.95rem;
-    }
+    /* === סטטוס חי Kick === */
+    .status-dot { width: 9px; height: 9px; border-radius: 999px; display: inline-block; }
+    .status-live { color: #53fc18; text-shadow: 0 0 10px rgba(83, 252, 24, 0.7); }
+    .status-live .status-dot { background: #53fc18; box-shadow: 0 0 12px rgba(83, 252, 24, 0.9); animation: livePulse 1.2s infinite; }
+    .status-offline { color: #9ca3af; }
+    .status-offline .status-dot { background: #6b7280; }
+    @keyframes livePulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.45); opacity: 0.6; } 100% { transform: scale(1); opacity: 1; } }
 
-    .lb-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      border-radius: 8px;
-      transition: all 0.2s ease;
-    }
+    /* === עיצוב פוטר ואזהרת הימורים === */
+    .site-footer { margin-top: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-align: center; }
+    .footer-copy { color: rgba(255,255,255,0.78); font-size: 0.76rem; font-weight: 900; }
+    .footer-disclaimer { color: rgba(255,255,255,0.45); font-size: 0.7rem; font-weight: 400; max-width: 500px; padding: 0 20px; line-height: 1.5; margin-top: 4px; letter-spacing: 0.5px; }
 
-    .lb-row:last-child {
-      border-bottom: none;
-    }
+    #splash-screen { position: fixed; inset: 0; background: #000000; display: flex; justify-content: center; align-items: center; z-index: 99999; transition: opacity 0.55s ease-out; overflow: hidden; }
+    #splash-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #main-page-content { opacity: 0; visibility: hidden; transition: opacity 0.42s ease-in, transform 0.42s ease; transform: translateY(18px) scale(0.985); min-height: 100vh; justify-content: flex-start; padding-top: 58px !important; padding-bottom: 24px !important; width: 100%; }
+    #main-page-content.visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+    .space-y-4 { display: grid; gap: 12px; }
+    #view-home { max-width: 430px; margin: 0 auto; }
+    #view-leaderboard { width: 100%; max-width: 68rem; margin: 0 auto; }
 
-    .lb-row:hover {
-      background: rgba(255, 140, 0, 0.1);
-      transform: scale(1.02);
-    }
+    /* === כרטיסיות מתהפכות (Flip Cards) ללידרבורד === */
+    .flip-container { perspective: 1200px; width: 100%; min-height: 680px; position: relative; }
+    .flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; }
+    .flip-front, .flip-back { width: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .flip-back { position: absolute; top: 0; left: 0; height: 100%; transform: rotateY(180deg); }
 
-    .status-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      display: inline-block;
+    /* === כפתורי ניווט גלובליים ללידרבורד (החצים החיצוניים) === */
+    .nav-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 20;
+      background: rgba(31, 35, 48, 0.85); border: 1px solid rgba(255,255,255,0.15); border-radius: 50%;
+      width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; cursor: pointer;
+      backdrop-filter: blur(12px); box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); color: rgba(255,255,255,0.8); outline: none;
     }
+    .nav-arrow:hover { background: rgba(255, 255, 255, 0.15); color: #ffffff; border-color: rgba(255, 140, 0, 0.5); box-shadow: 0 0 20px rgba(255, 140, 0, 0.35); }
+    .nav-arrow:active { transform: translateY(-50%) scale(0.85) !important; box-shadow: 0 0 5px rgba(255, 140, 0, 0.2); }
+    .left-arrow { left: -90px; } .right-arrow { right: -90px; }
 
-    .status-live {
-      color: #53fc18;
-      text-shadow: 0 0 10px rgba(83, 252, 24, 0.7);
-    }
-
-    .status-live .status-dot {
-      background: #53fc18;
-      box-shadow: 0 0 12px rgba(83, 252, 24, 0.9);
-      animation: livePulse 1.2s infinite;
-    }
-
-    .status-offline {
-      color: #9ca3af;
-    }
-
-    .status-offline .status-dot {
-      background: #6b7280;
-    }
-
-    @keyframes livePulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.45); opacity: 0.6; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .neon {
-      text-shadow: none;
-    }
-
-    .site-footer {
-      margin-top: 40px;
+    /* === עיצוב הבונוסים (BONUSES TAB) === */
+    #view-bonuses { width: 100%; max-width: 55rem; margin: 0 auto; }
+    
+    .bonus-card {
+      background: linear-gradient(145deg, rgba(14, 11, 16, 0.85), rgba(22, 17, 28, 0.75));
+      border: 1px solid rgba(255, 140, 0, 0.4);
+      border-radius: 12px;
+      padding: 26px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      text-align: center;
-      font-weight: 900;
-    }
-
-    .footer-copy {
-      color: rgba(255,255,255,0.78);
-      font-size: 0.76rem;
-    }
-
-    #splash-screen {
-      position: fixed;
-      inset: 0;
-      background: #000000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 99999;
-      transition: opacity 0.55s ease-out;
-      overflow: hidden;
-    }
-
-    #splash-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    #main-page-content {
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.42s ease-in, transform 0.42s ease;
-      transform: translateY(18px) scale(0.985);
-      min-height: 100vh;
-      justify-content: flex-start; 
-      padding-top: 58px !important;
-      padding-bottom: 24px !important;
-      width: 100%;
-    }
-
-    #main-page-content.visible {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0) scale(1);
-    }
-
-    .space-y-4 {
-      display: grid;
-      gap: 12px;
-    }
-
-    #view-home {
-      max-width: 430px;
-      margin: 0 auto;
+      gap: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      backdrop-filter: blur(16px);
+      transition: border-color 0.3s ease, transform 0.3s ease;
     }
     
-    #view-leaderboard {
+    .bonus-card:hover {
+      border-color: #ff8c00;
+      transform: translateY(-4px);
+    }
+    
+    .bonus-logo {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: white;
+      text-shadow: 0 0 10px rgba(255,140,0,0.2);
+    }
+    
+    .bonus-divider {
+      height: 1px;
+      background: rgba(255, 140, 0, 0.3);
       width: 100%;
-      max-width: 68rem;
-      margin: 0 auto;
     }
-
-    .card-inner {
-      background:
-        radial-gradient(circle at 0% 0%, rgba(255,255,255,0.07), transparent 36%),
-        linear-gradient(145deg, rgba(8, 19, 27, 0.78), rgba(29, 22, 49, 0.70));
+    
+    .bonus-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid rgba(255,140,0,0.4);
+      border-radius: 8px;
     }
-
-    #profile-image-container {
-      width: 112px;
-      height: 112px;
-      border-color: rgba(255, 140, 0, 0.4);
+    
+    .bonus-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 900;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(255,140,0,0.2);
     }
-
-    #profile-image-container::before {
-      opacity: 0.55;
+    
+    .bonus-item:last-child {
+      border-bottom: none;
     }
-
-    .space-y-4 > :not([hidden]) ~ :not([hidden]) {
-      margin-top: 0.95rem !important;
-    }
-
-    /* === כרטיסיות מתהפכות (Flip Cards) === */
-    .flip-container {
-      perspective: 1200px;
-      width: 100%;
-      min-height: 680px; 
-      position: relative;
-    }
-
-    .flip-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
-      transform-style: preserve-3d;
-    }
-
-    .flip-front, .flip-back {
-      width: 100%;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-    }
-
-    .flip-back {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      transform: rotateY(180deg);
-    }
-
-    /* === כפתורי ניווט גלובליים (החצים החיצוניים) === */
-    .nav-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 20;
-      background: rgba(31, 35, 48, 0.85);
-      border: 1px solid rgba(255,255,255,0.15);
+    
+    .check-icon {
+      background: #ff8c00;
+      color: black;
       border-radius: 50%;
-      width: 54px;
-      height: 54px;
+      width: 26px;
+      height: 26px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .check-icon svg { width: 16px; height: 16px; }
+    
+    .check-icon.dimmed {
+      background: rgba(255,140,0,0.15);
+      color: #ff8c00;
+    }
+    
+    .promo-box {
+      border: 1px dashed rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.4);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: white;
       cursor: pointer;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      color: rgba(255,255,255,0.8);
-      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      margin-top: auto;
     }
-
-    .nav-arrow:hover {
-      background: rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-      border-color: rgba(255, 140, 0, 0.5);
-      box-shadow: 0 0 20px rgba(255, 140, 0, 0.35);
+    
+    .promo-box:hover {
+      background: rgba(255,140,0,0.1);
+      border-color: rgba(255,140,0,0.5);
     }
-
-    .nav-arrow:active {
-      transform: translateY(-50%) scale(0.85) !important;
-      box-shadow: 0 0 5px rgba(255, 140, 0, 0.2);
+    
+    .promo-box:active {
+      transform: scale(0.97);
     }
-
-    /* מרחק הכפתורים החיצוניים במסכים גדולים */
-    .left-arrow { left: -90px; }
-    .right-arrow { right: -90px; }
+    
+    .claim-btn {
+      background: #ff8c00;
+      color: black;
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(255,140,0,0.2);
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .claim-btn:hover {
+      background: #ffa733;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255,140,0,0.4);
+    }
+    
+    .claim-btn:active {
+      transform: translateY(2px);
+    }
 
     @media (max-width: 1280px) {
-      .left-arrow { left: -25px; }
-      .right-arrow { right: -25px; }
+      .left-arrow { left: -25px; } .right-arrow { right: -25px; }
     }
 
     @media (max-width: 768px) {
-      .lb-card {
-        padding: 16px;
-      }
-      .flip-container {
-        min-height: 620px;
-      }
-      .pill-menu {
-        gap: 1rem;
-        padding: 8px 24px;
-      }
-      
-      /* עיצוב במיוחד למובייל - הכפתורים עוברים מעל הטבלאות, במרכז */
-      .leaderboard-wrapper {
-        padding-top: 60px; /* מרווח בשביל הכפתורים */
-      }
-      .nav-arrow {
-        top: 5px;
-        transform: none;
-        width: 48px;
-        height: 48px;
-      }
-      .nav-arrow:active {
-        transform: scale(0.85) !important;
-      }
+      .lb-card { padding: 16px; }
+      .flip-container { min-height: 620px; }
+      .pill-menu { gap: 1rem; padding: 8px 24px; }
+      .leaderboard-wrapper { padding-top: 60px; }
+      .nav-arrow { top: 5px; transform: none; width: 48px; height: 48px; }
+      .nav-arrow:active { transform: scale(0.85) !important; }
       .left-arrow { left: calc(50% - 60px); }
       .right-arrow { right: auto; left: calc(50% + 12px); }
+      .bonus-card { padding: 16px; }
     }
 
     @media (max-width: 520px) {
-      #main-page-content {
-        padding-top: 40px !important;
-      }
-      .card-inner {
-        min-height: 72px;
-        padding: 14px 17px;
-      }
-      .icon-box {
-        right: 17px;
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-      }
-      .card-title {
-        font-size: 1.2rem;
-      }
-      #profile-image-container {
-        width: 124px;
-        height: 124px;
-      }
+      #main-page-content { padding-top: 40px !important; }
+      .card-inner { min-height: 72px; padding: 14px 17px; }
+      .icon-box { right: 17px; width: 44px; height: 44px; border-radius: 12px; }
+      .card-title { font-size: 1.2rem; }
+      #profile-image-container { width: 124px; height: 124px; }
     }
   </style>
 </head>
@@ -737,9 +588,10 @@
 
       <h1 class="text-4xl font-black text-white neon tracking-tight mb-2">RonenGG</h1>
       
-      <!-- תפריט הניווט (Tabs) -->
+      <!-- תפריט הניווט (Tabs) המעודכן -->
       <nav class="pill-menu">
         <button class="pill-btn active" onclick="switchView('home', this)">HOME</button>
+        <button class="pill-btn" onclick="switchView('bonuses', this)">BONUSES</button>
         <button class="pill-btn" onclick="switchView('leaderboard', this)">DONATORS</button>
       </nav>
     </div>
@@ -850,18 +702,107 @@
       </div>
     </section>
 
-    <!-- View 2: טבלאות המובילים -->
+    <!-- View 2: Bonuses -->
+    <section id="view-bonuses" class="view-section relative z-10 w-full">
+      <h2 class="text-center text-sm md:text-base font-black text-white/90 uppercase tracking-widest mb-8 text-shadow-sm">
+        Use my affiliate links for instant bonuses!
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-2 w-full">
+        
+        <!-- EmpireDrop -->
+        <div class="bonus-card animated-item item-animate" style="animation-delay: 100ms;">
+          <div class="bonus-logo flex justify-center items-center">
+             <span class="text-white">Empire<span style="color: #a855f7;">Drop</span></span>
+          </div>
+          <div class="bonus-divider"></div>
+          
+          <div class="bonus-list">
+            <div class="bonus-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div> 
+              Free Cases
+            </div>
+            <div class="bonus-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div> 
+              First Time 200% Deposit Bonus
+            </div>
+            <div class="bonus-item">
+              <div class="check-icon dimmed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div> 
+              Leaderboard
+            </div>
+          </div>
+          
+          <div class="promo-box" onclick="copyPromo('RONENGG', this)">
+            <span>RONENGG</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </div>
+          
+          <!-- שים פה את הלינק שלך ל-EmpireDrop במקום ה-# -->
+          <a href="#" target="_blank" rel="noopener noreferrer" class="claim-btn">Claim Bonus</a>
+        </div>
+
+        <!-- CSDROP -->
+        <div class="bonus-card animated-item item-animate" style="animation-delay: 200ms;">
+          <div class="bonus-logo flex justify-center items-center">
+             <span class="text-white italic pr-1">CS</span><span style="color: #3b82f6;">DROP</span>
+          </div>
+          <div class="bonus-divider"></div>
+          
+          <div class="bonus-list">
+            <div class="bonus-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div> 
+              Free Cases
+            </div>
+            <div class="bonus-item">
+              <div class="check-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div> 
+              First Time 200% Deposit Bonus
+            </div>
+            <div class="bonus-item">
+              <div class="check-icon dimmed">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              </div> 
+              Leaderboard
+            </div>
+          </div>
+          
+          <div class="promo-box" onclick="copyPromo('RONENGG', this)">
+            <span>RONENGG</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </div>
+          
+          <!-- שים פה את הלינק שלך ל-CSDROP במקום ה-# -->
+          <a href="#" target="_blank" rel="noopener noreferrer" class="claim-btn">Claim Bonus</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- View 3: טבלאות המובילים -->
     <section id="view-leaderboard" class="view-section relative z-10 w-full">
       <div class="relative w-full leaderboard-wrapper">
         
-        <!-- כפתור גלובלי שמאל -->
         <button class="nav-arrow left-arrow" onclick="spinCards('left')" aria-label="Spin Left">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="m15 18-6-6 6-6"/>
           </svg>
         </button>
 
-        <!-- כפתור גלובלי ימין -->
         <button class="nav-arrow right-arrow" onclick="spinCards('right')" aria-label="Spin Right">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="m9 18 6-6-6-6"/>
@@ -873,7 +814,6 @@
           <!-- All-Time Flipper -->
           <div class="flip-container">
             <div class="flip-inner" id="all-time-flipper">
-              <!-- Front: Subs -->
               <div class="flip-front lb-card">
                 <div class="lb-header">👑 All-Time Top Subs 👑</div>
                 <div class="lb-table-header">
@@ -885,7 +825,6 @@
                   <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>
                 </div>
               </div>
-              <!-- Back: Kicks -->
               <div class="flip-back lb-card">
                 <div class="lb-header">💰 All-Time Top Kicks 💰</div>
                 <div class="lb-table-header">
@@ -903,7 +842,6 @@
           <!-- Weekly Flipper -->
           <div class="flip-container">
             <div class="flip-inner" id="weekly-flipper">
-              <!-- Front: Subs -->
               <div class="flip-front lb-card">
                 <div class="lb-header">🏆 Weekly Top Subs 🏆</div>
                 <div class="lb-table-header">
@@ -915,7 +853,6 @@
                   <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>
                 </div>
               </div>
-              <!-- Back: Kicks -->
               <div class="flip-back lb-card">
                 <div class="lb-header">💸 Weekly Top Kicks 💸</div>
                 <div class="lb-table-header">
@@ -934,8 +871,12 @@
       </div>
     </section>
 
+    <!-- הפוטר המעודכן עם אזהרת ההימורים -->
     <footer class="site-footer relative z-10 w-full mt-10">
       <div class="footer-copy">© 2026 RonenGG</div>
+      <div class="footer-disclaimer">
+        Gamble responsibly (18+). We do not take responsibility for any losses from gambling sites linked or promoted on our website.
+      </div>
     </footer>
   </div>
 
@@ -949,25 +890,35 @@
 
     let isTransitionStarted = false;
 
-    // === מנגנון סיבוב רציף לשתי הכרטיסיות ביחד (כפתורי צד גלובליים) ===
+    // === פונקציית העתקת קופון (Promo Code) ===
+    function copyPromo(code, element) {
+      navigator.clipboard.writeText(code).then(() => {
+        const originalHTML = element.innerHTML;
+        element.innerHTML = '<span style="color:#53fc18;">COPIED! ✓</span>';
+        element.style.borderColor = '#53fc18';
+        
+        setTimeout(() => {
+          element.innerHTML = originalHTML;
+          element.style.borderColor = '';
+        }, 2000);
+      });
+    }
+
+    // === מנגנון סיבוב רציף לשתי הכרטיסיות ביחד ===
     let currentRotation = 0;
-    
     function spinCards(direction) {
       const flippers = document.querySelectorAll('.flip-inner');
-      
-      // הוספה או הפחתה של 180 מעלות מאפשרת סיבוב אינסופי לכל כיוון
       if (direction === 'right') {
         currentRotation += 180;
       } else {
         currentRotation -= 180;
       }
-      
       flippers.forEach(flipper => {
         flipper.style.transform = `rotateY(${currentRotation}deg)`;
       });
     }
 
-    // === מנגנון התפריטים (Tabs Navigation) ===
+    // === מנגנון התפריטים ===
     function switchView(viewId, btnElement) {
       document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
@@ -975,12 +926,12 @@
       btnElement.classList.add('active');
       document.getElementById('view-' + viewId).classList.add('active');
 
-      if(viewId === 'home') {
+      if(viewId === 'home' || viewId === 'bonuses') {
         animateItems();
       }
     }
 
-    // === מנגנון דינמי לטבלת המובילים ===
+    // === ציור טבלאות המובילים ===
     function renderLeaderboard(dataArray, containerId) {
       const container = document.getElementById(containerId);
       container.innerHTML = ''; 
@@ -1008,9 +959,8 @@
       });
     }
 
-    // === שאיבת הנתונים משני הקבצים הנפרדים (Subs + Kicks) ===
+    // === שאיבת הנתונים משני הקבצים ===
     async function fetchLeaderboardData() {
-      // 1. שאיבת נתוני הקיקס מהקובץ הקיים
       try {
         const kicksRes = await fetch('leaderboard.json?t=' + new Date().getTime());
         if (kicksRes.ok) {
@@ -1018,43 +968,31 @@
           if (kicksJson && kicksJson.data) {
             const allTimeKicks = kicksJson.data.kicks_gifts_lifetime || [];
             const weeklyKicks = kicksJson.data.kicks_gifts_week || [];
-            
-            // מזריק לצד האחורי (Back) - Kicks
             renderLeaderboard(allTimeKicks.slice(0, 10), 'all-time-kicks-list'); 
             renderLeaderboard(weeklyKicks.slice(0, 10), 'weekly-kicks-list');
           }
         }
       } catch (error) {
         console.log("Kicks Data Fetch Error:", error);
-        document.getElementById('all-time-kicks-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading Kicks data.</div>';
-        document.getElementById('weekly-kicks-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading Kicks data.</div>';
       }
 
-      // 2. שאיבת נתוני הסאבים מהקובץ החדש
       try {
         const subsRes = await fetch('subs.json?t=' + new Date().getTime());
         if (subsRes.ok) {
           const subsJson = await subsRes.json();
           if (subsJson) {
-            // ה-API של הסאבים לא עטוף ב-data, לכן פונים ישירות
             const allTimeSubs = subsJson.gifts || [];
             const weeklySubs = subsJson.gifts_week || [];
-            
-            // מזריק לצד הקדמי (Front) - Subs
             renderLeaderboard(allTimeSubs.slice(0, 10), 'all-time-subs-list'); 
             renderLeaderboard(weeklySubs.slice(0, 10), 'weekly-subs-list');
           }
-        } else {
-           throw new Error('subs.json not found yet');
         }
       } catch (error) {
         console.log("Subs Data Fetch Error:", error);
-        document.getElementById('all-time-subs-list').innerHTML = '<div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>';
-        document.getElementById('weekly-subs-list').innerHTML = '<div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>';
       }
     }
 
-    // === פונקציית מעבר לאתר הראשי ===
+    // === פונקציית הפעלה ===
     function activateSite() {
       if (isTransitionStarted) return; 
       isTransitionStarted = true;
@@ -1071,21 +1009,12 @@
       }, 600); 
     }
 
-    // === ניהול סרטונים חסין ===
     function forcePlayVideos() {
-      if (bgVideo) {
-        bgVideo.muted = true;
-        bgVideo.play().catch(e => console.log("BG Video autoplay blocked"));
-      }
-      
+      if (bgVideo) bgVideo.play().catch(e => {});
       if (video && !isTransitionStarted) {
-        video.muted = true;
         let playPromise = video.play();
-        
         if (playPromise !== undefined) {
-          playPromise.catch(error => {
-            console.log("Splash autoplay blocked. Waiting for tap.");
-          });
+          playPromise.catch(e => { activateSite(); });
         }
       }
     }
@@ -1093,9 +1022,7 @@
     function handleFirstInteraction() {
       if (bgVideo) bgVideo.play().catch(e => {});
       if (video && !isTransitionStarted) {
-        video.play().catch(e => {
-          activateSite();
-        });
+        video.play().catch(e => { activateSite(); });
       }
     }
 
@@ -1103,7 +1030,6 @@
     document.addEventListener('touchstart', handleFirstInteraction, {once: true});
     document.addEventListener('click', handleFirstInteraction, {once: true});
 
-    // === סיום הוידאו באופן מסודר ===
     if (video) {
       video.addEventListener('timeupdate', () => {
         if (isTransitionStarted || !video.duration) return;
@@ -1140,7 +1066,7 @@
     });
 
     function animateItems() {
-      const items = document.querySelectorAll('#view-home .animated-item');
+      const items = document.querySelectorAll('.view-section.active .animated-item');
       items.forEach((item, index) => {
         item.classList.remove('item-animate');
         item.style.animationDelay = `${index * 90}ms`;
@@ -1187,7 +1113,7 @@
           if (!response.ok) continue;
           return await response.json();
         } catch (error) {
-          console.log('Fetch JSON failed:', currentUrl, error);
+          console.log('Fetch JSON failed:', currentUrl);
         }
       }
       throw new Error('Could not fetch JSON');
@@ -1199,7 +1125,6 @@
         const isLive = checkIfLiveFromData(data);
         setKickStatus(isLive);
       } catch (error) {
-        console.log('Could not check Kick live status:', error);
         setKickStatus(false);
       }
     }
