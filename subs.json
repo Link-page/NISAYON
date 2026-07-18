@@ -1,7 +1,0 @@
-// ... הקוד הקיים שלך ששומר את leaderboard.json ...
-
-// כאן תוסיף את הקוד לסאבים:
-await page.goto('https://kick.com/api/v2/channels/ronengg/leaderboards', { waitUntil: 'networkidle2' });
-const subsData = await page.evaluate(() => document.querySelector('body').innerText);
-fs.writeFileSync('subs.json', subsData);
-console.log("subs.json updated!");
