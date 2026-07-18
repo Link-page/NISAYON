@@ -309,6 +309,7 @@
       display: flex; align-items: center; justify-content: center;
       background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); z-index: 5; transition: all 0.3s ease;
+      overflow: hidden; /* שומר על תמונות שלא יגלשו מהמסגרת */
     }
 
     .card:hover .icon-box {
@@ -479,10 +480,11 @@
           </div>
         </a>
 
+        <!-- PayPal עם הלוגו המעודכן שביקשת -->
         <a href="https://streamelements.com/ronengg-188c4/tip" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="Donate via PayPal">
           <div class="card-inner">
             <div class="icon-box">
-              <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/paypal-icon.svg" class="platform-icon" alt="PayPal Logo">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHCg2Ea1MpmpbObakJeELV0-MpgbfL2XsRmh37HqzifA&s=10" class="platform-icon" alt="PayPal Logo">
             </div>
             <div class="card-content">
               <div class="card-title text-[#0079C1]">PayPal</div>
