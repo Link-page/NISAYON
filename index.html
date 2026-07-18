@@ -125,7 +125,6 @@
       z-index: 1; 
     }
 
-    /* === הווטרמארק של הלוגו כוידאו === */
     #watermark-bg {
       position: fixed;
       top: 50%;
@@ -200,7 +199,6 @@
       to { transform: rotate(360deg); }
     }
 
-    /* === תפריט ניווט מסוג Pill === */
     .pill-menu {
       display: flex;
       align-items: center;
@@ -239,7 +237,6 @@
       color: rgba(255,255,255,0.7);
     }
 
-    /* === ניהול תצוגות (Views) === */
     .view-section {
       display: none;
       animation: viewFadeIn 0.4s ease forwards;
@@ -273,7 +270,6 @@
       }
     }
 
-    /* === עיצוב הבסיס של הכפתורים המרכזיים === */
     .card {
       position: relative;
       z-index: 3;
@@ -401,7 +397,6 @@
       transform: scale(1.18) rotate(-6deg);
     }
 
-    /* === סטייל לטבלאות המובילים (Leaderboards) === */
     .lb-card {
       position: relative;
       z-index: 3;
@@ -413,14 +408,13 @@
       backdrop-filter: blur(18px);
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
       width: 100%;
-      height: 100%; /* הוסף כדי להכריח את הכרטיס למלא את הקונטיינר ולא להיחתך */
+      height: 100%;
       min-height: 100%;
     }
 
     .lb-card:hover {
       border-color: rgba(255, 140, 0, 0.4);
       box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(255, 140, 0, 0.15);
-      /* נמחק פה ה-transform שהרס את האנימציה התלת מימדית וגרם לריצודים */
     }
 
     .lb-header {
@@ -590,9 +584,9 @@
 
     /* === כרטיסיות מתהפכות (Flip Cards) === */
     .flip-container {
-      perspective: 1000px;
+      perspective: 1200px;
       width: 100%;
-      min-height: 680px; /* פותר את בעיית גובה הרקע - שומר מספיק מקום ל-10 שורות תמיד */
+      min-height: 680px; 
       position: relative;
     }
 
@@ -600,12 +594,9 @@
       position: relative;
       width: 100%;
       height: 100%;
-      transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
       transform-style: preserve-3d;
-    }
-
-    .flip-inner.is-flipped {
-      transform: rotateY(180deg);
+      /* ללא קלאס נוסף של is-flipped - הכל מנוהל ישירות מה-JS כדי לאפשר סיבוב אינסופי */
     }
 
     .flip-front, .flip-back {
@@ -622,17 +613,17 @@
       transform: rotateY(180deg);
     }
 
-    /* === עיצוב כפתורי ההיפוך (החצים החדשים) === */
-    .flip-toggle-btn {
+    /* === כפתורי ניווט גלובליים (החצים החיצוניים) === */
+    .nav-arrow {
       position: absolute;
-      top: 20px;
-      right: 20px; /* ברירת מחדל למובייל - בתוך הכרטיס למעלה */
-      z-index: 10;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
       background: rgba(31, 35, 48, 0.85);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 50%;
-      width: 42px;
-      height: 42px;
+      width: 54px;
+      height: 54px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -641,37 +632,28 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
       transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       color: rgba(255,255,255,0.8);
+      outline: none;
     }
 
-    .flip-toggle-btn:hover {
+    .nav-arrow:hover {
       background: rgba(255, 255, 255, 0.15);
       color: #ffffff;
       border-color: rgba(255, 140, 0, 0.5);
-      box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+      box-shadow: 0 0 20px rgba(255, 140, 0, 0.35);
     }
 
-    /* האפקט שהכפתור ממש נלחץ למטה פיזית כשלוחצים עליו */
-    .flip-toggle-btn:active {
-      transform: scale(0.9) translateY(6px) !important;
+    .nav-arrow:active {
+      transform: translateY(-50%) scale(0.85) !important;
       box-shadow: 0 0 5px rgba(255, 140, 0, 0.2);
     }
 
-    /* במסכים גדולים - הכפתורים קופצים החוצה בדיוק למקומות שציירת בעיגולים הצהובים */
-    @media (min-width: 1150px) {
-      .btn-left {
-        left: -60px;
-        right: auto;
-        top: 60px;
-        width: 48px;
-        height: 48px;
-      }
-      .btn-right {
-        right: -60px;
-        left: auto;
-        top: 60px;
-        width: 48px;
-        height: 48px;
-      }
+    /* מרחק הכפתורים החיצוניים במסכים גדולים */
+    .left-arrow { left: -90px; }
+    .right-arrow { right: -90px; }
+
+    @media (max-width: 1280px) {
+      .left-arrow { left: -25px; }
+      .right-arrow { right: -25px; }
     }
 
     @media (max-width: 768px) {
@@ -679,12 +661,28 @@
         padding: 16px;
       }
       .flip-container {
-        min-height: 620px; /* קצת יותר נמוך במובייל */
+        min-height: 620px;
       }
       .pill-menu {
         gap: 1rem;
         padding: 8px 24px;
       }
+      
+      /* עיצוב במיוחד למובייל - הכפתורים עוברים מעל הטבלאות, במרכז */
+      .leaderboard-wrapper {
+        padding-top: 60px; /* מרווח בשביל הכפתורים */
+      }
+      .nav-arrow {
+        top: 5px;
+        transform: none;
+        width: 48px;
+        height: 48px;
+      }
+      .nav-arrow:active {
+        transform: scale(0.85) !important;
+      }
+      .left-arrow { left: calc(50% - 60px); }
+      .right-arrow { right: auto; left: calc(50% + 12px); }
     }
 
     @media (max-width: 520px) {
@@ -788,7 +786,6 @@
           </div>
         </a>
 
-        <!-- Discord -->
         <a href="https://discord.com/invite/VBzA8GNvHJ" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="RonenGG Discord Server">
           <div class="card-inner">
             <div class="icon-box">
@@ -802,7 +799,6 @@
           </div>
         </a>
 
-        <!-- YouTube -->
         <a href="https://www.youtube.com/@RonenGG" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="RonenGG YouTube Channel">
           <div class="card-inner">
             <div class="icon-box">
@@ -816,7 +812,6 @@
           </div>
         </a>
 
-        <!-- Instagram -->
         <a href="https://www.instagram.com/ronenml" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="RonenGG Instagram">
           <div class="card-inner">
             <div class="icon-box">
@@ -840,7 +835,6 @@
           </div>
         </a>
 
-        <!-- TikTok -->
         <a href="https://www.tiktok.com/@ronenml" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="RonenGG TikTok">
           <div class="card-inner">
             <div class="icon-box">
@@ -859,78 +853,81 @@
 
     <!-- View 2: טבלאות המובילים -->
     <section id="view-leaderboard" class="view-section relative z-10 w-full">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 w-full">
+      <div class="relative w-full leaderboard-wrapper">
         
-        <!-- All-Time Flipper -->
-        <div class="flip-container">
-          <!-- הוספתי פה את חץ ההחלפה ואת קלאס המיקום הייעודי לצד שמאל -->
-          <button class="flip-toggle-btn btn-left" onclick="toggleFlip('all-time-flipper')" aria-label="Switch Data">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-            </svg>
-          </button>
+        <!-- כפתור גלובלי שמאל -->
+        <button class="nav-arrow left-arrow" onclick="spinCards('left')" aria-label="Spin Left">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+        </button>
+
+        <!-- כפתור גלובלי ימין -->
+        <button class="nav-arrow right-arrow" onclick="spinCards('right')" aria-label="Spin Right">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+        </button>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 w-full relative z-10">
           
-          <div class="flip-inner" id="all-time-flipper">
-            <!-- Front: Subs -->
-            <div class="flip-front lb-card">
-              <div class="lb-header">👑 All-Time Top Subs 👑</div>
-              <div class="lb-table-header">
-                <span class="w-12 text-center text-white/50">#</span>
-                <span class="flex-1 text-center">Username</span>
-                <span class="w-20 text-center">Subs</span>
+          <!-- All-Time Flipper -->
+          <div class="flip-container">
+            <div class="flip-inner" id="all-time-flipper">
+              <!-- Front: Subs -->
+              <div class="flip-front lb-card">
+                <div class="lb-header">👑 All-Time Top Subs 👑</div>
+                <div class="lb-table-header">
+                  <span class="w-12 text-center text-white/50">#</span>
+                  <span class="flex-1 text-center">Username</span>
+                  <span class="w-20 text-center">Subs</span>
+                </div>
+                <div id="all-time-subs-list" class="lb-list">
+                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for Subs data...</div>
+                </div>
               </div>
-              <div id="all-time-subs-list" class="lb-list">
-                <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for Subs data...</div>
+              <!-- Back: Kicks -->
+              <div class="flip-back lb-card">
+                <div class="lb-header">💰 All-Time Top Kicks 💰</div>
+                <div class="lb-table-header">
+                  <span class="w-12 text-center text-white/50">#</span>
+                  <span class="flex-1 text-center">Username</span>
+                  <span class="w-20 text-center">Kicks</span>
+                </div>
+                <div id="all-time-kicks-list" class="lb-list"></div>
               </div>
-            </div>
-            <!-- Back: Kicks -->
-            <div class="flip-back lb-card">
-              <div class="lb-header">💰 All-Time Top Kicks 💰</div>
-              <div class="lb-table-header">
-                <span class="w-12 text-center text-white/50">#</span>
-                <span class="flex-1 text-center">Username</span>
-                <span class="w-20 text-center">Kicks</span>
-              </div>
-              <div id="all-time-kicks-list" class="lb-list"></div>
             </div>
           </div>
-        </div>
 
-        <!-- Weekly Flipper -->
-        <div class="flip-container">
-          <!-- הוספתי פה את החץ ואת קלאס המיקום הייעודי לצד ימין -->
-          <button class="flip-toggle-btn btn-right" onclick="toggleFlip('weekly-flipper')" aria-label="Switch Data">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-            </svg>
-          </button>
-          
-          <div class="flip-inner" id="weekly-flipper">
-            <!-- Front: Subs -->
-            <div class="flip-front lb-card">
-              <div class="lb-header">🏆 Weekly Top Subs 🏆</div>
-              <div class="lb-table-header">
-                <span class="w-12 text-center text-white/50">#</span>
-                <span class="flex-1 text-center">Username</span>
-                <span class="w-20 text-center">Subs</span>
+          <!-- Weekly Flipper -->
+          <div class="flip-container">
+            <div class="flip-inner" id="weekly-flipper">
+              <!-- Front: Subs -->
+              <div class="flip-front lb-card">
+                <div class="lb-header">🏆 Weekly Top Subs 🏆</div>
+                <div class="lb-table-header">
+                  <span class="w-12 text-center text-white/50">#</span>
+                  <span class="flex-1 text-center">Username</span>
+                  <span class="w-20 text-center">Subs</span>
+                </div>
+                <div id="weekly-subs-list" class="lb-list">
+                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for Subs data...</div>
+                </div>
               </div>
-              <div id="weekly-subs-list" class="lb-list">
-                <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for Subs data...</div>
+              <!-- Back: Kicks -->
+              <div class="flip-back lb-card">
+                <div class="lb-header">💸 Weekly Top Kicks 💸</div>
+                <div class="lb-table-header">
+                  <span class="w-12 text-center text-white/50">#</span>
+                  <span class="flex-1 text-center">Username</span>
+                  <span class="w-20 text-center">Kicks</span>
+                </div>
+                <div id="weekly-kicks-list" class="lb-list"></div>
               </div>
-            </div>
-            <!-- Back: Kicks -->
-            <div class="flip-back lb-card">
-              <div class="lb-header">💸 Weekly Top Kicks 💸</div>
-              <div class="lb-table-header">
-                <span class="w-12 text-center text-white/50">#</span>
-                <span class="flex-1 text-center">Username</span>
-                <span class="w-20 text-center">Kicks</span>
-              </div>
-              <div id="weekly-kicks-list" class="lb-list"></div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </section>
 
@@ -949,11 +946,24 @@
 
     let isTransitionStarted = false;
 
-    // === מנגנון סיבוב הכרטיסיות (Flip) ===
-    function toggleFlip(flipperId) {
-      const flipper = document.getElementById(flipperId);
-      flipper.classList.toggle('is-flipped');
+    // === מנגנון סיבוב רציף לשתי הכרטיסיות ביחד (כפתורי צד גלובליים) ===
+    let currentRotation = 0;
+    
+    function spinCards(direction) {
+      const flippers = document.querySelectorAll('.flip-inner');
+      
+      // הוספה או הפחתה של 180 מעלות מאפשרת סיבוב אינסופי לכל כיוון
+      if (direction === 'right') {
+        currentRotation += 180;
+      } else {
+        currentRotation -= 180;
+      }
+      
+      flippers.forEach(flipper => {
+        flipper.style.transform = `rotateY(${currentRotation}deg)`;
+      });
     }
+
 
     // === מנגנון התפריטים (Tabs Navigation) ===
     function switchView(viewId, btnElement) {
@@ -969,7 +979,7 @@
     }
 
 
-    // === מנגנון דינמי לטבלת המובילים - קורא את נתוני Kick Kicks/Gifts ===
+    // === מנגנון דינמי לטבלת המובילים ===
     function renderLeaderboard(dataArray, containerId) {
       const container = document.getElementById(containerId);
       container.innerHTML = ''; 
