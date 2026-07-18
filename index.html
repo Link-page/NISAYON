@@ -153,23 +153,20 @@
       to { transform: rotate(360deg); }
     }
 
-    /* === תפריט הניווט (Tabs) - זכוכית ממורכזת ואמיתית === */
+    /* === תפריט הניווט (Tabs) - זכוכית כהה עם נגיעה כתומה (כמו בתמונה) === */
     .pill-menu {
-      display: inline-flex; /* ממרכז את התפריט בצורה מושלמת מתחת ללוגו */
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 2rem;
-      background: rgba(255, 255, 255, 0.06); /* גוון חלבי עדין */
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(15, 10, 5, 0.55); /* זכוכית כהה נוטה לחום-כתום עדין */
+      border: 1px solid rgba(255, 140, 0, 0.25); /* מסגרת כתומה */
       border-radius: 999px;
       padding: 12px 36px;
       margin: 20px auto 32px auto;
-      
-      /* בלור מדויק (20) לזכוכית מציאותית */
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6), inset 0 0 15px rgba(255, 140, 0, 0.05);
     }
 
     .pill-btn {
@@ -220,56 +217,52 @@
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* === כרטיסיות: Liquid Glass זכוכית חלבית === */
+    /* === כרטיסיות: Dark Glass עם מסגרת כתומה זוהרת === */
     .card, .bonus-card, .lb-card {
       position: relative;
       z-index: 3;
       overflow: hidden;
       border-radius: 16px;
       
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+      /* רקע זכוכית כהה */
+      background: rgba(15, 10, 5, 0.45);
       
-      /* בלור 20 פיקסלים בדומה לתפריט העליון */
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      /* טשטוש מדויק שמאפשר לראות את הגיצים בסגנון כהה */
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-left: 4px solid rgba(255, 140, 0, 0.5);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
+      /* מסגרת אחידה כמו בתמונה (בלי הפס העבה בצד) */
+      border: 1px solid rgba(255, 140, 0, 0.25);
+      
+      /* הצללה וזוהר כתום עדין */
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 
+                  0 0 15px rgba(255, 140, 0, 0.05), 
+                  inset 0 0 10px rgba(255, 140, 0, 0.05);
+                  
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .card { padding: 5px; display: block; text-decoration: none; cursor: pointer; }
     .bonus-card { padding: 26px; display: flex; flex-direction: column; gap: 20px; height: 100%; }
     .lb-card { padding: 24px; width: 100%; height: 100%; min-height: 100%; }
 
+    /* הילה חזקה יותר כשהעכבר על הכפתור */
     .card:hover, .bonus-card:hover, .lb-card:hover {
-      border-color: rgba(255, 255, 255, 0.25);
-      border-left-color: #ff8c00;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 30px rgba(255, 140, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 140, 0, 0.6);
+      background: rgba(20, 12, 5, 0.6);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.6), 
+                  0 0 25px rgba(255, 140, 0, 0.15), 
+                  inset 0 0 15px rgba(255, 140, 0, 0.15);
+      transform: translateY(-4px) scale(1.01);
     }
     
-    .card:hover { transform: translateY(-8px) scale(1.02); }
-    .bonus-card:hover { transform: translateY(-4px); }
-
     .card:active {
       transform: translateY(-2px) scale(0.98) !important;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4) !important;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.6) !important;
       transition: transform 0.1s ease, box-shadow 0.1s ease;
     }
 
-    .card::before {
-      content: ""; position: absolute; inset: 0;
-      background: radial-gradient(circle at 15% 0%, rgba(255,255,255,0.08), transparent 34%), radial-gradient(circle at 100% 100%, rgba(255, 140, 0, 0.08), transparent 35%);
-      opacity: 0.9; pointer-events: none;
-    }
-    .card::after {
-      content: ""; position: absolute; top: -70%; right: -45%; width: 60%; height: 220%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-      transform: rotate(25deg); transition: 0.55s ease; pointer-events: none;
-    }
-    .card:hover::after { right: 120%; }
-
+    /* התוכן הפנימי של הכרטיסייה שקוף */
     .card-inner {
       position: relative; z-index: 3; min-height: 80px; border-radius: 12px;
       background: transparent;
@@ -280,16 +273,19 @@
       display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 4;
     }
 
+    /* האייקונים יושבים בתוך ריבוע כהה עם מסגרת כתומה דקיקה */
     .icon-box {
       position: absolute; right: 22px; width: 48px; height: 48px; border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0, 0, 0, 0.4); 
+      border: 1px solid rgba(255, 140, 0, 0.15);
       backdrop-filter: blur(10px);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05); z-index: 5; transition: all 0.3s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02); 
+      z-index: 5; transition: all 0.3s ease;
     }
 
     .card:hover .icon-box {
-      background: rgba(255, 140, 0, 0.08); border-color: rgba(255, 140, 0, 0.3);
+      background: rgba(255, 140, 0, 0.1); border-color: rgba(255, 140, 0, 0.4);
     }
 
     .card-title { font-size: 1.35rem; line-height: 1; font-weight: 900; }
@@ -320,30 +316,30 @@
     /* === כפתורי ניווט גלובליים ללידרבורד === */
     .nav-arrow {
       position: absolute; top: 50%; transform: translateY(-50%); z-index: 20;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 50%;
+      background: rgba(15, 10, 5, 0.55);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 140, 0, 0.25); border-radius: 50%;
       width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; cursor: pointer;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); color: rgba(255,255,255,0.8); outline: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5); transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); color: rgba(255,255,255,0.8); outline: none;
     }
-    .nav-arrow:hover { background: rgba(255, 255, 255, 0.15); color: #ffffff; border-color: rgba(255, 255, 255, 0.3); box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); }
-    .nav-arrow:active { transform: translateY(-50%) scale(0.85) !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }
+    .nav-arrow:hover { background: rgba(20, 12, 5, 0.6); color: #ffffff; border-color: rgba(255, 140, 0, 0.6); box-shadow: 0 0 20px rgba(255, 140, 0, 0.15); }
+    .nav-arrow:active { transform: translateY(-50%) scale(0.85) !important; box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); }
     .left-arrow { left: -90px; } .right-arrow { right: -90px; }
 
     /* === עיצוב פנימי Affiliate Tab === */
     #view-bonuses { width: 100%; max-width: 55rem; margin: 0 auto; }
     
     .bonus-logo { text-align: center; }
-    .bonus-divider { height: 1px; background: rgba(255, 255, 255, 0.1); width: 100%; }
+    .bonus-divider { height: 1px; background: rgba(255, 255, 255, 0.05); width: 100%; }
     
     .bonus-list {
       display: flex; flex-direction: column; gap: 0;
-      border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; background: rgba(0,0,0,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; background: rgba(0,0,0,0.2);
     }
     
     .bonus-item {
       display: flex; align-items: center; gap: 16px; font-weight: 900; font-size: 1rem;
-      color: rgba(255,255,255,0.9); padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.9); padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.03);
     }
     .bonus-item:last-child { border-bottom: none; }
     
@@ -355,11 +351,11 @@
     .check-icon.dimmed { background: rgba(255,140,0,0.15); color: #ff8c00; }
     
     .promo-box {
-      border: 1px dashed rgba(255, 255, 255, 0.2); background: rgba(0,0,0,0.1); border-radius: 8px;
+      border: 1px dashed rgba(255, 140, 0, 0.3); background: rgba(0,0,0,0.3); border-radius: 8px;
       padding: 16px; text-align: center; font-size: 1.25rem; font-weight: 900; letter-spacing: 3px;
       color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s ease;
     }
-    .promo-box:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.4); }
+    .promo-box:hover { background: rgba(255,140,0,0.05); border-color: rgba(255,140,0,0.6); }
     .promo-box:active { transform: scale(0.97); }
     
     /* כפתור בונוס מלא */
@@ -373,11 +369,11 @@
 
     /* כפתור לידרבורד חלול */
     .leaderboard-btn {
-      background: rgba(255, 255, 255, 0.03); color: #fff; border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(0, 0, 0, 0.3); color: #fff; border: 1px solid rgba(255, 140, 0, 0.25);
       font-weight: 900; font-size: 1rem; padding: 12px; border-radius: 8px; text-align: center;
       text-transform: uppercase; transition: all 0.2s ease; cursor: pointer; text-decoration: none; display: block;
     }
-    .leaderboard-btn:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
+    .leaderboard-btn:hover { background: rgba(255, 140, 0, 0.1); border-color: rgba(255, 140, 0, 0.6); transform: translateY(-2px); }
     .leaderboard-btn:active { transform: translateY(2px); }
 
     /* === עיצוב פוטר  === */
@@ -749,10 +745,7 @@
     // הגדרות מנוע הגיצים ב-Canvas
     // ==========================================
     
-    // כאן אתה שולט על המהירות של הגיצים! 
-    // 1.0 = מהירות מקורית
-    // 0.4 = פחות מחצי מהירות (מרחפים לאט)
-    // 2.0 = פי 2 מהר
+    // שליטה על המהירות של הגיצים (0.4 = מרחפים לאט)
     const PARTICLE_SPEED = 0.4; 
     
     const canvas = document.getElementById('particles-canvas');
@@ -772,7 +765,6 @@
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2.5 + 0.5; 
         
-        // החלנו את המהירות על הכיוונים
         this.speedY = (Math.random() * -1.5 - 0.5) * PARTICLE_SPEED; 
         this.speedX = (Math.random() * 1 - 0.5) * PARTICLE_SPEED;
         this.spin = (Math.random() * 0.05 - 0.025) * PARTICLE_SPEED;
