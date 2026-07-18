@@ -273,7 +273,7 @@
       }
     }
 
-    /* === עיצוב הבסיס של הכפתורים === */
+    /* === עיצוב הבסיס של הכפתורים המרכזיים === */
     .card {
       position: relative;
       z-index: 3;
@@ -411,15 +411,16 @@
       padding: 24px;
       box-shadow: 0 18px 48px rgba(0,0,0,0.50);
       backdrop-filter: blur(18px);
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
       width: 100%;
-      min-height: 550px; /* שומר על גובה קבוע כדי שההיפוך לא יקפוץ */
+      height: 100%; /* הוסף כדי להכריח את הכרטיס למלא את הקונטיינר ולא להיחתך */
+      min-height: 100%;
     }
 
     .lb-card:hover {
       border-color: rgba(255, 140, 0, 0.4);
       box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(255, 140, 0, 0.15);
-      transform: translateY(-4px);
+      /* נמחק פה ה-transform שהרס את האנימציה התלת מימדית וגרם לריצודים */
     }
 
     .lb-header {
@@ -591,7 +592,7 @@
     .flip-container {
       perspective: 1000px;
       width: 100%;
-      height: 100%;
+      min-height: 680px; /* פותר את בעיית גובה הרקע - שומר מספיק מקום ל-10 שורות תמיד */
       position: relative;
     }
 
@@ -621,39 +622,64 @@
       transform: rotateY(180deg);
     }
 
-    /* כפתור ההיפוך */
+    /* === עיצוב כפתורי ההיפוך (החצים החדשים) === */
     .flip-toggle-btn {
       position: absolute;
       top: 20px;
-      right: 20px;
+      right: 20px; /* ברירת מחדל למובייל - בתוך הכרטיס למעלה */
       z-index: 10;
-      background: rgba(31, 35, 48, 0.8);
+      background: rgba(31, 35, 48, 0.85);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 50%;
-      width: 38px;
-      height: 38px;
+      width: 42px;
+      height: 42px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       backdrop-filter: blur(12px);
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      transition: all 0.3s ease;
-      color: rgba(255,255,255,0.7);
+      transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      color: rgba(255,255,255,0.8);
     }
 
     .flip-toggle-btn:hover {
       background: rgba(255, 255, 255, 0.15);
       color: #ffffff;
-      transform: scale(1.1) rotate(15deg);
       border-color: rgba(255, 140, 0, 0.5);
       box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+    }
+
+    /* האפקט שהכפתור ממש נלחץ למטה פיזית כשלוחצים עליו */
+    .flip-toggle-btn:active {
+      transform: scale(0.9) translateY(6px) !important;
+      box-shadow: 0 0 5px rgba(255, 140, 0, 0.2);
+    }
+
+    /* במסכים גדולים - הכפתורים קופצים החוצה בדיוק למקומות שציירת בעיגולים הצהובים */
+    @media (min-width: 1150px) {
+      .btn-left {
+        left: -60px;
+        right: auto;
+        top: 60px;
+        width: 48px;
+        height: 48px;
+      }
+      .btn-right {
+        right: -60px;
+        left: auto;
+        top: 60px;
+        width: 48px;
+        height: 48px;
+      }
     }
 
     @media (max-width: 768px) {
       .lb-card {
         padding: 16px;
-        min-height: 500px;
+      }
+      .flip-container {
+        min-height: 620px; /* קצת יותר נמוך במובייל */
       }
       .pill-menu {
         gap: 1rem;
@@ -831,14 +857,17 @@
       </div>
     </section>
 
-    <!-- View 2: טבלאות המובילים (Donators) מנוקה מנתונים מוגדר בתוך View-Leaderboard -->
+    <!-- View 2: טבלאות המובילים -->
     <section id="view-leaderboard" class="view-section relative z-10 w-full">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 w-full">
         
         <!-- All-Time Flipper -->
         <div class="flip-container">
-          <button class="flip-toggle-btn" onclick="toggleFlip('all-time-flipper')" aria-label="Switch Data">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          <!-- הוספתי פה את חץ ההחלפה ואת קלאס המיקום הייעודי לצד שמאל -->
+          <button class="flip-toggle-btn btn-left" onclick="toggleFlip('all-time-flipper')" aria-label="Switch Data">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
           </button>
           
           <div class="flip-inner" id="all-time-flipper">
@@ -869,8 +898,11 @@
 
         <!-- Weekly Flipper -->
         <div class="flip-container">
-          <button class="flip-toggle-btn" onclick="toggleFlip('weekly-flipper')" aria-label="Switch Data">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          <!-- הוספתי פה את החץ ואת קלאס המיקום הייעודי לצד ימין -->
+          <button class="flip-toggle-btn btn-right" onclick="toggleFlip('weekly-flipper')" aria-label="Switch Data">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
           </button>
           
           <div class="flip-inner" id="weekly-flipper">
@@ -951,7 +983,6 @@
         const rank = index + 1;
         const amountColorClass = rank === 1 ? 'text-[#ff8c00]' : 'text-white/70';
         
-        // קריאה ישירה של הנתונים לפי המבנה שקיק מחזירים עכשיו
         const username = user.username || 'Unknown';
         const amount = user.quantity || 0;
         
@@ -976,13 +1007,10 @@
 
         const jsonData = await response.json();
         
-        // מוודאים שהתשובה מכילה את אובייקט ה-data הראשי
         if (jsonData && jsonData.data) {
-            // שולפים את הרשימות המדויקות מה-JSON עבור מטבעות (Kicks)
             const allTimeKicks = jsonData.data.kicks_gifts_lifetime || [];
             const weeklyKicks = jsonData.data.kicks_gifts_week || [];
 
-            // מזריקים את הנתונים לצד האחורי של הכרטיסיות (הצד של הקיקס)
             renderLeaderboard(allTimeKicks.slice(0, 10), 'all-time-kicks-list'); 
             renderLeaderboard(weeklyKicks.slice(0, 10), 'weekly-kicks-list');
         } else {
