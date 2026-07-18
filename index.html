@@ -413,6 +413,7 @@
       backdrop-filter: blur(18px);
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       width: 100%;
+      min-height: 550px; /* שומר על גובה קבוע כדי שההיפוך לא יקפוץ */
     }
 
     .lb-card:hover {
@@ -562,7 +563,7 @@
     
     #view-leaderboard {
       width: 100%;
-      max-width: 68rem; /* רחב יותר כדי להבטיח תצוגת צד לצד */
+      max-width: 68rem;
       margin: 0 auto;
     }
 
@@ -586,9 +587,73 @@
       margin-top: 0.95rem !important;
     }
 
+    /* === כרטיסיות מתהפכות (Flip Cards) === */
+    .flip-container {
+      perspective: 1000px;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flip-inner.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front, .flip-back {
+      width: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .flip-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      transform: rotateY(180deg);
+    }
+
+    /* כפתור ההיפוך */
+    .flip-toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      background: rgba(31, 35, 48, 0.8);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .flip-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      transform: scale(1.1) rotate(15deg);
+      border-color: rgba(255, 140, 0, 0.5);
+      box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
+    }
+
     @media (max-width: 768px) {
       .lb-card {
         padding: 16px;
+        min-height: 500px;
       }
       .pill-menu {
         gap: 1rem;
@@ -656,7 +721,7 @@
       </nav>
     </div>
 
-    <!-- View 1: קישורים מרכזיים (Home) - סדר חדש -->
+    <!-- View 1: קישורים מרכזיים (Home) -->
     <section id="view-home" class="view-section active w-full relative z-10">
       <div class="space-y-4">
 
@@ -769,33 +834,71 @@
     <!-- View 2: טבלאות המובילים (Donators) מנוקה מנתונים מוגדר בתוך View-Leaderboard -->
     <section id="view-leaderboard" class="view-section relative z-10 w-full">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-2 w-full">
-        <!-- All-Time Top Gifters -->
-        <div class="lb-card">
-          <div class="lb-header">👑 All-Time Top Gifters 👑</div>
-          <div class="lb-table-header">
-            <span class="w-12 text-center text-white/50">#</span>
-            <span class="flex-1 text-center">Username</span>
-            <span class="w-20 text-center">Amount</span>
-          </div>
+        
+        <!-- All-Time Flipper -->
+        <div class="flip-container">
+          <button class="flip-toggle-btn" onclick="toggleFlip('all-time-flipper')" aria-label="Switch Data">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </button>
           
-          <div id="all-time-list" class="lb-list">
-            <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for data connection...</div>
+          <div class="flip-inner" id="all-time-flipper">
+            <!-- Front: Subs -->
+            <div class="flip-front lb-card">
+              <div class="lb-header">👑 All-Time Top Subs 👑</div>
+              <div class="lb-table-header">
+                <span class="w-12 text-center text-white/50">#</span>
+                <span class="flex-1 text-center">Username</span>
+                <span class="w-20 text-center">Subs</span>
+              </div>
+              <div id="all-time-subs-list" class="lb-list">
+                <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for Subs data...</div>
+              </div>
+            </div>
+            <!-- Back: Kicks -->
+            <div class="flip-back lb-card">
+              <div class="lb-header">💰 All-Time Top Kicks 💰</div>
+              <div class="lb-table-header">
+                <span class="w-12 text-center text-white/50">#</span>
+                <span class="flex-1 text-center">Username</span>
+                <span class="w-20 text-center">Kicks</span>
+              </div>
+              <div id="all-time-kicks-list" class="lb-list"></div>
+            </div>
           </div>
         </div>
 
-        <!-- Weekly Top Gifters -->
-        <div class="lb-card">
-          <div class="lb-header">🏆 Weekly Top Gifters 🏆</div>
-          <div class="lb-table-header">
-            <span class="w-12 text-center text-white/50">#</span>
-            <span class="flex-1 text-center">Username</span>
-            <span class="w-20 text-center">Amount</span>
-          </div>
+        <!-- Weekly Flipper -->
+        <div class="flip-container">
+          <button class="flip-toggle-btn" onclick="toggleFlip('weekly-flipper')" aria-label="Switch Data">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </button>
           
-          <div id="weekly-list" class="lb-list">
-            <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for data connection...</div>
+          <div class="flip-inner" id="weekly-flipper">
+            <!-- Front: Subs -->
+            <div class="flip-front lb-card">
+              <div class="lb-header">🏆 Weekly Top Subs 🏆</div>
+              <div class="lb-table-header">
+                <span class="w-12 text-center text-white/50">#</span>
+                <span class="flex-1 text-center">Username</span>
+                <span class="w-20 text-center">Subs</span>
+              </div>
+              <div id="weekly-subs-list" class="lb-list">
+                <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for Subs data...</div>
+              </div>
+            </div>
+            <!-- Back: Kicks -->
+            <div class="flip-back lb-card">
+              <div class="lb-header">💸 Weekly Top Kicks 💸</div>
+              <div class="lb-table-header">
+                <span class="w-12 text-center text-white/50">#</span>
+                <span class="flex-1 text-center">Username</span>
+                <span class="w-20 text-center">Kicks</span>
+              </div>
+              <div id="weekly-kicks-list" class="lb-list"></div>
+            </div>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -814,6 +917,12 @@
 
     let isTransitionStarted = false;
 
+    // === מנגנון סיבוב הכרטיסיות (Flip) ===
+    function toggleFlip(flipperId) {
+      const flipper = document.getElementById(flipperId);
+      flipper.classList.toggle('is-flipped');
+    }
+
     // === מנגנון התפריטים (Tabs Navigation) ===
     function switchView(viewId, btnElement) {
       document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
@@ -828,7 +937,7 @@
     }
 
 
-    // === מנגנון דינמי לטבלת המובילים - קורא את נתוני Kick ===
+    // === מנגנון דינמי לטבלת המובילים - קורא את נתוני Kick Kicks/Gifts ===
     function renderLeaderboard(dataArray, containerId) {
       const container = document.getElementById(containerId);
       container.innerHTML = ''; 
@@ -842,15 +951,15 @@
         const rank = index + 1;
         const amountColorClass = rank === 1 ? 'text-[#ff8c00]' : 'text-white/70';
         
-        // כאן אנחנו מתאימים את הקריאה למבנה הנתונים של קיק
-        const username = user.user ? user.user.username : 'Unknown';
-        const amount = user.amount || user.quantity || 0;
+        // קריאה ישירה של הנתונים לפי המבנה שקיק מחזירים עכשיו
+        const username = user.username || 'Unknown';
+        const amount = user.quantity || 0;
         
         const rowHTML = `
           <div class="lb-row">
             <span class="w-12 text-center font-black text-white/40">${rank}</span>
             <span class="flex-1 text-center font-bold text-white/90">${username}</span>
-            <span class="w-20 text-center font-black ${amountColorClass}">${amount}</span>
+            <span class="w-20 text-center font-black ${amountColorClass}">${amount.toLocaleString()}</span>
           </div>
         `;
         container.innerHTML += rowHTML;
@@ -859,28 +968,31 @@
 
     async function fetchLeaderboardData() {
       try {
-        // משיכת הקובץ עם נטרול Cache
         const response = await fetch('leaderboard.json?t=' + new Date().getTime());
         
         if (!response.ok) {
           throw new Error('Leaderboard file not found');
         }
 
-        const data = await response.json();
+        const jsonData = await response.json();
         
-        // קיק שולחים את הנתונים תחת data.leaderboard. במערך הזה יש בדרך כלל את הנתונים
-        // במידה וקיק מחזירים מערך ישיר, אנחנו בודקים גם את זה.
-        const leaderboardItems = data.leaderboard ? data.leaderboard : (Array.isArray(data) ? data : []);
+        // מוודאים שהתשובה מכילה את אובייקט ה-data הראשי
+        if (jsonData && jsonData.data) {
+            // שולפים את הרשימות המדויקות מה-JSON עבור מטבעות (Kicks)
+            const allTimeKicks = jsonData.data.kicks_gifts_lifetime || [];
+            const weeklyKicks = jsonData.data.kicks_gifts_week || [];
 
-        // כרגע ה-API של קיק מחזיר לרוב רק רשימה אחת (הכללית). 
-        // לכן נציג את אותה רשימה בשני המקומות כרגע, עד שנפצל אותם אם קיק יאפשרו בעתיד.
-        renderLeaderboard(leaderboardItems.slice(0, 10), 'all-time-list'); 
-        renderLeaderboard(leaderboardItems.slice(0, 10), 'weekly-list');
+            // מזריקים את הנתונים לצד האחורי של הכרטיסיות (הצד של הקיקס)
+            renderLeaderboard(allTimeKicks.slice(0, 10), 'all-time-kicks-list'); 
+            renderLeaderboard(weeklyKicks.slice(0, 10), 'weekly-kicks-list');
+        } else {
+            throw new Error('Invalid JSON structure from Kick');
+        }
 
       } catch (error) {
         console.log("Leaderboard Data Fetch Error:", error);
-        document.getElementById('all-time-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading data.</div>';
-        document.getElementById('weekly-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading data.</div>';
+        document.getElementById('all-time-kicks-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading data.</div>';
+        document.getElementById('weekly-kicks-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading data.</div>';
       }
     }
 
