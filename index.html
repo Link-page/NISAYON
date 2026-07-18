@@ -596,7 +596,6 @@
       height: 100%;
       transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1);
       transform-style: preserve-3d;
-      /* ללא קלאס נוסף של is-flipped - הכל מנוהל ישירות מה-JS כדי לאפשר סיבוב אינסופי */
     }
 
     .flip-front, .flip-back {
@@ -883,7 +882,7 @@
                   <span class="w-20 text-center">Subs</span>
                 </div>
                 <div id="all-time-subs-list" class="lb-list">
-                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for Subs data...</div>
+                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>
                 </div>
               </div>
               <!-- Back: Kicks -->
@@ -894,7 +893,9 @@
                   <span class="flex-1 text-center">Username</span>
                   <span class="w-20 text-center">Kicks</span>
                 </div>
-                <div id="all-time-kicks-list" class="lb-list"></div>
+                <div id="all-time-kicks-list" class="lb-list">
+                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (leaderboard.json)...</div>
+                </div>
               </div>
             </div>
           </div>
@@ -911,7 +912,7 @@
                   <span class="w-20 text-center">Subs</span>
                 </div>
                 <div id="weekly-subs-list" class="lb-list">
-                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for Subs data...</div>
+                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>
                 </div>
               </div>
               <!-- Back: Kicks -->
@@ -922,7 +923,9 @@
                   <span class="flex-1 text-center">Username</span>
                   <span class="w-20 text-center">Kicks</span>
                 </div>
-                <div id="weekly-kicks-list" class="lb-list"></div>
+                <div id="weekly-kicks-list" class="lb-list">
+                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (leaderboard.json)...</div>
+                </div>
               </div>
             </div>
           </div>
@@ -964,7 +967,6 @@
       });
     }
 
-
     // === מנגנון התפריטים (Tabs Navigation) ===
     function switchView(viewId, btnElement) {
       document.querySelectorAll('.pill-btn').forEach(btn => btn.classList.remove('active'));
@@ -977,7 +979,6 @@
         animateItems();
       }
     }
-
 
     // === מנגנון דינמי לטבלת המובילים ===
     function renderLeaderboard(dataArray, containerId) {
@@ -1007,33 +1008,51 @@
       });
     }
 
+    // === שאיבת הנתונים משני הקבצים הנפרדים (Subs + Kicks) ===
     async function fetchLeaderboardData() {
+      // 1. שאיבת נתוני הקיקס מהקובץ הקיים
       try {
-        const response = await fetch('leaderboard.json?t=' + new Date().getTime());
-        
-        if (!response.ok) {
-          throw new Error('Leaderboard file not found');
-        }
-
-        const jsonData = await response.json();
-        
-        if (jsonData && jsonData.data) {
-            const allTimeKicks = jsonData.data.kicks_gifts_lifetime || [];
-            const weeklyKicks = jsonData.data.kicks_gifts_week || [];
-
+        const kicksRes = await fetch('leaderboard.json?t=' + new Date().getTime());
+        if (kicksRes.ok) {
+          const kicksJson = await kicksRes.json();
+          if (kicksJson && kicksJson.data) {
+            const allTimeKicks = kicksJson.data.kicks_gifts_lifetime || [];
+            const weeklyKicks = kicksJson.data.kicks_gifts_week || [];
+            
+            // מזריק לצד האחורי (Back) - Kicks
             renderLeaderboard(allTimeKicks.slice(0, 10), 'all-time-kicks-list'); 
             renderLeaderboard(weeklyKicks.slice(0, 10), 'weekly-kicks-list');
-        } else {
-            throw new Error('Invalid JSON structure from Kick');
+          }
         }
-
       } catch (error) {
-        console.log("Leaderboard Data Fetch Error:", error);
-        document.getElementById('all-time-kicks-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading data.</div>';
-        document.getElementById('weekly-kicks-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading data.</div>';
+        console.log("Kicks Data Fetch Error:", error);
+        document.getElementById('all-time-kicks-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading Kicks data.</div>';
+        document.getElementById('weekly-kicks-list').innerHTML = '<div class="text-center py-8 text-red-500/70 text-sm font-bold">Error loading Kicks data.</div>';
+      }
+
+      // 2. שאיבת נתוני הסאבים מהקובץ החדש
+      try {
+        const subsRes = await fetch('subs.json?t=' + new Date().getTime());
+        if (subsRes.ok) {
+          const subsJson = await subsRes.json();
+          if (subsJson) {
+            // ה-API של הסאבים לא עטוף ב-data, לכן פונים ישירות
+            const allTimeSubs = subsJson.gifts || [];
+            const weeklySubs = subsJson.gifts_week || [];
+            
+            // מזריק לצד הקדמי (Front) - Subs
+            renderLeaderboard(allTimeSubs.slice(0, 10), 'all-time-subs-list'); 
+            renderLeaderboard(weeklySubs.slice(0, 10), 'weekly-subs-list');
+          }
+        } else {
+           throw new Error('subs.json not found yet');
+        }
+      } catch (error) {
+        console.log("Subs Data Fetch Error:", error);
+        document.getElementById('all-time-subs-list').innerHTML = '<div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>';
+        document.getElementById('weekly-subs-list').innerHTML = '<div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>';
       }
     }
-
 
     // === פונקציית מעבר לאתר הראשי ===
     function activateSite() {
@@ -1051,7 +1070,6 @@
         if (splash) splash.style.display = 'none';
       }, 600); 
     }
-
 
     // === ניהול סרטונים חסין ===
     function forcePlayVideos() {
