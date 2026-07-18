@@ -56,7 +56,7 @@
       color: white;
     }
 
-    /* === קנבס חלקיקים (מנוע הגיצים החדש) === */
+    /* === קנבס חלקיקים (מנוע הגיצים) === */
     #particles-canvas {
       position: fixed;
       top: 0;
@@ -153,22 +153,23 @@
       to { transform: rotate(360deg); }
     }
 
-    /* === תפריט הניווט (Tabs) - זכוכית מטושטשת מאוד === */
+    /* === תפריט הניווט (Tabs) - זכוכית ממורכזת ואמיתית === */
     .pill-menu {
-      display: flex;
+      display: inline-flex; /* ממרכז את התפריט בצורה מושלמת מתחת ללוגו */
       align-items: center;
       justify-content: center;
-      gap: 1.5rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      gap: 2rem;
+      background: rgba(255, 255, 255, 0.06); /* גוון חלבי עדין */
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 999px;
-      padding: 10px 32px;
+      padding: 12px 36px;
       margin: 20px auto 32px auto;
-      backdrop-filter: blur(100px);
-      -webkit-backdrop-filter: blur(100px);
-      width: max-content;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-      flex-wrap: wrap;
+      
+      /* בלור מדויק (20) לזכוכית מציאותית */
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
     }
 
     .pill-btn {
@@ -219,15 +220,19 @@
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* === עיצוב אחיד: Liquid Glass מטושטש אמיתי === */
+    /* === כרטיסיות: Liquid Glass זכוכית חלבית === */
     .card, .bonus-card, .lb-card {
       position: relative;
       z-index: 3;
       overflow: hidden;
       border-radius: 16px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.0) 100%);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
+      
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
+      
+      /* בלור 20 פיקסלים בדומה לתפריט העליון */
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-left: 4px solid rgba(255, 140, 0, 0.5);
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -417,7 +422,7 @@
   
   <video id="watermark-bg" src="Comp_1_1.webm" autoplay loop muted playsinline webkit-playsinline disablePictureInPicture></video>
   
-  <!-- כאן הוספנו את הקנבס של הגיצים -->
+  <!-- קנבס של הגיצים -->
   <canvas id="particles-canvas"></canvas>
 
   <div id="spotlight"></div>
@@ -438,7 +443,7 @@
 
       <h1 class="text-4xl font-black text-white neon tracking-tight mb-2">RonenGG</h1>
       
-      <!-- תפריט הניווט -->
+      <!-- תפריט הניווט (Tabs) -->
       <nav class="pill-menu">
         <button class="pill-btn active" onclick="switchView('home', this)">HOME</button>
         <button class="pill-btn" onclick="switchView('bonuses', this)">PROMO CODES</button>
@@ -741,8 +746,15 @@
 
   <script>
     // ==========================================
-    // מנוע גיצים (Particles) ב-Canvas
+    // הגדרות מנוע הגיצים ב-Canvas
     // ==========================================
+    
+    // כאן אתה שולט על המהירות של הגיצים! 
+    // 1.0 = מהירות מקורית
+    // 0.4 = פחות מחצי מהירות (מרחפים לאט)
+    // 2.0 = פי 2 מהר
+    const PARTICLE_SPEED = 0.4; 
+    
     const canvas = document.getElementById('particles-canvas');
     const ctx = canvas.getContext('2d');
     let particlesArray = [];
@@ -759,27 +771,26 @@
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2.5 + 0.5; 
-        this.speedY = Math.random() * -1.5 - 0.5; // מרחף למעלה
-        this.speedX = Math.random() * 1 - 0.5; // זז קצת לצדדים
         
-        // צבעים של גיצים (כתום, צהוב, לבן)
+        // החלנו את המהירות על הכיוונים
+        this.speedY = (Math.random() * -1.5 - 0.5) * PARTICLE_SPEED; 
+        this.speedX = (Math.random() * 1 - 0.5) * PARTICLE_SPEED;
+        this.spin = (Math.random() * 0.05 - 0.025) * PARTICLE_SPEED;
+        
         const colors = [
-          'rgba(255, 140, 0, 0.8)', // כתום
-          'rgba(255, 170, 0, 0.9)', // כתום בהיר/צהוב
-          'rgba(255, 255, 255, 0.6)' // לבן חלש
+          'rgba(255, 140, 0, 0.8)', 
+          'rgba(255, 170, 0, 0.9)', 
+          'rgba(255, 255, 255, 0.6)' 
         ];
         this.color = colors[Math.floor(Math.random() * colors.length)];
-        
         this.angle = Math.random() * Math.PI * 2;
-        this.spin = Math.random() * 0.05 - 0.025;
       }
       
       update() {
         this.y += this.speedY;
-        this.x += Math.sin(this.angle) * 0.5 + this.speedX; // תנועה גלית קלה
+        this.x += Math.sin(this.angle) * 0.5 + this.speedX;
         this.angle += this.spin;
 
-        // אם הגיץ יוצא מהמסך למעלה, נחזיר אותו למטה
         if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
           this.y = canvas.height + 10;
           this.x = Math.random() * canvas.width;
@@ -790,7 +801,6 @@
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
-        // אפקט זריחה סביב הגיץ
         ctx.shadowBlur = this.size * 3;
         ctx.shadowColor = this.color;
         ctx.fill();
@@ -799,7 +809,7 @@
 
     function initParticles() {
       particlesArray = [];
-      const numberOfParticles = Math.min(window.innerWidth / 8, 120); // כמות שמתאימה למסך
+      const numberOfParticles = Math.min(window.innerWidth / 8, 120); 
       for (let i = 0; i < numberOfParticles; i++) {
         particlesArray.push(new Particle());
       }
@@ -817,7 +827,6 @@
     initParticles();
     animateParticles();
     // ==========================================
-
 
     const spotlight = document.getElementById('spotlight');
     const mainContent = document.getElementById('main-page-content');
