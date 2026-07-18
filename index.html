@@ -18,7 +18,7 @@
       --accent: #ffffff;
       --accent-soft: rgba(255,255,255,0.12);
       --accent-glow: rgba(255,255,255,0.28);
-      --spotlight-color: rgba(255, 140, 0, 0.15); 
+      --spotlight-color: rgba(156, 128, 255, 0.18);
     }
 
     * {
@@ -56,7 +56,7 @@
       color: white;
     }
 
-    /* === קנבס חלקיקים (מנוע הגיצים) === */
+    /* === מנוע הגיצים החדש (Canvas) === */
     #particles-canvas {
       position: fixed;
       top: 0;
@@ -116,7 +116,7 @@
     #profile-image-container {
       position: relative;
       transition: all 0.4s ease;
-      border: 4px solid rgba(255, 140, 0, 0.4);
+      border: 4px solid rgba(255,255,255,0.55);
       overflow: hidden;
       width: 136px;
       height: 136px;
@@ -128,7 +128,7 @@
       content: "";
       position: absolute;
       inset: -18px;
-      background: conic-gradient(from 0deg, #ff8c00, #ffb347, #ff8c00, #ff5e00, #ff8c00);
+      background: conic-gradient(from 0deg, #ff5bd8, #62e8ff, #507dff, #ff5bd8);
       animation: rotateRing 4s linear infinite;
       z-index: -2;
     }
@@ -138,41 +138,42 @@
       position: absolute;
       inset: 0;
       border-radius: 999px;
-      box-shadow: inset 0 0 28px rgba(0,0,0,0.6);
+      box-shadow: inset 0 0 28px rgba(0,0,0,0.45);
       pointer-events: none;
       z-index: 2;
     }
 
     #profile-image-container:hover {
       transform: scale(1.07) rotate(-1deg);
-      box-shadow: 0 0 42px rgba(255, 140, 0, 0.35);
-      border-color: #ff8c00;
+      box-shadow: 0 0 42px var(--accent-glow);
+      border-color: var(--accent);
     }
 
     @keyframes rotateRing {
       to { transform: rotate(360deg); }
     }
 
-    /* === תפריט הניווט (Tabs) - בדיוק כמו בתמונה 2 === */
+    /* === תפריט הניווט (Tabs) === */
     .pill-menu {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 2.5rem;
-      background: rgba(22, 22, 24, 0.65); /* רקע כהה נקי */
-      border: 1px solid rgba(255, 255, 255, 0.05); /* גבול סופר עדין */
+      gap: 1.5rem;
+      background: rgba(31, 35, 48, 0.65);
+      border: 1px solid rgba(255,255,255,0.06);
       border-radius: 999px;
-      padding: 12px 36px;
+      padding: 10px 32px;
       margin: 20px auto 32px auto;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+      width: max-content;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      flex-wrap: wrap;
     }
 
     .pill-btn {
       color: rgba(255,255,255,0.4);
-      font-weight: 800;
-      font-size: 0.85rem;
+      font-weight: 900;
+      font-size: 0.9rem;
       letter-spacing: 1.5px;
       text-transform: uppercase;
       background: transparent;
@@ -184,12 +185,12 @@
     }
 
     .pill-btn.active {
-      color: #ff8c00;
-      text-shadow: none; /* הורדנו את הזוהר העודף */
+      color: #ffffff;
+      text-shadow: 0 0 15px rgba(255,255,255,0.4);
     }
 
     .pill-btn:hover:not(.active) {
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255,255,255,0.7);
     }
 
     /* === ניהול תצוגות (Views) === */
@@ -217,74 +218,122 @@
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* === כרטיסיות: העתק מדויק לתמונה (Dark Glass נקי) === */
+    /* ========================================================= */
+    /* === העיצוב המאוחד לכל הכרטיסיות (Home, Promo, LB) === */
+    /* ========================================================= */
     .card, .bonus-card, .lb-card {
       position: relative;
       z-index: 3;
+      display: block;
       overflow: hidden;
-      border-radius: 14px;
-      background: rgba(22, 22, 24, 0.65); /* רקע כהה, אחיד ושקוף */
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.05); /* מסגרת לבנה כמעט בלתי נראית */
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* צל עדין שנותן עומק */
-      transition: all 0.2s ease;
+      border-radius: 16px;
+      padding: 5px; /* יצירת המסגרת */
+      text-decoration: none;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.02)),
+        linear-gradient(145deg, rgba(255, 140, 0, 0.10), rgba(0,0,0,0.4));
+      border: 1px solid rgba(255, 140, 0, 0.15);
+      border-left: 4px solid rgba(255, 140, 0, 0.4);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.50), inset 0 1px 0 rgba(255,255,255,0.08);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      backdrop-filter: blur(18px);
     }
 
-    .card { padding: 0; display: block; text-decoration: none; cursor: pointer; }
-    .bonus-card { padding: 26px; display: flex; flex-direction: column; gap: 20px; height: 100%; }
-    .lb-card { padding: 24px; width: 100%; height: 100%; min-height: 100%; }
+    .card { cursor: pointer; }
+    .bonus-card, .lb-card { width: 100%; height: 100%; }
 
-    /* במעבר עכבר - פשוט מתבהר טיפה ועולה, בלי הילות משוגעות */
+    /* הברקות רקע לכל סוגי הכרטיסיות */
+    .card::before, .bonus-card::before, .lb-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(255,255,255,0.18), transparent 34%),
+        radial-gradient(circle at 100% 100%, rgba(255, 140, 0, 0.16), transparent 35%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    /* אפקט חיתוך האור (Glossy effect) */
+    .card::after, .bonus-card::after, .lb-card::after {
+      content: "";
+      position: absolute;
+      top: -70%; right: -45%; width: 60%; height: 220%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transform: rotate(25deg); transition: 0.55s ease; pointer-events: none;
+    }
+
     .card:hover, .bonus-card:hover, .lb-card:hover {
-      background: rgba(35, 35, 40, 0.75);
-      border-color: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
-    }
-    
-    .card:active {
-      transform: scale(0.98);
+      border-color: rgba(255, 140, 0, 0.6);
+      border-left-color: #ff8c00;
+      box-shadow: 0 26px 68px rgba(0,0,0,0.66), 0 0 38px rgba(255, 140, 0, 0.35);
     }
 
-    /* התוכן הפנימי של הכרטיסייה */
+    .card:hover { transform: translateY(-8px) scale(1.02); }
+    .bonus-card:hover { transform: translateY(-4px); }
+    /* כרטיסיות ה-Leaderboard מקבלות hover אבל בלי Transform כדי לא לשבור את אפקט הסיבוב התלת מימדי */
+
+    .card:hover::after, .bonus-card:hover::after, .lb-card:hover::after { right: 120%; }
+
+    .card:active {
+      transform: translateY(-2px) scale(0.98) !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.7), 0 0 15px rgba(255, 140, 0, 0.2) !important;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    /* === החלק הפנימי של הכרטיסיות === */
+    .card-inner, .bonus-inner, .lb-inner {
+      position: relative; z-index: 3; border-radius: 12px;
+      background: linear-gradient(145deg, rgba(11, 8, 4, 0.78), rgba(28, 16, 6, 0.68));
+    }
+
     .card-inner {
-      position: relative; z-index: 3; min-height: 74px; border-radius: 14px;
-      display: flex; align-items: center; justify-content: center; padding: 10px 20px;
+      min-height: 80px;
+      display: flex; align-items: center; justify-content: center; padding: 16px 22px; overflow: hidden;
+    }
+
+    .bonus-inner {
+      display: flex; flex-direction: column; gap: 20px; height: 100%; padding: 26px;
+    }
+
+    .lb-inner {
+      display: flex; flex-direction: column; width: 100%; height: 100%; padding: 24px;
     }
 
     .card-content {
       display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 4;
     }
 
-    /* === האייקונים (נקיים, צפים בצד, בלי רקע!) === */
     .icon-box {
-      position: absolute; right: 24px; 
-      width: 28px; height: 28px;
+      position: absolute; right: 22px; width: 48px; height: 48px; border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
-      z-index: 5;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.12); z-index: 5; transition: all 0.3s ease;
     }
-    .platform-icon { 
-      width: 100%; height: 100%; object-fit: contain; 
-      transition: transform 0.2s ease; 
-    }
-    .card:hover .platform-icon { transform: scale(1.08); }
 
-    .card-title { font-size: 1.25rem; font-weight: 800; letter-spacing: 0.5px; line-height: 1; }
+    .card:hover .icon-box {
+      background: rgba(255, 140, 0, 0.12); border-color: rgba(255, 140, 0, 0.35); box-shadow: inset 0 0 15px rgba(255, 140, 0, 0.2);
+    }
+
+    .card-title { font-size: 1.35rem; line-height: 1; font-weight: 900; }
+    .platform-icon { width: 30px; height: 30px; object-fit: contain; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+    .card:hover .platform-icon { transform: scale(1.18) rotate(-6deg); }
+
 
     /* === סטטוס חי Kick === */
-    .status-dot { width: 7px; height: 7px; border-radius: 999px; display: inline-block; }
-    .status-live { color: #53fc18; }
-    .status-live .status-dot { background: #53fc18; box-shadow: 0 0 8px rgba(83, 252, 24, 0.8); animation: livePulse 1.5s infinite; }
-    .status-offline { color: #9ca3af; font-size: 0.75rem; margin-top: 4px; font-weight: bold; }
+    .status-dot { width: 9px; height: 9px; border-radius: 999px; display: inline-block; }
+    .status-live { color: #53fc18; text-shadow: 0 0 10px rgba(83, 252, 24, 0.7); }
+    .status-live .status-dot { background: #53fc18; box-shadow: 0 0 12px rgba(83, 252, 24, 0.9); animation: livePulse 1.2s infinite; }
+    .status-offline { color: #9ca3af; }
     .status-offline .status-dot { background: #6b7280; }
-    @keyframes livePulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.6; } 100% { transform: scale(1); opacity: 1; } }
+    @keyframes livePulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.45); opacity: 0.6; } 100% { transform: scale(1); opacity: 1; } }
 
-    /* === עיצוב פנימי Leaderboards === */
+    /* === סטייל לטבלאות המובילים (Leaderboards) פנימי === */
     .lb-header { font-size: 1.15rem; font-weight: 900; color: #fff; text-align: center; margin-bottom: 24px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); letter-spacing: 0.05em; }
-    .lb-table-header { display: flex; justify-content: space-between; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.6); font-weight: 900; font-size: 0.9rem; }
-    .lb-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.02); border-radius: 8px; transition: all 0.2s ease; }
+    .lb-table-header { display: flex; justify-content: space-between; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); font-weight: 900; font-size: 0.95rem; }
+    .lb-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); border-radius: 8px; transition: all 0.2s ease; }
     .lb-row:last-child { border-bottom: none; }
-    .lb-row:hover { background: rgba(255, 255, 255, 0.03); }
+    .lb-row:hover { background: rgba(255, 140, 0, 0.1); transform: scale(1.02); }
 
     /* === כרטיסיות מתהפכות (Flip Cards) ללידרבורד === */
     .flip-container { perspective: 1200px; width: 100%; min-height: 680px; position: relative; }
@@ -295,84 +344,70 @@
     /* === כפתורי ניווט גלובליים ללידרבורד === */
     .nav-arrow {
       position: absolute; top: 50%; transform: translateY(-50%); z-index: 20;
-      background: rgba(22, 22, 24, 0.65);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 50%;
+      background: rgba(31, 35, 48, 0.85); border: 1px solid rgba(255,255,255,0.15); border-radius: 50%;
       width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.2s ease; color: rgba(255,255,255,0.8); outline: none;
+      backdrop-filter: blur(12px); box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); color: rgba(255,255,255,0.8); outline: none;
     }
-    .nav-arrow:hover { background: rgba(35, 35, 40, 0.75); color: #ffffff; border-color: rgba(255, 255, 255, 0.1); }
-    .nav-arrow:active { transform: translateY(-50%) scale(0.9); }
+    .nav-arrow:hover { background: rgba(255, 255, 255, 0.15); color: #ffffff; border-color: rgba(255, 140, 0, 0.5); box-shadow: 0 0 20px rgba(255, 140, 0, 0.35); }
+    .nav-arrow:active { transform: translateY(-50%) scale(0.85) !important; box-shadow: 0 0 5px rgba(255, 140, 0, 0.2); }
     .left-arrow { left: -90px; } .right-arrow { right: -90px; }
 
-    /* === עיצוב פנימי Affiliate Tab === */
+    /* === עיצוב Affiliate Tab פנימי === */
     #view-bonuses { width: 100%; max-width: 55rem; margin: 0 auto; }
-    
     .bonus-logo { text-align: center; }
-    .bonus-divider { height: 1px; background: rgba(255, 255, 255, 0.05); width: 100%; }
-    
-    .bonus-list {
-      display: flex; flex-direction: column; gap: 0;
-      border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 8px; background: rgba(0,0,0,0.1);
-    }
-    
-    .bonus-item {
-      display: flex; align-items: center; gap: 16px; font-weight: 800; font-size: 0.95rem;
-      color: rgba(255,255,255,0.8); padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.02);
-    }
+    .bonus-divider { height: 1px; background: rgba(255, 140, 0, 0.3); width: 100%; }
+    .bonus-list { display: flex; flex-direction: column; gap: 0; border: 1px solid rgba(255,140,0,0.4); border-radius: 8px; }
+    .bonus-item { display: flex; align-items: center; gap: 16px; font-weight: 900; font-size: 1rem; color: rgba(255,255,255,0.9); padding: 18px 20px; border-bottom: 1px solid rgba(255,140,0,0.2); }
     .bonus-item:last-child { border-bottom: none; }
-    
-    .check-icon {
-      background: #ff8c00; color: black; border-radius: 50%; width: 24px; height: 24px;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .check-icon svg { width: 14px; height: 14px; }
+    .check-icon { background: #ff8c00; color: black; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .check-icon svg { width: 16px; height: 16px; }
     .check-icon.dimmed { background: rgba(255,140,0,0.15); color: #ff8c00; }
     
     .promo-box {
-      border: 1px dashed rgba(255, 255, 255, 0.15); background: rgba(0,0,0,0.2); border-radius: 8px;
+      border: 1px dashed rgba(255,255,255,0.2); background: rgba(0,0,0,0.4); border-radius: 8px;
       padding: 16px; text-align: center; font-size: 1.25rem; font-weight: 900; letter-spacing: 3px;
       color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s ease;
     }
-    .promo-box:hover { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.3); }
+    .promo-box:hover { background: rgba(255,140,0,0.1); border-color: rgba(255,140,0,0.5); }
     .promo-box:active { transform: scale(0.97); }
     
-    /* כפתור בונוס מלא */
     .claim-btn {
-      background: #ff8c00; color: black; font-weight: 900; font-size: 1rem; padding: 14px;
+      background: #ff8c00; color: black; font-weight: 900; font-size: 1.1rem; padding: 14px;
       border-radius: 8px; text-align: center; text-transform: uppercase; transition: all 0.2s ease;
-      cursor: pointer; border: none; text-decoration: none; display: block;
+      box-shadow: 0 4px 15px rgba(255,140,0,0.2); cursor: pointer; border: none; text-decoration: none; display: block;
     }
-    .claim-btn:hover { background: #ffa733; transform: translateY(-2px); }
+    .claim-btn:hover { background: #ffa733; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,140,0,0.4); }
     .claim-btn:active { transform: translateY(2px); }
 
-    /* כפתור לידרבורד חלול */
     .leaderboard-btn {
-      background: rgba(0, 0, 0, 0.2); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1);
-      font-weight: 800; font-size: 0.95rem; padding: 12px; border-radius: 8px; text-align: center;
+      background: transparent; color: #ff8c00; border: 2px solid rgba(255, 140, 0, 0.4);
+      font-weight: 900; font-size: 1rem; padding: 12px; border-radius: 8px; text-align: center;
       text-transform: uppercase; transition: all 0.2s ease; cursor: pointer; text-decoration: none; display: block;
     }
-    .leaderboard-btn:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.2); transform: translateY(-2px); }
+    .leaderboard-btn:hover { background: rgba(255, 140, 0, 0.1); border-color: #ff8c00; transform: translateY(-2px); }
     .leaderboard-btn:active { transform: translateY(2px); }
 
-    /* === עיצוב פוטר  === */
+
+    /* === עיצוב פוטר === */
     .site-footer { margin-top: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-    .footer-copy { color: rgba(255,255,255,0.3); font-size: 0.76rem; font-weight: 800; }
+    .footer-copy { color: rgba(255,255,255,0.78); font-size: 0.76rem; font-weight: 900; }
 
     #splash-screen { position: fixed; inset: 0; background: #000000; display: flex; justify-content: center; align-items: center; z-index: 99999; transition: opacity 0.55s ease-out; overflow: hidden; }
     #splash-video { width: 100%; height: 100%; object-fit: cover; display: block; }
     #main-page-content { opacity: 0; visibility: hidden; transition: opacity 0.42s ease-in, transform 0.42s ease; transform: translateY(18px) scale(0.985); min-height: 100vh; justify-content: flex-start; padding-top: 58px !important; padding-bottom: 24px !important; width: 100%; }
     #main-page-content.visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
-    .space-y-4 { display: grid; gap: 14px; }
-    #view-home { max-width: 420px; margin: 0 auto; }
+    .space-y-4 { display: grid; gap: 12px; }
+    #view-home { max-width: 430px; margin: 0 auto; }
     #view-leaderboard { width: 100%; max-width: 68rem; margin: 0 auto; }
+
 
     @media (max-width: 1280px) {
       .left-arrow { left: -25px; } .right-arrow { right: -25px; }
     }
 
     @media (max-width: 768px) {
-      .lb-card { padding: 16px; }
+      .lb-inner { padding: 16px; }
+      .bonus-inner { padding: 16px; }
       .flip-container { min-height: 620px; }
       .pill-menu { gap: 1rem; padding: 8px 24px; }
       .leaderboard-wrapper { padding-top: 60px; }
@@ -380,12 +415,13 @@
       .nav-arrow:active { transform: scale(0.85) !important; }
       .left-arrow { left: calc(50% - 60px); }
       .right-arrow { right: auto; left: calc(50% + 12px); }
-      .bonus-card { padding: 16px; }
     }
 
     @media (max-width: 520px) {
       #main-page-content { padding-top: 40px !important; }
-      .card-title { font-size: 1.15rem; }
+      .card-inner { min-height: 72px; padding: 14px 17px; }
+      .icon-box { right: 17px; width: 44px; height: 44px; border-radius: 12px; }
+      .card-title { font-size: 1.2rem; }
       #profile-image-container { width: 124px; height: 124px; }
     }
   </style>
@@ -395,7 +431,7 @@
   
   <video id="watermark-bg" src="Comp_1_1.webm" autoplay loop muted playsinline webkit-playsinline disablePictureInPicture></video>
   
-  <!-- קנבס של הגיצים -->
+  <!-- === מנוע הגיצים החדש (Canvas) === -->
   <canvas id="particles-canvas"></canvas>
 
   <div id="spotlight"></div>
@@ -416,7 +452,7 @@
 
       <h1 class="text-4xl font-black text-white neon tracking-tight mb-2">RonenGG</h1>
       
-      <!-- תפריט הניווט (Tabs) -->
+      <!-- תפריט הניווט -->
       <nav class="pill-menu">
         <button class="pill-btn active" onclick="switchView('home', this)">HOME</button>
         <button class="pill-btn" onclick="switchView('bonuses', this)">PROMO CODES</button>
@@ -435,9 +471,9 @@
             </div>
             <div class="card-content">
               <div class="card-title text-[#53fc18]">Kick</div>
-              <div id="kick-live-status" class="flex items-center justify-center gap-2 status-offline" aria-live="polite">
+              <div id="kick-live-status" class="mt-1 text-xs font-black flex items-center justify-center gap-2 status-offline" aria-live="polite">
                 <span class="status-dot"></span>
-                <span class="status-text">offline</span>
+                <span class="status-text">Checking...</span>
               </div>
             </div>
           </div>
@@ -457,7 +493,7 @@
         <a href="https://gchangers.co.il/" target="_blank" rel="noopener noreferrer" class="card animated-item" aria-label="GameChangers Website">
           <div class="card-inner">
             <div class="icon-box">
-              <img src="gchangers.webp" class="platform-icon opacity-80" alt="GameChangers Logo">
+              <img src="gchangers.webp" class="platform-icon" alt="GameChangers Logo">
             </div>
             <div class="card-content">
               <div class="card-title text-[#ff8c00]">GameChangers</div>
@@ -539,88 +575,93 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-2 w-full">
         
         <!-- EmpireDrop -->
+        <!-- השתמשתי באותה מחלקה ".bonus-card" שתקבל את המסגרת העיצובית החדשה -->
         <div class="bonus-card animated-item item-animate" style="animation-delay: 100ms;">
-          <div class="bonus-logo flex justify-center items-center min-h-[48px]">
-             <img src="https://empiredrop.com/icons/header/desktop/big-empire-drop-logo-gold.svg" alt="EmpireDrop" class="h-10 object-contain drop-shadow-[0_0_8px_rgba(255,215,0,0.3)]">
-          </div>
-          <div class="bonus-divider"></div>
-          
-          <div class="bonus-list">
-            <div class="bonus-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div> 
-              Free Cases
+          <div class="bonus-inner">
+            <div class="bonus-logo flex justify-center items-center min-h-[48px]">
+               <img src="https://empiredrop.com/icons/header/desktop/big-empire-drop-logo-gold.svg" alt="EmpireDrop" class="h-10 object-contain drop-shadow-[0_0_8px_rgba(255,215,0,0.3)]">
             </div>
-            <div class="bonus-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div> 
-              First Time 200% Deposit Bonus
-            </div>
-            <div class="bonus-item">
-              <div class="check-icon dimmed">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div> 
-              Leaderboard
-            </div>
-          </div>
-          
-          <div class="mt-auto flex flex-col gap-3">
-            <div class="promo-box mb-2" onclick="copyPromo('RONENGG', this)">
-              <span>RONENGG</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
+            <div class="bonus-divider"></div>
+            
+            <div class="bonus-list">
+              <div class="bonus-item">
+                <div class="check-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div> 
+                Free Cases
+              </div>
+              <div class="bonus-item">
+                <div class="check-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div> 
+                First Time 200% Deposit Bonus
+              </div>
+              <div class="bonus-item">
+                <div class="check-icon dimmed">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div> 
+                Leaderboard
+              </div>
             </div>
             
-            <a href="https://empiredrop.com/r/ronengg" target="_blank" rel="noopener noreferrer" class="claim-btn">Claim Bonus</a>
-            
-            <a href="https://ronen.gg/leaderboard/empiredrop" target="_blank" rel="noopener noreferrer" class="leaderboard-btn">View Leaderboard</a>
+            <div class="mt-auto flex flex-col gap-3">
+              <div class="promo-box mb-2" onclick="copyPromo('RONENGG', this)">
+                <span>RONENGG</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </div>
+              
+              <a href="https://empiredrop.com/r/ronengg" target="_blank" rel="noopener noreferrer" class="claim-btn">Claim Bonus</a>
+              
+              <a href="https://ronen.gg/leaderboard/empiredrop" target="_blank" rel="noopener noreferrer" class="leaderboard-btn">View Leaderboard</a>
+            </div>
           </div>
         </div>
 
         <!-- CSDROP -->
         <div class="bonus-card animated-item item-animate" style="animation-delay: 200ms;">
-          <div class="bonus-logo flex justify-center items-center min-h-[48px]">
-             <img src="https://csdrop.com/images/brand/logo-csdrop.webp" alt="CSDROP" class="h-10 object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.3)]">
-          </div>
-          <div class="bonus-divider"></div>
-          
-          <div class="bonus-list">
-            <div class="bonus-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div> 
-              Free Cases
+          <div class="bonus-inner">
+            <div class="bonus-logo flex justify-center items-center min-h-[48px]">
+               <img src="https://csdrop.com/images/brand/logo-csdrop.webp" alt="CSDROP" class="h-10 object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.3)]">
             </div>
-            <div class="bonus-item">
-              <div class="check-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div> 
-              First Time 200% Deposit Bonus
-            </div>
-            <div class="bonus-item">
-              <div class="check-icon dimmed">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              </div> 
-              Leaderboard
-            </div>
-          </div>
-          
-          <div class="mt-auto flex flex-col gap-3">
-            <div class="promo-box mb-2" onclick="copyPromo('RONENGG', this)">
-              <span>RONENGG</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
+            <div class="bonus-divider"></div>
+            
+            <div class="bonus-list">
+              <div class="bonus-item">
+                <div class="check-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div> 
+                Free Cases
+              </div>
+              <div class="bonus-item">
+                <div class="check-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div> 
+                First Time 200% Deposit Bonus
+              </div>
+              <div class="bonus-item">
+                <div class="check-icon dimmed">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div> 
+                Leaderboard
+              </div>
             </div>
             
-            <a href="https://csdrop.com/r/ronengg" target="_blank" rel="noopener noreferrer" class="claim-btn">Claim Bonus</a>
-            
-            <a href="https://ronen.gg/leaderboard/csdrop" target="_blank" rel="noopener noreferrer" class="leaderboard-btn">View Leaderboard</a>
+            <div class="mt-auto flex flex-col gap-3">
+              <div class="promo-box mb-2" onclick="copyPromo('RONENGG', this)">
+                <span>RONENGG</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </div>
+              
+              <a href="https://csdrop.com/r/ronengg" target="_blank" rel="noopener noreferrer" class="claim-btn">Claim Bonus</a>
+              
+              <a href="https://ronen.gg/leaderboard/csdrop" target="_blank" rel="noopener noreferrer" class="leaderboard-btn">View Leaderboard</a>
+            </div>
           </div>
         </div>
 
@@ -655,25 +696,29 @@
           <div class="flip-container">
             <div class="flip-inner" id="all-time-flipper">
               <div class="flip-front lb-card">
-                <div class="lb-header">👑 All-Time Top Subs 👑</div>
-                <div class="lb-table-header">
-                  <span class="w-12 text-center text-white/50">#</span>
-                  <span class="flex-1 text-center">Username</span>
-                  <span class="w-20 text-center">Subs</span>
-                </div>
-                <div id="all-time-subs-list" class="lb-list">
-                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>
+                <div class="lb-inner">
+                  <div class="lb-header">👑 All-Time Top Subs 👑</div>
+                  <div class="lb-table-header">
+                    <span class="w-12 text-center text-white/50">#</span>
+                    <span class="flex-1 text-center">Username</span>
+                    <span class="w-20 text-center">Subs</span>
+                  </div>
+                  <div id="all-time-subs-list" class="lb-list">
+                    <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>
+                  </div>
                 </div>
               </div>
               <div class="flip-back lb-card">
-                <div class="lb-header">💰 All-Time Top Kicks 💰</div>
-                <div class="lb-table-header">
-                  <span class="w-12 text-center text-white/50">#</span>
-                  <span class="flex-1 text-center">Username</span>
-                  <span class="w-20 text-center">Kicks</span>
-                </div>
-                <div id="all-time-kicks-list" class="lb-list">
-                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (leaderboard.json)...</div>
+                <div class="lb-inner">
+                  <div class="lb-header">💰 All-Time Top Kicks 💰</div>
+                  <div class="lb-table-header">
+                    <span class="w-12 text-center text-white/50">#</span>
+                    <span class="flex-1 text-center">Username</span>
+                    <span class="w-20 text-center">Kicks</span>
+                  </div>
+                  <div id="all-time-kicks-list" class="lb-list">
+                    <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (leaderboard.json)...</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -683,25 +728,29 @@
           <div class="flip-container">
             <div class="flip-inner" id="weekly-flipper">
               <div class="flip-front lb-card">
-                <div class="lb-header">🏆 Weekly Top Subs 🏆</div>
-                <div class="lb-table-header">
-                  <span class="w-12 text-center text-white/50">#</span>
-                  <span class="flex-1 text-center">Username</span>
-                  <span class="w-20 text-center">Subs</span>
-                </div>
-                <div id="weekly-subs-list" class="lb-list">
-                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>
+                <div class="lb-inner">
+                  <div class="lb-header">🏆 Weekly Top Subs 🏆</div>
+                  <div class="lb-table-header">
+                    <span class="w-12 text-center text-white/50">#</span>
+                    <span class="flex-1 text-center">Username</span>
+                    <span class="w-20 text-center">Subs</span>
+                  </div>
+                  <div id="weekly-subs-list" class="lb-list">
+                    <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (subs.json)...</div>
+                  </div>
                 </div>
               </div>
               <div class="flip-back lb-card">
-                <div class="lb-header">💸 Weekly Top Kicks 💸</div>
-                <div class="lb-table-header">
-                  <span class="w-12 text-center text-white/50">#</span>
-                  <span class="flex-1 text-center">Username</span>
-                  <span class="w-20 text-center">Kicks</span>
-                </div>
-                <div id="weekly-kicks-list" class="lb-list">
-                  <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (leaderboard.json)...</div>
+                <div class="lb-inner">
+                  <div class="lb-header">💸 Weekly Top Kicks 💸</div>
+                  <div class="lb-table-header">
+                    <span class="w-12 text-center text-white/50">#</span>
+                    <span class="flex-1 text-center">Username</span>
+                    <span class="w-20 text-center">Kicks</span>
+                  </div>
+                  <div id="weekly-kicks-list" class="lb-list">
+                    <div class="text-center py-8 text-white/40 text-sm font-bold">Waiting for backend setup (leaderboard.json)...</div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -719,10 +768,10 @@
 
   <script>
     // ==========================================
-    // הגדרות מנוע הגיצים ב-Canvas
+    // הגדרות מנוע הגיצים ב-Canvas (שמחליף את ה-CSS הישן)
     // ==========================================
     
-    // שליטה על המהירות של הגיצים (0.4 = מרחפים לאט)
+    // כאן אתה שולט על המהירות של הגיצים! (0.4 = 40% מהמהירות)
     const PARTICLE_SPEED = 0.4; 
     
     const canvas = document.getElementById('particles-canvas');
