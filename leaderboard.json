@@ -7,7 +7,7 @@
         "username": "RB6666"
       },
       {
-        "quantity": 83500,
+        "quantity": 89000,
         "user_id": 76334394,
         "username": "PostB"
       },
@@ -65,7 +65,7 @@
         "username": "natanelf"
       },
       {
-        "quantity": 40500,
+        "quantity": 46000,
         "user_id": 76334394,
         "username": "PostB"
       },
@@ -118,17 +118,22 @@
         "username": "SUPERGAMINGIL"
       },
       {
+        "quantity": 25500,
+        "user_id": 76334394,
+        "username": "PostB"
+      },
+      {
         "quantity": 20000,
         "user_id": 87190114,
         "username": "RB6666"
       },
       {
         "quantity": 20000,
-        "user_id": 76334394,
-        "username": "PostB"
+        "user_id": 52117011,
+        "username": "BlackKafe"
       },
       {
-        "quantity": 15000,
+        "quantity": 15500,
         "user_id": 121490135,
         "username": "joell000"
       },
@@ -136,6 +141,11 @@
         "quantity": 14500,
         "user_id": 78275186,
         "username": "Dor_103"
+      },
+      {
+        "quantity": 10500,
+        "user_id": 80908105,
+        "username": "Devlqw"
       },
       {
         "quantity": 9000,
@@ -146,16 +156,6 @@
         "quantity": 9000,
         "user_id": 100841871,
         "username": "AVIathol"
-      },
-      {
-        "quantity": 8500,
-        "user_id": 80908105,
-        "username": "Devlqw"
-      },
-      {
-        "quantity": 7500,
-        "user_id": 8402653,
-        "username": "Survivor5"
       }
     ],
     "kicks_gifts_week_enabled": true
