@@ -71,6 +71,11 @@
       },
       {
         "quantity": 2000,
+        "user_id": 39366945,
+        "username": "shalev_segev"
+      },
+      {
+        "quantity": 2000,
         "user_id": 101267058,
         "username": "Comicten"
       },
@@ -78,11 +83,6 @@
         "quantity": 1500,
         "user_id": 80908105,
         "username": "Devlqw"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 39366945,
-        "username": "shalev_segev"
       },
       {
         "quantity": 1000,
