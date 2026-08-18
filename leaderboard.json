@@ -108,14 +108,14 @@
     "kicks_gifts_month_enabled": true,
     "kicks_gifts_week": [
       {
+        "quantity": 2500,
+        "user_id": 107721285,
+        "username": "Liamram"
+      },
+      {
         "quantity": 2000,
         "user_id": 79623134,
         "username": "FlowT3x"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 107721285,
-        "username": "Liamram"
       },
       {
         "quantity": 1500,
