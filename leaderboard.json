@@ -47,7 +47,7 @@
         "username": "Space_Itay"
       },
       {
-        "quantity": 47636,
+        "quantity": 48136,
         "user_id": 90040352,
         "username": "AmitLux"
       }
@@ -123,6 +123,11 @@
         "username": "Thryx_0"
       },
       {
+        "quantity": 1500,
+        "user_id": 37376706,
+        "username": "Rashford333"
+      },
+      {
         "quantity": 1000,
         "user_id": 8268329,
         "username": "Trexthefrog"
@@ -151,11 +156,6 @@
         "quantity": 1000,
         "user_id": 119023182,
         "username": "OfficialBOBO"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 106643891,
-        "username": "liad13133"
       }
     ],
     "kicks_gifts_week_enabled": true
