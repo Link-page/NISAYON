@@ -106,7 +106,18 @@
       }
     ],
     "kicks_gifts_month_enabled": true,
-    "kicks_gifts_week": [],
+    "kicks_gifts_week": [
+      {
+        "quantity": 2500,
+        "user_id": 106425986,
+        "username": "YOTAM_123"
+      },
+      {
+        "quantity": 500,
+        "user_id": 77927288,
+        "username": "Thryx_0"
+      }
+    ],
     "kicks_gifts_week_enabled": true
   },
   "message": "Success"
