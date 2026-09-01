@@ -56,6 +56,11 @@
     "kicks_gifts_month": [
       {
         "quantity": 2000,
+        "user_id": 66833592,
+        "username": "TheMahvat"
+      },
+      {
+        "quantity": 2000,
         "user_id": 4962955,
         "username": "BrandyFR"
       },
@@ -81,28 +86,23 @@
       },
       {
         "quantity": 1000,
+        "user_id": 45187773,
+        "username": "omerbig2012"
+      },
+      {
+        "quantity": 1000,
         "user_id": 102152515,
         "username": "NoamWorld"
       },
       {
         "quantity": 500,
+        "user_id": 92426071,
+        "username": "Fxtrader99"
+      },
+      {
+        "quantity": 500,
         "user_id": 78752547,
         "username": "ilay44"
-      },
-      {
-        "quantity": 500,
-        "user_id": 78014627,
-        "username": "MRbro_12"
-      },
-      {
-        "quantity": 500,
-        "user_id": 76334394,
-        "username": "PostB"
-      },
-      {
-        "quantity": 500,
-        "user_id": 66420126,
-        "username": "its_shaked"
       }
     ],
     "kicks_gifts_month_enabled": true,
@@ -119,6 +119,11 @@
       },
       {
         "quantity": 2000,
+        "user_id": 66833592,
+        "username": "TheMahvat"
+      },
+      {
+        "quantity": 2000,
         "user_id": 4962955,
         "username": "BrandyFR"
       },
@@ -126,6 +131,11 @@
         "quantity": 2000,
         "user_id": 21440028,
         "username": "NaftaliGG"
+      },
+      {
+        "quantity": 1500,
+        "user_id": 45187773,
+        "username": "omerbig2012"
       },
       {
         "quantity": 1000,
@@ -146,16 +156,6 @@
         "quantity": 1000,
         "user_id": 79977855,
         "username": "Sativa_696"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 79823917,
-        "username": "Nakash128"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 102726717,
-        "username": "YonatanZXR"
       }
     ],
     "kicks_gifts_week_enabled": true
