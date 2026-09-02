@@ -91,6 +91,11 @@
       },
       {
         "quantity": 1000,
+        "user_id": 66420126,
+        "username": "its_shaked"
+      },
+      {
+        "quantity": 1000,
         "user_id": 45187773,
         "username": "omerbig2012"
       },
@@ -98,11 +103,6 @@
         "quantity": 1000,
         "user_id": 102152515,
         "username": "NoamWorld"
-      },
-      {
-        "quantity": 500,
-        "user_id": 92426071,
-        "username": "Fxtrader99"
       }
     ],
     "kicks_gifts_month_enabled": true,
@@ -138,6 +138,11 @@
         "username": "omerbig2012"
       },
       {
+        "quantity": 1040,
+        "user_id": 101470982,
+        "username": "maor45"
+      },
+      {
         "quantity": 1000,
         "user_id": 9153248,
         "username": "PutiTP"
@@ -151,11 +156,6 @@
         "quantity": 1000,
         "user_id": 86831771,
         "username": "YUDA69"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 79977855,
-        "username": "Sativa_696"
       }
     ],
     "kicks_gifts_week_enabled": true
