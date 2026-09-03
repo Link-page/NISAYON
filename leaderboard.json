@@ -2,7 +2,7 @@
   "data": {
     "kicks_gifts_lifetime": [
       {
-        "quantity": 205000,
+        "quantity": 205500,
         "user_id": 87190114,
         "username": "RB6666"
       },
@@ -37,7 +37,7 @@
         "username": "TheZohanLIVE"
       },
       {
-        "quantity": 64500,
+        "quantity": 65000,
         "user_id": 104398609,
         "username": "SUPERGAMINGIL"
       },
@@ -60,19 +60,24 @@
         "username": "eillay22"
       },
       {
+        "quantity": 5500,
+        "user_id": 104398609,
+        "username": "SUPERGAMINGIL"
+      },
+      {
         "quantity": 5000,
         "user_id": 113904030,
         "username": "statbox"
       },
       {
-        "quantity": 5000,
-        "user_id": 104398609,
-        "username": "SUPERGAMINGIL"
-      },
-      {
         "quantity": 3500,
         "user_id": 26302692,
         "username": "Liorperetz"
+      },
+      {
+        "quantity": 3500,
+        "user_id": 120940310,
+        "username": "rayboybegone"
       },
       {
         "quantity": 2000,
@@ -91,18 +96,13 @@
       },
       {
         "quantity": 1500,
-        "user_id": 21440028,
-        "username": "NaftaliGG"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 9153248,
-        "username": "PutiTP"
-      },
-      {
-        "quantity": 1000,
         "user_id": 87190114,
         "username": "RB6666"
+      },
+      {
+        "quantity": 1500,
+        "user_id": 21440028,
+        "username": "NaftaliGG"
       }
     ],
     "kicks_gifts_month_enabled": true,
@@ -113,19 +113,24 @@
         "username": "eillay22"
       },
       {
+        "quantity": 5500,
+        "user_id": 104398609,
+        "username": "SUPERGAMINGIL"
+      },
+      {
         "quantity": 5000,
         "user_id": 113904030,
         "username": "statbox"
       },
       {
-        "quantity": 5000,
-        "user_id": 104398609,
-        "username": "SUPERGAMINGIL"
-      },
-      {
         "quantity": 3500,
         "user_id": 26302692,
         "username": "Liorperetz"
+      },
+      {
+        "quantity": 3500,
+        "user_id": 120940310,
+        "username": "rayboybegone"
       },
       {
         "quantity": 2500,
@@ -151,11 +156,6 @@
         "quantity": 2000,
         "user_id": 21440028,
         "username": "NaftaliGG"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 86831771,
-        "username": "YUDA69"
       }
     ],
     "kicks_gifts_week_enabled": true
