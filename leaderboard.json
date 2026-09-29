@@ -139,23 +139,23 @@
       },
       {
         "quantity": 500,
+        "user_id": 79034327,
+        "username": "Sagi_Z"
+      },
+      {
+        "quantity": 500,
+        "user_id": 77856378,
+        "username": "shitrit"
+      },
+      {
+        "quantity": 500,
+        "user_id": 55946729,
+        "username": "Ornissim"
+      },
+      {
+        "quantity": 500,
         "user_id": 120940310,
         "username": "rayboyyy"
-      },
-      {
-        "quantity": 500,
-        "user_id": 119023182,
-        "username": "OfficialBOBO"
-      },
-      {
-        "quantity": 500,
-        "user_id": 114093576,
-        "username": "Trololoi"
-      },
-      {
-        "quantity": 500,
-        "user_id": 102035267,
-        "username": "DONATELLO54"
       }
     ],
     "kicks_gifts_week_enabled": true
