@@ -27,7 +27,7 @@
         "username": "PostB"
       },
       {
-        "quantity": 111500,
+        "quantity": 116500,
         "user_id": 67453019,
         "username": "natanelf"
       },
@@ -66,6 +66,11 @@
       },
       {
         "quantity": 13000,
+        "user_id": 67453019,
+        "username": "natanelf"
+      },
+      {
+        "quantity": 13000,
         "user_id": 124765381,
         "username": "Toxic34435"
       },
@@ -98,11 +103,6 @@
         "quantity": 8500,
         "user_id": 67144059,
         "username": "Space_Itay"
-      },
-      {
-        "quantity": 8000,
-        "user_id": 86831771,
-        "username": "YUDA69"
       }
     ],
     "kicks_gifts_month_enabled": true,
@@ -113,6 +113,11 @@
         "username": "ARIAL1234"
       },
       {
+        "quantity": 5000,
+        "user_id": 67453019,
+        "username": "natanelf"
+      },
+      {
         "quantity": 2000,
         "user_id": 100058101,
         "username": "Laralan"
@@ -121,6 +126,16 @@
         "quantity": 1000,
         "user_id": 80609198,
         "username": "IMA_SHEL_RONEN"
+      },
+      {
+        "quantity": 1000,
+        "user_id": 4885063,
+        "username": "bruvvv69"
+      },
+      {
+        "quantity": 500,
+        "user_id": 81740660,
+        "username": "Octobercom"
       },
       {
         "quantity": 500,
@@ -141,21 +156,6 @@
         "quantity": 500,
         "user_id": 79034327,
         "username": "Sagi_Z"
-      },
-      {
-        "quantity": 500,
-        "user_id": 77875405,
-        "username": "Shakrann"
-      },
-      {
-        "quantity": 500,
-        "user_id": 77856378,
-        "username": "shitrit"
-      },
-      {
-        "quantity": 500,
-        "user_id": 77671188,
-        "username": "DviRoSs"
       }
     ],
     "kicks_gifts_week_enabled": true
