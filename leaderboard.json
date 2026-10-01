@@ -55,29 +55,34 @@
     "kicks_gifts_lifetime_enabled": true,
     "kicks_gifts_month": [
       {
+        "quantity": 1500,
+        "user_id": 40378991,
+        "username": "Uniquee3e"
+      },
+      {
+        "quantity": 1000,
+        "user_id": 80628404,
+        "username": "Gritza"
+      },
+      {
         "quantity": 1000,
         "user_id": 50119878,
         "username": "FirefoxOG"
       },
       {
         "quantity": 1000,
-        "user_id": 40378991,
-        "username": "Uniquee3e"
+        "user_id": 132271043,
+        "username": "oshrisvrgg"
       },
       {
-        "quantity": 500,
-        "user_id": 80628404,
-        "username": "Gritza"
+        "quantity": 501,
+        "user_id": 81740660,
+        "username": "Octobercom"
       },
       {
         "quantity": 500,
         "user_id": 69584309,
         "username": "Sagivbss"
-      },
-      {
-        "quantity": 500,
-        "user_id": 132271043,
-        "username": "oshrisvrgg"
       },
       {
         "quantity": 500,
@@ -88,6 +93,11 @@
         "quantity": 500,
         "user_id": 102514402,
         "username": "Yahavos22"
+      },
+      {
+        "quantity": 200,
+        "user_id": 84071888,
+        "username": "upc_rainy"
       },
       {
         "quantity": 1,
@@ -113,6 +123,21 @@
         "username": "Laralan"
       },
       {
+        "quantity": 1500,
+        "user_id": 40378991,
+        "username": "Uniquee3e"
+      },
+      {
+        "quantity": 1001,
+        "user_id": 81740660,
+        "username": "Octobercom"
+      },
+      {
+        "quantity": 1000,
+        "user_id": 80628404,
+        "username": "Gritza"
+      },
+      {
         "quantity": 1000,
         "user_id": 80609198,
         "username": "IMA_SHEL_RONEN"
@@ -129,23 +154,8 @@
       },
       {
         "quantity": 1000,
-        "user_id": 40378991,
-        "username": "Uniquee3e"
-      },
-      {
-        "quantity": 500,
-        "user_id": 81740660,
-        "username": "Octobercom"
-      },
-      {
-        "quantity": 500,
-        "user_id": 80628404,
-        "username": "Gritza"
-      },
-      {
-        "quantity": 500,
-        "user_id": 80603505,
-        "username": "alon_25325523"
+        "user_id": 132271043,
+        "username": "oshrisvrgg"
       }
     ],
     "kicks_gifts_week_enabled": true
