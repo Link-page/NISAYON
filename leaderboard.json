@@ -71,6 +71,11 @@
       },
       {
         "quantity": 1500,
+        "user_id": 37376706,
+        "username": "Rashford333"
+      },
+      {
+        "quantity": 1500,
         "user_id": 132271043,
         "username": "oshrisvrgg"
       },
@@ -98,66 +103,10 @@
         "quantity": 1000,
         "user_id": 14416808,
         "username": "ItsKodish"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 128201525,
-        "username": "full_box67"
       }
     ],
     "kicks_gifts_month_enabled": true,
-    "kicks_gifts_week": [
-      {
-        "quantity": 12000,
-        "user_id": 100459473,
-        "username": "ARIAL1234"
-      },
-      {
-        "quantity": 10000,
-        "user_id": 109430942,
-        "username": "NEHORAY_1245"
-      },
-      {
-        "quantity": 5000,
-        "user_id": 67453019,
-        "username": "natanelf"
-      },
-      {
-        "quantity": 2000,
-        "user_id": 63709644,
-        "username": "NinjaBoyOri"
-      },
-      {
-        "quantity": 2000,
-        "user_id": 100058101,
-        "username": "Laralan"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 40378991,
-        "username": "Uniquee3e"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 132271043,
-        "username": "oshrisvrgg"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 120940310,
-        "username": "rayboyyy"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 102726717,
-        "username": "YonatanZXR"
-      },
-      {
-        "quantity": 1001,
-        "user_id": 81740660,
-        "username": "Octobercom"
-      }
-    ],
+    "kicks_gifts_week": [],
     "kicks_gifts_week_enabled": true
   },
   "message": "Success"
