@@ -81,28 +81,28 @@
       },
       {
         "quantity": 2000,
+        "user_id": 79933146,
+        "username": "Shak4d"
+      },
+      {
+        "quantity": 2000,
+        "user_id": 37376706,
+        "username": "Rashford333"
+      },
+      {
+        "quantity": 2000,
         "user_id": 128201525,
         "username": "full_box67"
       },
       {
         "quantity": 2000,
+        "user_id": 121743544,
+        "username": "Snackpo"
+      },
+      {
+        "quantity": 2000,
         "user_id": 102726717,
         "username": "YonatanZXR"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 87190114,
-        "username": "RB6666"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 79933146,
-        "username": "Shak4d"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 40378991,
-        "username": "Uniquee3e"
       }
     ],
     "kicks_gifts_month_enabled": true,
@@ -128,9 +128,24 @@
         "username": "michaelteitel"
       },
       {
-        "quantity": 1000,
+        "quantity": 2000,
+        "user_id": 121743544,
+        "username": "Snackpo"
+      },
+      {
+        "quantity": 1500,
         "user_id": 79933146,
         "username": "Shak4d"
+      },
+      {
+        "quantity": 1500,
+        "user_id": 3543825,
+        "username": "Tzurky"
+      },
+      {
+        "quantity": 1000,
+        "user_id": 77754853,
+        "username": "EmilyQQ"
       },
       {
         "quantity": 1000,
@@ -141,21 +156,6 @@
         "quantity": 1000,
         "user_id": 66906501,
         "username": "FlYeRBlue"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 128201525,
-        "username": "full_box67"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 126103300,
-        "username": "lironshafir"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 103671748,
-        "username": "jaimito2004m"
       }
     ],
     "kicks_gifts_week_enabled": true
