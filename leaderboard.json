@@ -91,6 +91,11 @@
       },
       {
         "quantity": 2500,
+        "user_id": 40378991,
+        "username": "Uniquee3e"
+      },
+      {
+        "quantity": 2500,
         "user_id": 37376706,
         "username": "Rashford333"
       },
@@ -98,11 +103,6 @@
         "quantity": 2500,
         "user_id": 29939300,
         "username": "yarinlmao"
-      },
-      {
-        "quantity": 2001,
-        "user_id": 67685767,
-        "username": "aLnz0r"
       }
     ],
     "kicks_gifts_month_enabled": true,
