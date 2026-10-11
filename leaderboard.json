@@ -17,7 +17,7 @@
         "username": "kitshawa31"
       },
       {
-        "quantity": 127000,
+        "quantity": 137000,
         "user_id": 67453019,
         "username": "natanelf"
       },
@@ -70,7 +70,7 @@
         "username": "NEHORAY_1245"
       },
       {
-        "quantity": 10500,
+        "quantity": 20500,
         "user_id": 67453019,
         "username": "natanelf"
       },
@@ -90,6 +90,11 @@
         "username": "NinjaBoyOri"
       },
       {
+        "quantity": 3504,
+        "user_id": 102588812,
+        "username": "AVIV333"
+      },
+      {
         "quantity": 3500,
         "user_id": 86831771,
         "username": "YUDA69"
@@ -98,11 +103,6 @@
         "quantity": 3000,
         "user_id": 37376706,
         "username": "Rashford333"
-      },
-      {
-        "quantity": 3000,
-        "user_id": 3138930,
-        "username": "gerbi"
       }
     ],
     "kicks_gifts_month_enabled": true,
@@ -118,14 +118,14 @@
         "username": "Shor3tyy"
       },
       {
+        "quantity": 20500,
+        "user_id": 67453019,
+        "username": "natanelf"
+      },
+      {
         "quantity": 11500,
         "user_id": 109430942,
         "username": "NEHORAY_1245"
-      },
-      {
-        "quantity": 10500,
-        "user_id": 67453019,
-        "username": "natanelf"
       },
       {
         "quantity": 5500,
@@ -136,6 +136,11 @@
         "quantity": 5500,
         "user_id": 121743544,
         "username": "Snackpo"
+      },
+      {
+        "quantity": 3504,
+        "user_id": 102588812,
+        "username": "AVIV333"
       },
       {
         "quantity": 3500,
@@ -151,11 +156,6 @@
         "quantity": 3000,
         "user_id": 108576892,
         "username": "michaelteitel"
-      },
-      {
-        "quantity": 2500,
-        "user_id": 91822319,
-        "username": "arthurit0Z"
       }
     ],
     "kicks_gifts_week_enabled": true
