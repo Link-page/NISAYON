@@ -123,6 +123,16 @@
         "username": "gerbi"
       },
       {
+        "quantity": 2000,
+        "user_id": 77875405,
+        "username": "Shakrann"
+      },
+      {
+        "quantity": 1500,
+        "user_id": 76747157,
+        "username": "Imri812"
+      },
+      {
         "quantity": 1500,
         "user_id": 63709644,
         "username": "NinjaBoyOri"
@@ -133,29 +143,19 @@
         "username": "King2656"
       },
       {
-        "quantity": 1000,
-        "user_id": 81647475,
-        "username": "Hodi12"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 3470717,
-        "username": "Moshik3855228"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 134204581,
-        "username": "qedcf23"
-      },
-      {
-        "quantity": 1000,
+        "quantity": 1500,
         "user_id": 120940310,
         "username": "rayboyyy"
       },
       {
-        "quantity": 1000,
-        "user_id": 114381785,
-        "username": "iMargii"
+        "quantity": 1500,
+        "user_id": 104953828,
+        "username": "Harel102"
+      },
+      {
+        "quantity": 1451,
+        "user_id": 77466339,
+        "username": "JCLocksmith"
       }
     ],
     "kicks_gifts_week_enabled": true
