@@ -75,7 +75,7 @@
         "username": "NEHORAY_1245"
       },
       {
-        "quantity": 7500,
+        "quantity": 9500,
         "user_id": 29939300,
         "username": "yarinlmao"
       },
@@ -128,6 +128,11 @@
         "username": "Shakrann"
       },
       {
+        "quantity": 2000,
+        "user_id": 29939300,
+        "username": "yarinlmao"
+      },
+      {
         "quantity": 1500,
         "user_id": 76747157,
         "username": "Imri812"
@@ -151,11 +156,6 @@
         "quantity": 1500,
         "user_id": 104953828,
         "username": "Harel102"
-      },
-      {
-        "quantity": 1451,
-        "user_id": 77466339,
-        "username": "JCLocksmith"
       }
     ],
     "kicks_gifts_week_enabled": true
