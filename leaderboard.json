@@ -2,7 +2,7 @@
   "data": {
     "kicks_gifts_lifetime": [
       {
-        "quantity": 217500,
+        "quantity": 218500,
         "user_id": 87190114,
         "username": "RB6666"
       },
@@ -144,6 +144,11 @@
       },
       {
         "quantity": 2000,
+        "user_id": 50662143,
+        "username": "Wssloak"
+      },
+      {
+        "quantity": 2000,
         "user_id": 136231371,
         "username": "yonatan2555"
       },
@@ -151,11 +156,6 @@
         "quantity": 1500,
         "user_id": 77247239,
         "username": "essverland"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 76334394,
-        "username": "PostB"
       }
     ],
     "kicks_gifts_week_enabled": true
