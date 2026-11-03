@@ -12,7 +12,7 @@
         "username": "Shor3tyy"
       },
       {
-        "quantity": 164000,
+        "quantity": 166000,
         "user_id": 67453019,
         "username": "natanelf"
       },
@@ -55,12 +55,22 @@
     "kicks_gifts_lifetime_enabled": true,
     "kicks_gifts_month": [
       {
+        "quantity": 5000,
+        "user_id": 56738129,
+        "username": "eillay22"
+      },
+      {
         "quantity": 4500,
         "user_id": 137059641,
         "username": "liamhochman2007"
       },
       {
-        "quantity": 1000,
+        "quantity": 2000,
+        "user_id": 67453019,
+        "username": "natanelf"
+      },
+      {
+        "quantity": 2000,
         "user_id": 3138930,
         "username": "gerbi"
       },
@@ -88,19 +98,34 @@
         "quantity": 37,
         "user_id": 121446109,
         "username": "nitay3"
+      },
+      {
+        "quantity": 1,
+        "user_id": 27700504,
+        "username": "reem777"
       }
     ],
     "kicks_gifts_month_enabled": true,
     "kicks_gifts_week": [
       {
+        "quantity": 5000,
+        "user_id": 56738129,
+        "username": "eillay22"
+      },
+      {
+        "quantity": 2000,
+        "user_id": 67453019,
+        "username": "natanelf"
+      },
+      {
+        "quantity": 2000,
+        "user_id": 3138930,
+        "username": "gerbi"
+      },
+      {
         "quantity": 2000,
         "user_id": 137059641,
         "username": "liamhochman2007"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 3138930,
-        "username": "gerbi"
       },
       {
         "quantity": 500,
@@ -111,6 +136,11 @@
         "quantity": 500,
         "user_id": 101269863,
         "username": "Ronen_live"
+      },
+      {
+        "quantity": 1,
+        "user_id": 27700504,
+        "username": "reem777"
       }
     ],
     "kicks_gifts_week_enabled": true
