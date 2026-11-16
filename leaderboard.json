@@ -80,6 +80,11 @@
         "username": "omerbig2012"
       },
       {
+        "quantity": 3500,
+        "user_id": 113133477,
+        "username": "BlaBlaBla696"
+      },
+      {
         "quantity": 3000,
         "user_id": 3138930,
         "username": "gerbi"
@@ -98,66 +103,10 @@
         "quantity": 2500,
         "user_id": 124343413,
         "username": "Nadav1426"
-      },
-      {
-        "quantity": 2500,
-        "user_id": 113133477,
-        "username": "BlaBlaBla696"
       }
     ],
     "kicks_gifts_month_enabled": true,
-    "kicks_gifts_week": [
-      {
-        "quantity": 17000,
-        "user_id": 67453019,
-        "username": "natanelf"
-      },
-      {
-        "quantity": 5000,
-        "user_id": 102754372,
-        "username": "Mar_Alpha"
-      },
-      {
-        "quantity": 2500,
-        "user_id": 87190114,
-        "username": "RB6666"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 45187773,
-        "username": "omerbig2012"
-      },
-      {
-        "quantity": 1500,
-        "user_id": 131523779,
-        "username": "liamatedgi"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 89013843,
-        "username": "Dor121"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 79933146,
-        "username": "Shak4d"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 78238064,
-        "username": "Alm3gzz"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 77880838,
-        "username": "hapsanhod"
-      },
-      {
-        "quantity": 1000,
-        "user_id": 67026506,
-        "username": "Nir_garivzada"
-      }
-    ],
+    "kicks_gifts_week": [],
     "kicks_gifts_week_enabled": true
   },
   "message": "Success"
